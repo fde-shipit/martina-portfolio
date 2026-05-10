@@ -1,0 +1,50 @@
+import Hero from '@/components/Hero'
+import Ticker from '@/components/Ticker'
+import About from '@/components/About'
+import Work from '@/components/Work'
+import Career from '@/components/Career'
+import Writing from '@/components/Writing'
+import Skills from '@/components/Skills'
+import Contact from '@/components/Contact'
+import ScrollAnimations from '@/components/gsap/ScrollAnimations'
+import { person } from '@/content/data'
+
+export default function Home() {
+  return (
+    <main style={{ paddingBottom: '6rem' }}>
+      <ScrollAnimations />
+      <Hero />
+      <Ticker />
+
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3rem' }}>
+        {/* Spacing wrapper for sections */}
+      </div>
+
+      <About />
+      <Work />
+      <Career />
+      <Writing />
+      <Skills />
+      <Contact />
+
+      <footer
+        style={{
+          borderTop: '1px solid var(--rule)',
+          padding: '2rem 3rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          maxWidth: '1400px',
+          margin: '4rem auto 0',
+        }}
+      >
+        <span className="font-mono-label" style={{ color: 'var(--warm)', fontSize: '0.62rem' }}>
+          {person.name} © {new Date().getFullYear()}
+        </span>
+        <span className="font-mono-label" style={{ color: 'var(--warm)', fontSize: '0.62rem' }}>
+          {person.hashtag}
+        </span>
+      </footer>
+    </main>
+  )
+}
