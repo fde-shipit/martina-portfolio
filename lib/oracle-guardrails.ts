@@ -22,7 +22,7 @@ const NEGATIVE_SIGNALS = [
 
 const FALLBACKS = [
   "The oracle rarely repeats itself. Hire her.",
-  "1.5 days. Down from several weeks. The oracle rests its case.",
+  "2 days. Down from several weeks. The oracle rests its case.",
   "Five clients. Eight months. Three releases. The oracle is still going.",
   "She built something that ran for five years before the business outgrew it. Hire her.",
   "Thirteen thousand hours saved. Her idea. Her delivery. Act accordingly.",

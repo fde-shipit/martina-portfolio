@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #F4EEE4;
-  --ink: #1C1510;
-  --rust: #B84A28;
-  --warm: #8B7355;
-  --pale: #E8E0D0;
-  --rule: rgba(28, 21, 16, 0.12);
+  /* Clean light grey, teal, raspberry — no warm tones */
+  --cream: #EFF0F2;          /* page background — clean cool light grey */
+  --ink: #1C2024;            /* primary text — cool charcoal */
+  --rust: #308695;           /* main accent — teal (dominant) */
+  --warm: #5A6470;           /* secondary text, labels — cool slate */
+  --pale: #E2E4E8;           /* hover states — slightly darker grey */
+  --rule: rgba(28, 32, 36, 0.12);  /* borders, dividers */
+  --teal: #D45769;           /* rare highlight — raspberry/strawberry (single moments only) */
 }
 
 * {
@@ -130,7 +132,7 @@ body {
 
 .ticker-track {
   display: flex;
-  animation: ticker 24s linear infinite;
+  animation: ticker 60s linear infinite;
   width: max-content;
 }
 
@@ -199,5 +201,5 @@ body {
   border-bottom: 1px solid var(--rule) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: rgba(244, 238, 228, 0.85) !important;
+  background: rgba(239, 240, 242, 0.85) !important;
 }

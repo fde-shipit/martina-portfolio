@@ -20,18 +20,16 @@ export default function Ticker() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0',
               fontFamily: 'var(--font-dm-mono)',
               fontSize: '0.68rem',
               textTransform: 'uppercase',
-              letterSpacing: '0.12em',
+              letterSpacing: '0.14em',
               color: item.accent ? 'var(--rust)' : 'var(--warm)',
               whiteSpace: 'nowrap',
-              paddingRight: '3rem',
+              paddingRight: '4.5rem',
             }}
           >
             {item.text}
-            <span style={{ color: 'var(--rule)', marginLeft: '3rem', marginRight: 0 }}>·</span>
           </span>
         ))}
       </div>

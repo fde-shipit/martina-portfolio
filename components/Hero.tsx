@@ -140,7 +140,7 @@ export default function Hero() {
               lineHeight: 0.95,
               fontStyle: 'italic',
               letterSpacing: '-0.02em',
-              color: 'var(--rust)',
+              color: 'var(--teal)',
             }}
           >
             {person.name.split(' ')[1]}

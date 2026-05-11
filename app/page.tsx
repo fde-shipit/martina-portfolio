@@ -2,6 +2,7 @@ import Hero from '@/components/Hero'
 import Ticker from '@/components/Ticker'
 import About from '@/components/About'
 import Work from '@/components/Work'
+import PullQuote from '@/components/PullQuote'
 import Career from '@/components/Career'
 import Writing from '@/components/Writing'
 import Skills from '@/components/Skills'
@@ -22,6 +23,7 @@ export default function Home() {
 
       <About />
       <Work />
+      <PullQuote />
       <Career />
       <Writing />
       <Skills />
