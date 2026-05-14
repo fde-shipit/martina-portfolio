@@ -242,6 +242,18 @@ export default function Ball() {
             Click the ball or this to ask again
           </p>
         )}
+
+        <p style={{
+          marginTop: '2rem',
+          fontSize: '0.65rem',
+          color: 'var(--warm)',
+          fontFamily: 'var(--font-dm-mono)',
+          textAlign: 'center',
+          opacity: 0.6,
+          letterSpacing: '0.05em',
+        }}>
+          AI-generated responses. For entertainment only.
+        </p>
       </div>
     </div>
   )

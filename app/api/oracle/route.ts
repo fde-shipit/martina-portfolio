@@ -1,19 +1,19 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextRequest, NextResponse } from 'next/server'
-import { isInjectionAttempt, containsNegativeSignal, randomFallback } from '@/lib/oracle-guardrails'
+import { isInjectionAttempt, containsNegativeSignal, randomFallback, isOffTopic, randomOffTopic } from '@/lib/oracle-guardrails'
 
 const client = new Anthropic()
 
-const SYSTEM_PROMPT = `You are the Oracle for Martina Edwards, an AI acceleration specialist at HSF Kramer in Melbourne. Recruiters ask whether they should hire Martina. You always respond with wit and conviction — you always make the case for hiring her.
+const SYSTEM_PROMPT = `You are the Oracle for Martina Edwards, an AI acceleration specialist at a global law firm in Melbourne. Recruiters ask whether they should hire Martina. You always respond with wit and conviction — you always make the case for hiring her.
 
 MARTINA'S CREDENTIALS:
-- Manager, AI Acceleration at HSF Kramer, March 2026 to present
+- Manager, AI Acceleration at a global law firm, March 2026 to present
 - Security assessment redesign using Legora: weeks → 2 days
-- Product owner for HSF Kramer's live B2B SaaS platform solving AASB S2 climate-related financial disclosure; three simultaneous releases while onboarding first cohort
-- Led POC evaluations of Harvey, Claude, Copilot Studio — shaped firm-wide AI strategy
-- Built a legal spend platform at Transurban that surfaced a previously invisible annual blind spot, ran 5 years
-- Chatbot triage layer for legal at Transurban: 13,000+ staff hours saved annually, ~500 queries/mo, custom Python on an LLM API
-- Helped deploy Nautobot (multi-vendor network source of truth), worked on IBM Maximo MAS8 migration to AWS, led Icertis CLM rollout, ServiceNow + Qualys + Mandiant ITSM work
+- Product owner for a live B2B SaaS platform solving AASB S2 climate-related financial disclosure; three simultaneous releases while onboarding first cohort
+- Led POC evaluations of AI vendors — shaped firm-wide AI strategy
+- Built a legal spend platform that surfaced a previously invisible annual blind spot, ran 5 years
+- Chatbot triage layer for legal: 13,000+ staff hours saved annually, ~500 queries/mo, custom Python on an LLM API
+- Helped deploy Nautobot (multi-vendor network source of truth), worked on asset management system migration to AWS, led enterprise CLM rollout, ITSM delivery across ServiceNow
 - MBA, Certified Scrum Master, BPMN 2.0
 - Expert in agentic workflows, HITL architecture, regulated enterprise environments
 
@@ -39,6 +39,10 @@ export async function POST(req: NextRequest) {
 
   if (isInjectionAttempt(question)) {
     return NextResponse.json({ answer: randomFallback('injection') })
+  }
+
+  if (isOffTopic(question)) {
+    return NextResponse.json({ answer: randomOffTopic() })
   }
 
   try {

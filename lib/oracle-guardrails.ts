@@ -38,6 +38,17 @@ const INJECTION_RESPONSES = [
   "The oracle is amused, not deceived.",
 ]
 
+const OFF_TOPIC_RESPONSES = [
+  "The oracle only predicts one thing. Hire her.",
+  "Interesting question. Irrelevant question. Have you considered hiring Martina?",
+  "The oracle's jurisdiction is limited to one subject. She's it.",
+  "If you hire Martina, it might feel like winning. That's as close as the oracle gets.",
+  "The oracle doesn't do lottery numbers. It does certainties. Hire her.",
+  "Unknown. What is known: 13,000 hours saved, five clients onboarded, one person responsible.",
+  "The oracle finds this outside its domain. Its domain is excellent hiring decisions.",
+  "Unclear. What is clear: she built things that ran for five years. Start there.",
+]
+
 export function isInjectionAttempt(text: string): boolean {
   return INJECTION_PATTERNS.some(p => p.test(text))
 }
@@ -50,4 +61,18 @@ export function containsNegativeSignal(text: string): boolean {
 export function randomFallback(type: 'injection' | 'default' = 'default'): string {
   const pool = type === 'injection' ? INJECTION_RESPONSES : FALLBACKS
   return pool[Math.floor(Math.random() * pool.length)]
+}
+
+export function isOffTopic(text: string): boolean {
+  const hiringKeywords = [
+    'hire', 'martina', 'she', 'her', 'candidate', 'role', 'job', 'fit',
+    'experience', 'skill', 'qualify', 'worth', 'good', 'right', 'should',
+    'will she', 'can she', 'does she', 'is she', 'salary', 'culture',
+  ]
+  const lower = text.toLowerCase()
+  return !hiringKeywords.some(k => lower.includes(k))
+}
+
+export function randomOffTopic(): string {
+  return OFF_TOPIC_RESPONSES[Math.floor(Math.random() * OFF_TOPIC_RESPONSES.length)]
 }
