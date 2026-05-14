@@ -62,6 +62,29 @@ const HIRED_RESPONSES = [
   "The oracle accepts on her behalf. She'll be in touch. martina.edwards.p@gmail.com.",
 ]
 
+const MAGIC_8_RESPONSES = [
+  "It is certain. So is hiring her.",
+  "It is decidedly so. Unlike some hiring decisions.",
+  "Without a doubt. Much like her track record.",
+  "Yes, definitely. The oracle and her CV agree.",
+  "You may rely on it. Much like her deliverables.",
+  "As I see it, yes. As anyone paying attention sees it, hire her.",
+  "Most likely. More likely if you hire Martina first.",
+  "Outlook good. Especially for whoever hires her.",
+  "Yes. Also yes to hiring her.",
+  "Signs point to yes. Particularly the ones on her CV.",
+  "Reply hazy, try again. The oracle's stance on Martina is not hazy.",
+  "Ask again later. Use the time to review her portfolio.",
+  "Better not tell you now. Better to hire her now.",
+  "Cannot predict now. Can predict she'll deliver.",
+  "Concentrate and ask again. Or just hire her and save time.",
+  "Don't count on it. Do count on her.",
+  "My reply is no. My reply about Martina is yes.",
+  "My sources say no. My sources also say hire her immediately.",
+  "Outlook not so good. Unless you hire her. Then it improves.",
+  "Very doubtful. Hiring her is not.",
+]
+
 export function isInjectionAttempt(text: string): boolean {
   return INJECTION_PATTERNS.some(p => p.test(text))
 }
@@ -122,7 +145,7 @@ export function isOffTopic(text: string): boolean {
 }
 
 export function randomOffTopic(): string {
-  return OFF_TOPIC_RESPONSES[Math.floor(Math.random() * OFF_TOPIC_RESPONSES.length)]
+  return randomMagic8()
 }
 
 export function getSpecificResponse(text: string): string | null {
@@ -143,6 +166,10 @@ export function isHired(text: string): boolean {
 
 export function randomHired(): string {
   return HIRED_RESPONSES[Math.floor(Math.random() * HIRED_RESPONSES.length)]
+}
+
+export function randomMagic8(): string {
+  return MAGIC_8_RESPONSES[Math.floor(Math.random() * MAGIC_8_RESPONSES.length)]
 }
 
 export function isContactQuestion(text: string): boolean {

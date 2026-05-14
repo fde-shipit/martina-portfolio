@@ -23,6 +23,8 @@ export default function Ball() {
   const [answer, setAnswer] = useState<string | null>(null)
   const [question, setQuestion] = useState('')
   const [loading, setLoading] = useState(false)
+  const [remaining, setRemaining] = useState<number>(5)
+  const [rateLimited, setRateLimited] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const ask = async (q: string) => {
@@ -38,6 +40,17 @@ export default function Ball() {
         body: JSON.stringify({ question: q }),
       })
       const data = await res.json()
+
+      if (data.rateLimited) {
+        setRateLimited(true)
+        setBallState('idle')
+        setLoading(false)
+        return
+      }
+
+      if (typeof data.remaining === 'number') {
+        setRemaining(data.remaining)
+      }
 
       setTimeout(() => {
         setBallState('revealing')
@@ -61,8 +74,15 @@ export default function Ball() {
   }
 
   const handleSuggestion = (s: string) => {
+    if (rateLimited) return
     setQuestion(s)
     if (staticAnswers[s]) {
+      const newRemaining = remaining - 1
+      setRemaining(newRemaining)
+      if (newRemaining < 0) {
+        setRateLimited(true)
+        return
+      }
       setBallState('shaking')
       setTimeout(() => {
         setBallState('revealing')
@@ -75,6 +95,7 @@ export default function Ball() {
   }
 
   const handleReset = () => {
+    if (rateLimited) return
     setBallState('idle')
     setAnswer(null)
     setQuestion('')
@@ -216,7 +237,7 @@ export default function Ball() {
               padding: '0.75rem 0 0.75rem 1rem',
             }}
           >
-            {loading ? '···' : 'Ask →'}
+            {loading ? '...' : 'Ask ->'}
           </button>
         </form>
 
@@ -250,20 +271,97 @@ export default function Ball() {
           ))}
         </div>
 
-        {answer && (
-          <p
-            style={{
-              marginTop: '1.5rem',
-              fontSize: '0.78rem',
-              color: 'var(--warm)',
+        {rateLimited ? (
+          <div style={{
+            marginTop: '1.5rem',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1rem',
+            padding: '1.5rem',
+            border: '1px solid var(--rust)',
+            background: 'rgba(184,74,40,0.04)',
+          }}>
+            <p style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontSize: '1.3rem',
+              fontStyle: 'italic',
+              color: 'var(--rust)',
+              lineHeight: 1.3,
+            }}>
+              Dang!
+            </p>
+            <p style={{
               fontFamily: 'var(--font-dm-mono)',
-              textAlign: 'center',
-              cursor: 'pointer',
-            }}
-            onClick={handleReset}
-          >
-            Click the ball or this to ask again
-          </p>
+              fontSize: '0.72rem',
+              color: 'var(--ink)',
+              lineHeight: 1.5,
+            }}>
+              Looks like you&apos;re out of tokens.<br />Request more here:
+            </p>
+            <a
+              href="mailto:martina.edwards.p@gmail.com?subject=I%20need%20an%20oracle%20like%20you&body=I%20had%20fun%20with%20your%20oracle.%20Connect%3F%20And...%20more%20tokens%2C%20please."
+              style={{
+                display: 'inline-block',
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '0.65rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                color: 'var(--cream)',
+                background: 'var(--rust)',
+                border: '1px solid var(--rust)',
+                padding: '0.6rem 1.5rem',
+                textDecoration: 'none',
+              }}
+            >
+              Request tokens
+            </a>
+          </div>
+        ) : (
+          <>
+            {answer && (
+              <p
+                style={{
+                  marginTop: '1.5rem',
+                  fontSize: '0.78rem',
+                  color: 'var(--warm)',
+                  fontFamily: 'var(--font-dm-mono)',
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                }}
+                onClick={handleReset}
+              >
+                Click the ball or this to ask again
+              </p>
+            )}
+            {remaining <= 2 && remaining > 0 && !rateLimited && (
+              <p style={{
+                marginTop: '0.75rem',
+                fontSize: '0.75rem',
+                color: 'var(--rust)',
+                fontFamily: 'var(--font-dm-mono)',
+                textAlign: 'center',
+                fontWeight: 500,
+                letterSpacing: '0.05em',
+              }}>
+                {remaining} attempt{remaining === 1 ? '' : 's'} remaining
+              </p>
+            )}
+            {remaining === 0 && !rateLimited && (
+              <p style={{
+                marginTop: '0.75rem',
+                fontSize: '0.75rem',
+                color: 'var(--rust)',
+                fontFamily: 'var(--font-dm-mono)',
+                textAlign: 'center',
+                fontWeight: 500,
+                letterSpacing: '0.05em',
+              }}>
+                1 attempt remaining
+              </p>
+            )}
+          </>
         )}
 
         <p style={{
