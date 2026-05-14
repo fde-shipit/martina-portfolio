@@ -85,7 +85,7 @@ export default function Hero() {
           left: '-0.05em',
           fontFamily: 'var(--font-cormorant)',
           fontWeight: 300,
-          fontSize: 'clamp(6rem, 18vw, 18rem)',
+          fontSize: 'clamp(4rem, 12vw, 12rem)',
           color: 'transparent',
           WebkitTextStroke: '1px var(--rule)',
           lineHeight: 1,
