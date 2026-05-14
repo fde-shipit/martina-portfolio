@@ -45,11 +45,26 @@ export default function Writing() {
                     fontWeight: 300,
                     fontSize: '1.4rem',
                     color: 'var(--ink)',
-                    marginBottom: '0.75rem',
+                    marginBottom: '0.4rem',
                   }}
                 >
                   {post.title}
                 </h3>
+                {'subheading' in post && post.subheading && (
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-cormorant)',
+                      fontStyle: 'italic',
+                      fontWeight: 300,
+                      fontSize: '0.95rem',
+                      color: 'var(--rust)',
+                      lineHeight: 1.4,
+                      marginBottom: '0.75rem',
+                    }}
+                  >
+                    {post.subheading}
+                  </p>
+                )}
                 <p style={{ fontSize: '0.82rem', color: 'var(--warm)', lineHeight: 1.5 }}>
                   {post.hook}
                 </p>

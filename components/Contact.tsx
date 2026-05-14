@@ -62,7 +62,7 @@ export default function Contact() {
                 }}
               >
                 <span className="font-mono-label" style={{ color: 'var(--warm)' }}>LinkedIn</span>
-                <span style={{ fontSize: '1rem', color: 'var(--ink)' }}>linkedin.com/in/martina-edwards</span>
+                <span style={{ fontSize: '1rem', color: 'var(--ink)' }}>linkedin.com/in/martina-edwards-a674067b</span>
               </a>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>

@@ -24,9 +24,9 @@ export default function Home() {
       <About />
       <Work />
       <PullQuote />
+      <Skills />
       <Career />
       <Writing />
-      <Skills />
       <Contact />
 
       <footer
