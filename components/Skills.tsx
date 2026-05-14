@@ -10,8 +10,8 @@ export default function Skills() {
         <div className="section-content gsap-section-content">
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+              display: 'flex',
+              flexWrap: 'wrap',
               gap: '1px',
               background: 'var(--rule)',
             }}
@@ -20,7 +20,7 @@ export default function Skills() {
               <div
                 key={i}
                 className="gsap-stagger-child"
-                style={{ background: 'var(--cream)', padding: '1.75rem' }}
+                style={{ background: 'var(--cream)', padding: '1.75rem', flex: '1 1 220px' }}
               >
                 <div
                   className="font-mono-label"

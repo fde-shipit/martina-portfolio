@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
-import Cursor from "@/components/Cursor";
 import ProgressBar from "@/components/ProgressBar";
 
 const cormorant = Cormorant_Garamond({
@@ -41,9 +40,7 @@ export default function RootLayout({
     >
       <body>
         <div id="progress-bar" />
-        <div id="cursor" />
         <Nav />
-        <Cursor />
         <ProgressBar />
         {children}
       </body>
