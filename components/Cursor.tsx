@@ -9,7 +9,7 @@ export default function Cursor() {
 
     let mouseX = 0, mouseY = 0
     let curX = 0, curY = 0
-    const lerp = 0.12
+    const lerp = 0.08
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX
