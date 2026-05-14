@@ -41,18 +41,18 @@ export const achievements = [
     tag: "Vercel, PostgreSQL, Release Governance",
   },
   {
-    number: "NDA",
-    sublabel: "multiple vendors",
+    number: "Internal",
+    sublabel: "AI vendors",
     title: "AI Vendor Evaluation Program",
-    description: "Led structured POC evaluations of Harvey, Claude, and Copilot Studio for targeted legal workflows. Redirected early experimentation toward defined boundaries and measurable output quality. Findings shaped firm-wide AI strategy.",
-    tag: "Harvey, Claude, Copilot Studio",
+    description: "Led structured POC evaluations of AI vendors for targeted legal workflows. Redirected early experimentation toward defined boundaries and measurable output quality. Findings shaped firm-wide AI strategy.",
+    tag: "LLM evaluation · POC design · AI strategy",
   },
   {
-    number: "Multi-vendor",
+    number: "Infrastructure",
     sublabel: "single pane of glass",
     title: "Nautobot Network Source of Truth",
     description: "Helped deploy Nautobot across multi-vendor infrastructure (Cisco, Palo Alto, Fortinet, and others) spanning hundreds of sites and thousands of devices. The work that changed how I think about technology — and the foundation any reliable AI ultimately runs on.",
-    tag: "Nautobot, Multi-vendor Networks",
+    tag: "Nautobot, Infrastructure at scale",
   },
   {
     number: "5 yrs",
@@ -79,7 +79,7 @@ export const achievements = [
     number: "Icertis",
     sublabel: "enterprise rollout",
     title: "Contract Management System Rollout",
-    description: "Project managed an enterprise-wide Icertis rollout using Agile, supported by Confluence and Jira. Facilitated process mapping workshops for document control, version control, and confidentiality, producing a revised Information Classification and Handling Standard.",
+    description: "Contributed to an enterprise-wide Icertis rollout using Agile. Facilitated process mapping workshops across document control, version control, and confidentiality, and produced a revised Information Classification and Handling Standard.",
     tag: "Icertis, Agile, Information Governance",
   },
   {
