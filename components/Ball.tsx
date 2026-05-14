@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 
-type BallState = 'idle' | 'shaking' | 'revealing' | 'lit'
+type BallState = 'idle' | 'shaking' | 'revealing' | 'lit' | 'hired'
 
 const suggestions = [
   "Why should I hire Martina?",
@@ -42,7 +42,7 @@ export default function Ball() {
       setTimeout(() => {
         setBallState('revealing')
         setAnswer(data.answer)
-        setTimeout(() => setBallState('lit'), 100)
+        setTimeout(() => setBallState(data.hired ? 'hired' : 'lit'), 100)
       }, 650)
     } catch {
       setTimeout(() => {
@@ -81,10 +81,18 @@ export default function Ball() {
     inputRef.current?.focus()
   }
 
-  const ballClass = ballState === 'idle' ? 'ball-float' : ballState === 'shaking' ? 'ball-shaking' : ''
+  const ballClass = ballState === 'idle' ? 'ball-float' : ballState === 'shaking' ? 'ball-shaking' : ballState === 'hired' ? 'ball-hired' : ''
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3rem' }}>
+      <style>{`
+        @keyframes ball-spin {
+          0% { transform: rotate(0deg) scale(1); }
+          50% { transform: rotate(180deg) scale(1.05); }
+          100% { transform: rotate(360deg) scale(1); }
+        }
+        .ball-hired { animation: ball-spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+      `}</style>
       {/* The Ball */}
       <div
         className={ballClass}
@@ -93,7 +101,7 @@ export default function Ball() {
           height: '280px',
           borderRadius: '50%',
           background: 'radial-gradient(ellipse at 35% 35%, #1a3a4a 0%, #0d2030 55%, #061420 100%)',
-          boxShadow: ballState === 'lit'
+          boxShadow: (ballState === 'lit' || ballState === 'hired')
             ? '0 0 80px rgba(82,160,170,0.35), 0 0 30px rgba(82,160,170,0.2), 0 20px 60px rgba(0,0,0,0.4), inset 0 -20px 40px rgba(0,0,0,0.2)'
             : '0 20px 60px rgba(0,0,0,0.25), 0 0 40px rgba(82,160,170,0.08), inset 0 -20px 40px rgba(0,0,0,0.2)',
           display: 'flex',
@@ -137,7 +145,7 @@ export default function Ball() {
           )}
 
           {/* Answer text */}
-          {(ballState === 'revealing' || ballState === 'lit') && answer && (
+          {(ballState === 'revealing' || ballState === 'lit' || ballState === 'hired') && answer && (
             <p
               style={{
                 fontFamily: 'var(--font-cormorant)',
@@ -147,8 +155,8 @@ export default function Ball() {
                 color: '#a8c4e8',
                 textAlign: 'center',
                 lineHeight: 1.4,
-                opacity: ballState === 'lit' ? 1 : 0,
-                transform: ballState === 'lit' ? 'scale(1)' : 'scale(0.9)',
+                opacity: (ballState === 'lit' || ballState === 'hired') ? 1 : 0,
+                transform: (ballState === 'lit' || ballState === 'hired') ? 'scale(1)' : 'scale(0.9)',
                 transition: 'opacity 0.5s ease, transform 0.5s ease',
               }}
             >

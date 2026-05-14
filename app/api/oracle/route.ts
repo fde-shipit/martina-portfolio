@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextRequest, NextResponse } from 'next/server'
-import { isInjectionAttempt, containsNegativeSignal, randomFallback, isOffTopic, randomOffTopic, isContactQuestion, randomContact, isSalaryQuestion, randomSalary, isAvailabilityQuestion, randomAvailability, isMetaQuestion, randomMeta, isCompliment, randomCompliment } from '@/lib/oracle-guardrails'
+import { isInjectionAttempt, containsNegativeSignal, randomFallback, isOffTopic, randomOffTopic, getSpecificResponse, isHired, randomHired, isContactQuestion, randomContact, isSalaryQuestion, randomSalary, isAvailabilityQuestion, randomAvailability, isMetaQuestion, randomMeta, isCompliment, randomCompliment } from '@/lib/oracle-guardrails'
 
 const client = new Anthropic()
 
@@ -39,6 +39,15 @@ export async function POST(req: NextRequest) {
 
   if (isInjectionAttempt(question)) {
     return NextResponse.json({ answer: randomFallback('injection') })
+  }
+
+  if (isHired(question)) {
+    return NextResponse.json({ answer: randomHired(), hired: true })
+  }
+
+  const specificResponse = getSpecificResponse(question)
+  if (specificResponse) {
+    return NextResponse.json({ answer: specificResponse })
   }
 
   if (isOffTopic(question)) {

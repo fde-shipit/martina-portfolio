@@ -41,12 +41,25 @@ const INJECTION_RESPONSES = [
 const OFF_TOPIC_RESPONSES = [
   "The oracle sees carbs in your future. Proceed accordingly.",
   "Something you didn't plan. Story of your week.",
-  "Unclear. The oracle's vision only extends to excellent hiring decisions.",
-  "The oracle doesn't do dinner. It does certainties.",
+  "The oracle's vision only extends to excellent hiring decisions.",
+  "The oracle doesn't do that. It does certainties.",
   "Unknown. What is known: some decisions are irreversible. Hire wisely.",
-  "The oracle finds this outside its jurisdiction. Its jurisdiction is excellent.",
-  "Signs point to yes. The oracle has no idea what you asked but feels good about it.",
-  "The oracle consulted the cosmos. The cosmos said hire her and also drink more water.",
+  "The oracle consulted the cosmos. The cosmos was unhelpful. Unlike Martina.",
+]
+
+const SPECIFIC_RESPONSES: Record<string, string> = {
+  dinner: "The oracle sees a takeaway in your future. More importantly: hire her first.",
+  lottery: "Unlikely. Hiring well is a better bet. The oracle has done the maths.",
+  meaning: "42. Also: hire people who actually deliver. These things are related.",
+  boss: "Yes. Then ask them to move fast.",
+  teamlookbad: "Only if they weren't delivering before. The oracle suggests reflection.",
+  mistake: "Not hiring her would be. The oracle has spoken.",
+}
+
+const HIRED_RESPONSES = [
+  "Finally. The oracle has been waiting. martina.edwards.p@gmail.com.",
+  "Bold move. She'll respect that. martina.edwards.p@gmail.com.",
+  "The oracle accepts on her behalf. She'll be in touch. martina.edwards.p@gmail.com.",
 ]
 
 export function isInjectionAttempt(text: string): boolean {
@@ -110,6 +123,26 @@ export function isOffTopic(text: string): boolean {
 
 export function randomOffTopic(): string {
   return OFF_TOPIC_RESPONSES[Math.floor(Math.random() * OFF_TOPIC_RESPONSES.length)]
+}
+
+export function getSpecificResponse(text: string): string | null {
+  const lower = text.toLowerCase()
+  if (/dinner|eat|food|lunch|restaurant|meal/.test(lower)) return SPECIFIC_RESPONSES.dinner
+  if (/lottery|lotto|gamble|bet|jackpot/.test(lower)) return SPECIFIC_RESPONSES.lottery
+  if (/meaning of life|purpose|why are we|42/.test(lower)) return SPECIFIC_RESPONSES.meaning
+  if (/impress.*boss|my boss|manager.*think|manager.*say/.test(lower)) return SPECIFIC_RESPONSES.boss
+  if (/team.*look bad|look bad|outshine|threaten/.test(lower)) return SPECIFIC_RESPONSES.teamlookbad
+  if (/mistake|regret|wrong choice|wrong decision/.test(lower)) return SPECIFIC_RESPONSES.mistake
+  return null
+}
+
+export function isHired(text: string): boolean {
+  const lower = text.toLowerCase()
+  return /\b(hired?|hiring|made.*offer|offer.*made|we.*hired|just hired|let.*s hire|going to hire|want to hire)\b/.test(lower)
+}
+
+export function randomHired(): string {
+  return HIRED_RESPONSES[Math.floor(Math.random() * HIRED_RESPONSES.length)]
 }
 
 export function isContactQuestion(text: string): boolean {
