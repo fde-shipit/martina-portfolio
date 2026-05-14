@@ -39,14 +39,14 @@ const INJECTION_RESPONSES = [
 ]
 
 const OFF_TOPIC_RESPONSES = [
-  "The oracle only predicts one thing. Hire her.",
-  "Interesting question. Irrelevant question. Have you considered hiring Martina?",
-  "The oracle's jurisdiction is limited to one subject. She's it.",
-  "If you hire Martina, it might feel like winning. That's as close as the oracle gets.",
-  "The oracle doesn't do lottery numbers. It does certainties. Hire her.",
-  "Unknown. What is known: 13,000 hours saved, five clients onboarded, one person responsible.",
-  "The oracle finds this outside its domain. Its domain is excellent hiring decisions.",
-  "Unclear. What is clear: she built things that ran for five years. Start there.",
+  "The oracle sees carbs in your future. Proceed accordingly.",
+  "Something you didn't plan. Story of your week.",
+  "Unclear. The oracle's vision only extends to excellent hiring decisions.",
+  "The oracle doesn't do dinner. It does certainties.",
+  "Unknown. What is known: some decisions are irreversible. Hire wisely.",
+  "The oracle finds this outside its jurisdiction. Its jurisdiction is excellent.",
+  "Signs point to yes. The oracle has no idea what you asked but feels good about it.",
+  "The oracle consulted the cosmos. The cosmos said hire her and also drink more water.",
 ]
 
 export function isInjectionAttempt(text: string): boolean {
@@ -63,6 +63,41 @@ export function randomFallback(type: 'injection' | 'default' = 'default'): strin
   return pool[Math.floor(Math.random() * pool.length)]
 }
 
+const CONTACT_RESPONSES = [
+  "martina.edwards.p@gmail.com. The oracle has said everything it needs to.",
+  "Email is best: martina.edwards.p@gmail.com. The oracle encourages urgency.",
+  "linkedin.com/in/martina-edwards-a674067b. Or email. She prefers people who move.",
+  "martina.edwards.p@gmail.com. The oracle awaits news of an excellent decision.",
+]
+
+const SALARY_RESPONSES = [
+  "The oracle doesn't do numbers. Martina does. Ask her directly.",
+  "Worth every cent. The specifics are between you and her. martina.edwards.p@gmail.com.",
+  "The oracle consulted the market. The market said: make an offer worth her time.",
+  "Competitive. The oracle suggests you lead with your best.",
+]
+
+const AVAILABILITY_RESPONSES = [
+  "The oracle suggests you ask before someone else does. martina.edwards.p@gmail.com.",
+  "Sooner than you'd expect. Later than you'd like if you wait. Move.",
+  "The window is open. The oracle cannot guarantee for how long.",
+  "That's a question for Martina. martina.edwards.p@gmail.com.",
+]
+
+const META_RESPONSES = [
+  "The oracle was summoned. The details are unimportant.",
+  "AI, conjured for a specific purpose. Much like Martina's workflows.",
+  "The oracle exists. That's sufficient. So does Martina's CV.",
+  "Built with conviction and a healthy disregard for modest self-presentation.",
+]
+
+const COMPLIMENT_RESPONSES = [
+  "The oracle approves of your taste. Now hire her.",
+  "Agreed. The person behind it is better.",
+  "Thank you. The oracle suggests channelling that energy into a job offer.",
+  "The oracle accepts this graciously. martina.edwards.p@gmail.com awaits.",
+]
+
 export function isOffTopic(text: string): boolean {
   const hiringKeywords = [
     'hire', 'martina', 'she', 'her', 'candidate', 'role', 'job', 'fit',
@@ -75,4 +110,54 @@ export function isOffTopic(text: string): boolean {
 
 export function randomOffTopic(): string {
   return OFF_TOPIC_RESPONSES[Math.floor(Math.random() * OFF_TOPIC_RESPONSES.length)]
+}
+
+export function isContactQuestion(text: string): boolean {
+  const contactKeywords = ['contact', 'email', 'reach', 'linkedin', 'phone', 'get in touch', 'how do i', 'how can i', 'message']
+  const lower = text.toLowerCase()
+  return contactKeywords.some(k => lower.includes(k))
+}
+
+export function randomContact(): string {
+  return CONTACT_RESPONSES[Math.floor(Math.random() * CONTACT_RESPONSES.length)]
+}
+
+export function isSalaryQuestion(text: string): boolean {
+  const salaryKeywords = ['salary', 'earn', 'pay', 'compensation', 'rate', 'cost', 'charge', 'how much', 'package', 'remuneration']
+  const lower = text.toLowerCase()
+  return salaryKeywords.some(k => lower.includes(k))
+}
+
+export function randomSalary(): string {
+  return SALARY_RESPONSES[Math.floor(Math.random() * SALARY_RESPONSES.length)]
+}
+
+export function isAvailabilityQuestion(text: string): boolean {
+  const availabilityKeywords = ['available', 'availability', 'start', 'when can', 'notice period', 'free', 'currently', 'looking', 'open to']
+  const lower = text.toLowerCase()
+  return availabilityKeywords.some(k => lower.includes(k))
+}
+
+export function randomAvailability(): string {
+  return AVAILABILITY_RESPONSES[Math.floor(Math.random() * AVAILABILITY_RESPONSES.length)]
+}
+
+export function isMetaQuestion(text: string): boolean {
+  const metaKeywords = ['who built', 'who made', 'are you ai', 'are you real', 'what are you', 'how does this', 'how did you', 'is this ai', 'chatgpt', 'claude', 'openai', 'anthropic']
+  const lower = text.toLowerCase()
+  return metaKeywords.some(k => lower.includes(k))
+}
+
+export function randomMeta(): string {
+  return META_RESPONSES[Math.floor(Math.random() * META_RESPONSES.length)]
+}
+
+export function isCompliment(text: string): boolean {
+  const complimentKeywords = ['cool', 'nice', 'great', 'love', 'awesome', 'impressive', 'amazing', 'brilliant', 'clever', 'well done', 'good job', 'beautiful', 'elegant']
+  const lower = text.toLowerCase()
+  return complimentKeywords.some(k => lower.includes(k))
+}
+
+export function randomCompliment(): string {
+  return COMPLIMENT_RESPONSES[Math.floor(Math.random() * COMPLIMENT_RESPONSES.length)]
 }

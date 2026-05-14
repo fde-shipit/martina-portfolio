@@ -5,12 +5,18 @@ import { useState, useRef } from 'react'
 type BallState = 'idle' | 'shaking' | 'revealing' | 'lit'
 
 const suggestions = [
-  "Should I hire her?",
-  "Is she worth the salary?",
-  "Can she really do all that?",
-  "I'm not convinced.",
-  "Will she fit our culture?",
+  "Why should I hire Martina?",
+  "What if I don't hire her?",
+  "She seems like an overachiever. I don't like overachievers.",
+  "What if someone else hires her first?",
 ]
+
+const staticAnswers: Record<string, string> = {
+  "Why should I hire Martina?": "If you need AI that actually works in production, do it. Otherwise ask me what's for dinner.",
+  "What if I don't hire her?": "Then you'll spend the next year trying to find someone like her. Wishing you luck in your impossible endeavours.",
+  "She seems like an overachiever. I don't like overachievers.": "The oracle understands. Watching someone actually deliver must be exhausting. You'll get used to it.",
+  "What if someone else hires her first?": "Someone else will. You'll read about it later.",
+}
 
 export default function Ball() {
   const [ballState, setBallState] = useState<BallState>('idle')
@@ -56,7 +62,16 @@ export default function Ball() {
 
   const handleSuggestion = (s: string) => {
     setQuestion(s)
-    ask(s)
+    if (staticAnswers[s]) {
+      setBallState('shaking')
+      setTimeout(() => {
+        setBallState('revealing')
+        setAnswer(staticAnswers[s])
+        setTimeout(() => setBallState('lit'), 100)
+      }, 650)
+    } else {
+      ask(s)
+    }
   }
 
   const handleReset = () => {
@@ -77,10 +92,10 @@ export default function Ball() {
           width: '280px',
           height: '280px',
           borderRadius: '50%',
-          background: 'radial-gradient(ellipse at 35% 35%, #2a2a3e 0%, #0d0d1a 60%, #000008 100%)',
+          background: 'radial-gradient(ellipse at 35% 35%, #1a3a4a 0%, #0d2030 55%, #061420 100%)',
           boxShadow: ballState === 'lit'
-            ? '0 0 60px rgba(184,74,40,0.4), 0 20px 60px rgba(0,0,0,0.5), inset 0 -20px 40px rgba(0,0,0,0.3)'
-            : '0 20px 60px rgba(0,0,0,0.4), inset 0 -20px 40px rgba(0,0,0,0.3)',
+            ? '0 0 80px rgba(82,160,170,0.35), 0 0 30px rgba(82,160,170,0.2), 0 20px 60px rgba(0,0,0,0.4), inset 0 -20px 40px rgba(0,0,0,0.2)'
+            : '0 20px 60px rgba(0,0,0,0.25), 0 0 40px rgba(82,160,170,0.08), inset 0 -20px 40px rgba(0,0,0,0.2)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
