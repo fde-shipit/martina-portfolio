@@ -48,7 +48,7 @@ export const achievements = [
     tag: "LLM evaluation · POC design · AI strategy",
   },
   {
-    number: "Infrastructure",
+    number: "Infra",
     sublabel: "single pane of glass",
     title: "Nautobot Network Source of Truth",
     description: "Helped deploy Nautobot across multi-vendor infrastructure (Cisco, Palo Alto, Fortinet, and others) spanning hundreds of sites and thousands of devices. The work that changed how I think about technology — and the foundation any reliable AI ultimately runs on.",
@@ -83,7 +83,7 @@ export const achievements = [
     tag: "Icertis, Agile, Information Governance",
   },
   {
-    number: "ServiceNow",
+    number: "ITSM",
     sublabel: "Agile across ITSM",
     title: "Cyber & ITSM Agile Delivery",
     description: "Facilitated Agile rituals across multiple company-wide ITSM projects on ServiceNow. Worked with the cyber team on vulnerability remediation (Qualys internal scans, Mandiant threat-intel findings), translating findings into prioritised backlogs and change-managed fixes.",
