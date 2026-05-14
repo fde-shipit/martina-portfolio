@@ -7,12 +7,14 @@ import Career from '@/components/Career'
 import Writing from '@/components/Writing'
 import Skills from '@/components/Skills'
 import Contact from '@/components/Contact'
-import ScrollAnimations from '@/components/gsap/ScrollAnimations'
+import GsapScrollAnimations from '@/components/gsap/ScrollAnimations'
+import ScrollAnimations from '@/components/ScrollAnimations'
 import { person } from '@/content/data'
 
 export default function Home() {
   return (
     <main style={{ paddingBottom: '6rem' }}>
+      <GsapScrollAnimations />
       <ScrollAnimations />
       <Hero />
       <Ticker />
