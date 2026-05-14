@@ -24,8 +24,8 @@ export default function About() {
 
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              display: 'flex',
+              flexWrap: 'wrap',
               gap: '1px',
               background: 'var(--rule)',
             }}
@@ -37,6 +37,7 @@ export default function About() {
                 style={{
                   background: 'var(--cream)',
                   padding: '1.25rem 1.5rem',
+                  flex: '1 1 220px',
                 }}
               >
                 <div className="font-mono-label" style={{ color: 'var(--warm)', marginBottom: '0.4rem' }}>

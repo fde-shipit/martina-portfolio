@@ -16,13 +16,13 @@ export default function Work() {
                 style={{
                   background: 'var(--cream)',
                   display: 'grid',
-                  gridTemplateColumns: '120px 1fr',
+                  gridTemplateColumns: 'minmax(100px, 140px) 1fr',
                   gap: '2rem',
                   padding: '2rem',
                   alignItems: 'start',
                 }}
               >
-                <div>
+                <div style={{ overflow: 'hidden', wordBreak: 'break-word' }}>
                   <div
                     style={{
                       fontFamily: 'var(--font-cormorant)',
