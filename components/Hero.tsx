@@ -183,6 +183,32 @@ export default function Hero() {
         </div>
       </div>
 
+      <a
+        href="/oracle"
+        className="oracle-hero-btn"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '58%',
+          transform: 'translateY(-50%)',
+          fontFamily: 'var(--font-cormorant)',
+          fontStyle: 'italic',
+          fontWeight: 300,
+          fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+          color: 'var(--rust)',
+          textDecoration: 'none',
+          border: '1px solid var(--rust)',
+          padding: '0.75rem 1.25rem',
+          letterSpacing: '0.02em',
+          display: 'block',
+          textAlign: 'center',
+          lineHeight: 1.4,
+          zIndex: 1,
+        }}
+      >
+        Consult<br />the Oracle.
+      </a>
+
       {/* Stats — right side */}
       <div
         style={{
@@ -234,6 +260,16 @@ export default function Hero() {
             gap: 1.5rem !important;
             max-width: 100% !important;
           }
+        }
+        @keyframes oracle-pulse {
+          0%, 100% { opacity: 1; border-color: var(--rust); }
+          50% { opacity: 0.45; border-color: transparent; }
+        }
+        .oracle-hero-btn {
+          animation: ball-float 4s ease-in-out infinite, oracle-pulse 3s ease-in-out infinite;
+        }
+        @media (max-width: 768px) {
+          .oracle-hero-btn { display: none !important; }
         }
       `}</style>
     </section>
