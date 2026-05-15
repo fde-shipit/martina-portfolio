@@ -9,30 +9,19 @@ export const metadata: Metadata = {
 
 export default function OraclePage() {
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '6rem 2rem 4rem' }}>
-      <div style={{ textAlign: 'center', marginBottom: '4rem', maxWidth: '560px' }}>
-        <span
-          className="font-mono-label"
-          style={{ color: 'var(--rust)', display: 'block', marginBottom: '1rem' }}
-        >
-          The Oracle
-        </span>
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '6rem 2rem 4rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h1
           style={{
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
-            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+            fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
             lineHeight: 1.1,
             color: 'var(--ink)',
-            marginBottom: '1.25rem',
           }}
         >
-          Ask whether to hire{' '}
-          <em style={{ color: 'var(--rust)' }}>{person.name.split(' ')[0]}</em>
+          Consult the Oracle.
         </h1>
-        <p style={{ fontSize: '0.9rem', color: 'var(--warm)', lineHeight: 1.6 }}>
-          The oracle knows. The oracle always answers. The oracle is never wrong.
-        </p>
       </div>
 
       <Ball />

@@ -105,7 +105,7 @@ export default function Ball() {
   const ballClass = ballState === 'idle' ? 'ball-float' : ballState === 'shaking' ? 'ball-shaking' : ballState === 'hired' ? 'ball-hired' : ''
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3rem' }}>
+    <div className="oracle-layout">
       <style>{`
         @keyframes ball-spin {
           0% { transform: rotate(0deg) scale(1); }
@@ -113,8 +113,30 @@ export default function Ball() {
           100% { transform: rotate(360deg) scale(1); }
         }
         .ball-hired { animation: ball-spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .oracle-layout {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 3rem;
+        }
+        .oracle-right {
+          width: 100%;
+          max-width: 480px;
+        }
+        @media (min-width: 768px) {
+          .oracle-layout {
+            flex-direction: row;
+            align-items: center;
+            gap: 4rem;
+          }
+          .oracle-right {
+            max-width: none;
+            flex: 1;
+          }
+        }
       `}</style>
       {/* The Ball */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
       <div
         className={ballClass}
         style={{
@@ -155,10 +177,10 @@ export default function Ball() {
                 fontFamily: 'var(--font-cormorant)',
                 fontWeight: 300,
                 fontSize: '4rem',
-                color: 'rgba(139, 115, 85, 0.4)',
+                color: 'rgba(139, 115, 85, 0.75)',
                 lineHeight: 1,
                 transition: 'opacity 0.3s ease',
-                opacity: ballState === 'shaking' ? 0.2 : 0.4,
+                opacity: ballState === 'shaking' ? 0.2 : 0.75,
               }}
             >
               8
@@ -200,9 +222,10 @@ export default function Ball() {
           }}
         />
       </div>
+      </div>
 
       {/* Input form */}
-      <div style={{ width: '100%', maxWidth: '480px' }}>
+      <div className="oracle-right">
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0', borderBottom: '1px solid var(--ink)' }}>
           <input
             ref={inputRef}
