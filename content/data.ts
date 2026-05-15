@@ -13,7 +13,7 @@ export const person = {
 
 export const heroStats = [
   { number: "2 days", label: "Down from several weeks. Security assessment redesign using Legora." },
-  { number: "5 years", label: "A legal-spend visibility platform I built end-to-end ran 5 years before the business outgrew it." },
+  { number: "5 years", label: "A legal spend visibility platform I built end-to-end ran 5 years before the business outgrew it." },
   { number: "13,000+", label: "Staff hours saved annually. Chatbot I owned end to end." },
 ]
 
@@ -37,7 +37,7 @@ export const achievements = [
     number: "AASB S2",
     sublabel: "live in production",
     title: "B2B SaaS Platform Delivery",
-    description: "Product owner for a live platform solving AASB S2 climate-related financial disclosure for enterprise clients. Three full product releases delivered simultaneously while onboarding the first cohort, with time-to-value accelerating across each client as the onboarding pattern matured.",
+    description: "Sole accountability for roadmap, releases, client onboarding, incident management, and platform governance on a live B2B SaaS product solving AASB S2 climate disclosure for enterprise clients. Five clients onboarded in eight months. Three full product releases delivered in parallel. No dedicated engineering lead or customer success function. Used PostHog for behavioural analytics to inform feature sequencing and iteration priorities.",
     tag: "Vercel, PostgreSQL, Release Governance",
   },
   {
@@ -65,14 +65,14 @@ export const achievements = [
     number: "13k+",
     sublabel: "hrs/year saved",
     title: "Enterprise Chatbot Rollout",
-    description: "Led a chatbot initiative saving 13,000+ staff hours annually across ~500 queries a month. Custom Python solution on an LLM API. Designed as a triage layer for legal: the bot decided what needed legal review and what didn't — escalating high-risk procurement with the right framing, and handing low-risk requests a ready-to-attach artifact so they could bypass legal entirely. Owned product vision, roadmap, UAT, and rollout end-to-end.",
+    description: "Led a chatbot initiative saving 13,000+ staff hours annually across ~500 queries a month. Custom Python solution on an LLM API. Designed as a triage layer for legal: the bot decided what needed legal review and what didn't — escalating high-risk procurement with the right framing, and handing low-risk requests a ready-to-attach artifact so they could bypass legal entirely. Owned product vision, roadmap, UAT, and rollout from start to finish.",
     tag: "Python, LLM API, HITL Triage",
   },
   {
     number: "on-prem",
     sublabel: "→ AWS",
     title: "Asset Management System Cloud Migration",
-    description: "Business analyst on the migration of an enterprise asset management system from on-prem to a containerised target on AWS. Mapped existing functionality and customisations during waterfall discovery, gathered functional and non-functional requirements for the new architecture, documented risks across integrations and operational processes.",
+    description: "Delivered a high-risk live system upgrade during peak operations with no service interruption, coordinating across infrastructure, testing, and support teams. Led migration readiness for the asset management platform, mapping existing functionality and customisations, gathering requirements for the new architecture, and documenting integration risks and dependencies.",
     tag: "Asset Management System, AWS, Containers, Requirements",
   },
   {
