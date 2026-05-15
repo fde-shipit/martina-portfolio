@@ -27,6 +27,14 @@ export const details = [
 
 export const achievements = [
   {
+    number: "↗",
+    sublabel: "case study",
+    title: "This website",
+    description: "Started with a magic 8 ball. Ended up with a portfolio. No developer, no agency — Next.js, Claude API, GSAP, Vercel.",
+    tag: "Next.js · Claude API · TypeScript · Vercel",
+    link: "/work/built-in-one-day",
+  },
+  {
     number: "2 days",
     sublabel: "from several weeks",
     title: "Security Assessment Redesign",

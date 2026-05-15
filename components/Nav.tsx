@@ -7,6 +7,7 @@ import { person } from '@/content/data'
 
 const links = [
   { href: '/#work', label: 'Work' },
+  { href: '/work/built-in-one-day', label: 'Built in 2 Days' },
   { href: '/#career', label: 'Career' },
   { href: '/#writing', label: 'Writing' },
   { href: '/#skills', label: 'Skills' },

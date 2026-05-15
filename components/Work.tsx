@@ -1,4 +1,18 @@
+import Link from 'next/link'
 import { achievements } from '@/content/data'
+
+const CardWrapper = ({ item, children }: { item: any, children: React.ReactNode }) =>
+  item.link ? (
+    <Link href={item.link} style={{ textDecoration: 'none' }}>
+      <div className="work-item gsap-stagger-child" style={{ background: 'var(--cream)', display: 'grid', gridTemplateColumns: 'minmax(100px, 140px) 1fr', gap: '2rem', padding: '2rem', alignItems: 'start' }}>
+        {children}
+      </div>
+    </Link>
+  ) : (
+    <div className="work-item gsap-stagger-child" style={{ background: 'var(--cream)', display: 'grid', gridTemplateColumns: 'minmax(100px, 140px) 1fr', gap: '2rem', padding: '2rem', alignItems: 'start' }}>
+      {children}
+    </div>
+  )
 
 export default function Work() {
   return (
@@ -10,18 +24,7 @@ export default function Work() {
         <div className="section-content gsap-section-content">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: 'var(--rule)' }}>
             {achievements.map((item, i) => (
-              <div
-                key={i}
-                className="work-item gsap-stagger-child"
-                style={{
-                  background: 'var(--cream)',
-                  display: 'grid',
-                  gridTemplateColumns: 'minmax(100px, 140px) 1fr',
-                  gap: '2rem',
-                  padding: '2rem',
-                  alignItems: 'start',
-                }}
-              >
+              <CardWrapper key={i} item={item}>
                 <div style={{ overflow: 'hidden', wordBreak: 'break-word' }}>
                   <div
                     style={{
@@ -73,7 +76,7 @@ export default function Work() {
                     {item.tag}
                   </span>
                 </div>
-              </div>
+              </CardWrapper>
             ))}
           </div>
         </div>
