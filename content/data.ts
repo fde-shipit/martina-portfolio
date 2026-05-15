@@ -102,25 +102,25 @@ export const career = [
 
 export const posts = [
   {
-    week: "Field Note 01",
+    week: "Read 01",
     title: "Model",
     subheading: "The words changed jobs. Nobody sent a fax.",
     hook: "AI changed our work and our words. Temperature. Token. Harness. Same spelling. New job. Nobody sent a fax.",
   },
   {
-    week: "Field Note 02",
+    week: "Read 02",
     title: "Memory",
     subheading: "AI has a memory problem. So do I.",
     hook: "AI has a memory problem. So do I. Three things make AI feel like it remembers. None of them are memory.",
   },
   {
-    week: "Field Note 03",
+    week: "Read 03",
     title: "Prompt Injection",
     subheading: "Invisible to you. Not to your model.",
     hook: "Invisible to you. Not to your model. You are not the only one who can prompt your AI.",
   },
   {
-    week: "Field Note 04",
+    week: "Read 04",
     title: "Training",
     subheading: "The best trainer you've ever had stopped learning the day it launched.",
     hook: "Every model was trained. Past tense. A snapshot of the world up to a point in time. It's frozen there.",
