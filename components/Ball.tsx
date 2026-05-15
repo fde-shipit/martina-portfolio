@@ -18,6 +18,17 @@ const staticAnswers: Record<string, string> = {
   "What if someone else hires her first?": "Someone else will. You'll read about it later.",
 }
 
+/**
+ * Ball — re-themed to raspberry.
+ *
+ * Identical interaction logic to before. Three visual changes:
+ *   1. Lit-state glow now raspberry instead of teal
+ *   2. Inner "8" glyph picks up raspberry tint
+ *   3. Form accents (Ask button, suggestion hover, rate-limit modal,
+ *      "Request tokens" CTA) all swap from --rust to --accent-rare
+ *
+ * Reserves raspberry exclusively for the Oracle, end to end.
+ */
 export default function Ball() {
   const [ballState, setBallState] = useState<BallState>('idle')
   const [answer, setAnswer] = useState<string | null>(null)
@@ -102,7 +113,11 @@ export default function Ball() {
     inputRef.current?.focus()
   }
 
-  const ballClass = ballState === 'idle' ? 'ball-float' : ballState === 'shaking' ? 'ball-shaking' : ballState === 'hired' ? 'ball-hired' : ''
+  const ballClass =
+    ballState === 'idle' ? 'ball-float'
+    : ballState === 'shaking' ? 'ball-shaking'
+    : ballState === 'hired' ? 'ball-hired'
+    : ''
 
   return (
     <div className="oracle-layout">
@@ -117,116 +132,109 @@ export default function Ball() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 3rem;
+          gap: 2.5rem;
         }
         .oracle-right {
           width: 100%;
           max-width: 480px;
         }
-        @media (min-width: 768px) {
-          .oracle-layout {
-            flex-direction: row;
-            align-items: center;
-            gap: 4rem;
-          }
-          .oracle-right {
-            max-width: none;
-            flex: 1;
-          }
-        }
       `}</style>
+
       {/* The Ball */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-      <div
-        className={ballClass}
-        style={{
-          width: '340px',
-          height: '340px',
-          borderRadius: '50%',
-          background: 'radial-gradient(ellipse at 35% 35%, #1a3a4a 0%, #0d2030 55%, #061420 100%)',
-          boxShadow: (ballState === 'lit' || ballState === 'hired')
-            ? '0 0 80px rgba(82,160,170,0.35), 0 0 30px rgba(82,160,170,0.2), 0 20px 60px rgba(0,0,0,0.4), inset 0 -20px 40px rgba(0,0,0,0.2)'
-            : '0 20px 60px rgba(0,0,0,0.25), 0 0 40px rgba(82,160,170,0.08), inset 0 -20px 40px rgba(0,0,0,0.2)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-          cursor: 'pointer',
-          transition: 'box-shadow 0.6s ease',
-        }}
-        onClick={handleReset}
-      >
-        {/* Inner window */}
         <div
+          className={ballClass}
           style={{
-            width: '165px',
-            height: '165px',
+            width: '300px',
+            height: '300px',
             borderRadius: '50%',
-            background: 'radial-gradient(ellipse at 40% 40%, #1a1a2e 0%, #0a0a1a 100%)',
+            background: 'radial-gradient(ellipse at 35% 35%, #1a3a4a 0%, #0d2030 55%, #061420 100%)',
+            boxShadow: (ballState === 'lit' || ballState === 'hired')
+              ? '0 0 80px rgba(212,87,105,0.32), 0 0 30px rgba(212,87,105,0.20), 0 20px 60px rgba(0,0,0,0.40), inset 0 -20px 40px rgba(0,0,0,0.20)'
+              : '0 20px 60px rgba(0,0,0,0.25), 0 0 40px rgba(212,87,105,0.08), inset 0 -20px 40px rgba(0,0,0,0.20)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '1rem',
             position: 'relative',
+            cursor: 'pointer',
+            transition: 'box-shadow 0.6s ease',
           }}
+          onClick={handleReset}
         >
-          {/* 8 glyph (idle state) */}
-          {(ballState === 'idle' || ballState === 'shaking') && (
-            <span
-              style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
-                fontSize: '4rem',
-                color: 'rgba(139, 115, 85, 0.75)',
-                lineHeight: 1,
-                transition: 'opacity 0.3s ease',
-                opacity: ballState === 'shaking' ? 0.2 : 0.75,
-              }}
-            >
-              8
-            </span>
-          )}
+          {/* Inner window */}
+          <div
+            style={{
+              width: '148px',
+              height: '148px',
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse at 40% 40%, #1a1a2e 0%, #0a0a1a 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '1rem',
+              position: 'relative',
+            }}
+          >
+            {/* 8 glyph (idle state) */}
+            {(ballState === 'idle' || ballState === 'shaking') && (
+              <span
+                style={{
+                  fontFamily: 'var(--font-cormorant)',
+                  fontWeight: 300,
+                  fontSize: '3.6rem',
+                  color: 'rgba(212, 87, 105, 0.78)',
+                  lineHeight: 1,
+                  transition: 'opacity 0.3s ease',
+                  opacity: ballState === 'shaking' ? 0.2 : 0.78,
+                }}
+              >
+                8
+              </span>
+            )}
 
-          {/* Answer text */}
-          {(ballState === 'revealing' || ballState === 'lit' || ballState === 'hired') && answer && (
-            <p
-              style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontStyle: 'italic',
-                fontWeight: 300,
-                fontSize: '0.85rem',
-                color: '#a8c4e8',
-                textAlign: 'center',
-                lineHeight: 1.4,
-                opacity: (ballState === 'lit' || ballState === 'hired') ? 1 : 0,
-                transform: (ballState === 'lit' || ballState === 'hired') ? 'scale(1)' : 'scale(0.9)',
-                transition: 'opacity 0.5s ease, transform 0.5s ease',
-              }}
-            >
-              {answer}
-            </p>
-          )}
+            {/* Answer text */}
+            {(ballState === 'revealing' || ballState === 'lit' || ballState === 'hired') && answer && (
+              <p
+                style={{
+                  fontFamily: 'var(--font-cormorant)',
+                  fontStyle: 'italic',
+                  fontWeight: 300,
+                  fontSize: '0.85rem',
+                  color: '#f3c8d0',
+                  textAlign: 'center',
+                  lineHeight: 1.4,
+                  opacity: (ballState === 'lit' || ballState === 'hired') ? 1 : 0,
+                  transform: (ballState === 'lit' || ballState === 'hired') ? 'scale(1)' : 'scale(0.9)',
+                  transition: 'opacity 0.5s ease, transform 0.5s ease',
+                }}
+              >
+                {answer}
+              </p>
+            )}
+          </div>
+
+          {/* Shine */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '15%',
+              left: '20%',
+              width: '30%',
+              height: '20%',
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse, rgba(255,255,255,0.15) 0%, transparent 100%)',
+              pointerEvents: 'none',
+            }}
+          />
         </div>
-
-        {/* Shine */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '15%',
-            left: '20%',
-            width: '30%',
-            height: '20%',
-            borderRadius: '50%',
-            background: 'radial-gradient(ellipse, rgba(255,255,255,0.15) 0%, transparent 100%)',
-            pointerEvents: 'none',
-          }}
-        />
-      </div>
       </div>
 
       {/* Input form */}
       <div className="oracle-right">
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0', borderBottom: '1px solid var(--ink)' }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'flex', gap: '0', borderBottom: '1px solid var(--ink)' }}
+        >
           <input
             ref={inputRef}
             type="text"
@@ -255,12 +263,12 @@ export default function Ball() {
               fontFamily: 'var(--font-dm-mono)',
               fontSize: '0.65rem',
               textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              color: loading ? 'var(--warm)' : 'var(--rust)',
+              letterSpacing: '0.14em',
+              color: loading ? 'var(--warm)' : 'var(--accent-rare)',
               padding: '0.75rem 0 0.75rem 1rem',
             }}
           >
-            {loading ? '...' : 'Ask ->'}
+            {loading ? '...' : 'Ask →'}
           </button>
         </form>
 
@@ -281,8 +289,8 @@ export default function Ball() {
                 transition: 'border-color 0.2s ease, color 0.2s ease',
               }}
               onMouseEnter={e => {
-                ;(e.target as HTMLButtonElement).style.borderColor = 'var(--rust)'
-                ;(e.target as HTMLButtonElement).style.color = 'var(--rust)'
+                ;(e.target as HTMLButtonElement).style.borderColor = 'var(--accent-rare)'
+                ;(e.target as HTMLButtonElement).style.color = 'var(--accent-rare)'
               }}
               onMouseLeave={e => {
                 ;(e.target as HTMLButtonElement).style.borderColor = 'var(--rule)'
@@ -295,32 +303,38 @@ export default function Ball() {
         </div>
 
         {rateLimited ? (
-          <div style={{
-            marginTop: '1.5rem',
-            textAlign: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '1rem',
-            padding: '1.5rem',
-            border: '1px solid var(--rust)',
-            background: 'rgba(184,74,40,0.04)',
-          }}>
-            <p style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontSize: '1.3rem',
-              fontStyle: 'italic',
-              color: 'var(--rust)',
-              lineHeight: 1.3,
-            }}>
+          <div
+            style={{
+              marginTop: '1.5rem',
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '1rem',
+              padding: '1.5rem',
+              border: '1px solid var(--accent-rare)',
+              background: 'rgba(212, 87, 105, 0.05)',
+            }}
+          >
+            <p
+              style={{
+                fontFamily: 'var(--font-cormorant)',
+                fontSize: '1.3rem',
+                fontStyle: 'italic',
+                color: 'var(--accent-rare)',
+                lineHeight: 1.3,
+              }}
+            >
               Dang!
             </p>
-            <p style={{
-              fontFamily: 'var(--font-dm-mono)',
-              fontSize: '0.72rem',
-              color: 'var(--ink)',
-              lineHeight: 1.5,
-            }}>
+            <p
+              style={{
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '0.72rem',
+                color: 'var(--ink)',
+                lineHeight: 1.5,
+              }}
+            >
               Looks like you&apos;re out of tokens.<br />Request more here:
             </p>
             <a
@@ -330,10 +344,10 @@ export default function Ball() {
                 fontFamily: 'var(--font-dm-mono)',
                 fontSize: '0.65rem',
                 textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-                color: 'var(--cream)',
-                background: 'var(--rust)',
-                border: '1px solid var(--rust)',
+                letterSpacing: '0.14em',
+                color: 'var(--paper)',
+                background: 'var(--accent-rare)',
+                border: '1px solid var(--accent-rare)',
                 padding: '0.6rem 1.5rem',
                 textDecoration: 'none',
               }}
@@ -359,30 +373,34 @@ export default function Ball() {
               </p>
             )}
             {remaining <= 2 && remaining > 0 && !rateLimited && (
-              <p style={{
-                marginTop: '0.75rem',
-                fontSize: '0.75rem',
-                color: 'var(--rust)',
-                fontFamily: 'var(--font-dm-mono)',
-                textAlign: 'center',
-                fontWeight: 500,
-                letterSpacing: '0.05em',
-              }}>
+              <p
+                style={{
+                  marginTop: '0.75rem',
+                  fontSize: '0.75rem',
+                  color: 'var(--accent-rare)',
+                  fontFamily: 'var(--font-dm-mono)',
+                  textAlign: 'center',
+                  fontWeight: 500,
+                  letterSpacing: '0.05em',
+                }}
+              >
                 {remaining} attempt{remaining === 1 ? '' : 's'} remaining
               </p>
             )}
           </>
         )}
 
-        <p style={{
-          marginTop: '2rem',
-          fontSize: '0.65rem',
-          color: 'var(--warm)',
-          fontFamily: 'var(--font-dm-mono)',
-          textAlign: 'center',
-          opacity: 0.6,
-          letterSpacing: '0.05em',
-        }}>
+        <p
+          style={{
+            marginTop: '2rem',
+            fontSize: '0.65rem',
+            color: 'var(--warm)',
+            fontFamily: 'var(--font-dm-mono)',
+            textAlign: 'center',
+            opacity: 0.6,
+            letterSpacing: '0.05em',
+          }}
+        >
           AI-generated responses. For entertainment only.
         </p>
       </div>

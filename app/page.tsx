@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero'
 import Ticker from '@/components/Ticker'
+import OracleSection from '@/components/OracleSection'
 import About from '@/components/About'
 import Work from '@/components/Work'
 import PullQuote from '@/components/PullQuote'
@@ -16,12 +17,13 @@ export default function Home() {
     <main style={{ paddingBottom: '6rem' }}>
       <GsapScrollAnimations />
       <ScrollAnimations />
+
       <Hero />
       <Ticker />
 
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3rem' }}>
-        {/* Spacing wrapper for sections */}
-      </div>
+      {/* Oracle preview — promoted from buried hero link to its own section,
+          sitting between Hero and Work so it's the second thing a visitor sees. */}
+      <OracleSection />
 
       <About />
       <Work />
@@ -38,14 +40,20 @@ export default function Home() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          maxWidth: '1400px',
+          maxWidth: '1500px',
           margin: '4rem auto 0',
         }}
       >
-        <span className="font-mono-label" style={{ color: 'var(--warm)', fontSize: '0.62rem' }}>
+        <span
+          className="font-mono-label"
+          style={{ color: 'var(--warm)', fontSize: '0.62rem' }}
+        >
           {person.name} © {new Date().getFullYear()}
         </span>
-        <span className="font-mono-label" style={{ color: 'var(--warm)', fontSize: '0.62rem' }}>
+        <span
+          className="font-mono-label"
+          style={{ color: 'var(--warm)', fontSize: '0.62rem' }}
+        >
           {person.hashtag}
         </span>
       </footer>

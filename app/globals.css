@@ -1,14 +1,29 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────
+   Color tokens
+   ─────────────────────────────────────────────────────────────
+   New names describe FUNCTION, not color. The old `--rust` /
+   `--teal` names are kept as aliases so legacy components keep
+   working — migrate them to the new tokens as you touch each file.
+*/
 :root {
-  /* Clean light grey, teal, raspberry — no warm tones */
-  --cream: #EFF0F2;          /* page background — clean cool light grey */
-  --ink: #1C2024;            /* primary text — cool charcoal */
-  --rust: #308695;           /* main accent — teal (dominant) */
-  --warm: #5A6470;           /* secondary text, labels — cool slate */
-  --pale: #E2E4E8;           /* hover states — slightly darker grey */
-  --rule: rgba(28, 32, 36, 0.12);  /* borders, dividers */
-  --teal: #D45769;           /* rare highlight — raspberry/strawberry (single moments only) */
+  --paper:        #EFF0F2;                  /* page background */
+  --paper-2:      #F7F7F5;                  /* subtle inset card / panel */
+  --ink:          #1C2024;                  /* primary text */
+  --ink-soft:     #3A424B;                  /* secondary text — fills the gap between --ink and --warm */
+  --warm:         #5A6470;                  /* labels, tertiary text */
+  --pale:         #E2E4E8;                  /* hover, soft surfaces */
+  --rule:         rgba(28, 32, 36, 0.12);   /* divider */
+  --rule-strong:  rgba(28, 32, 36, 0.24);   /* emphasized divider */
+
+  --accent:       #308695;                  /* teal — dominant accent (was --rust) */
+  --accent-rare:  #D45769;                  /* raspberry — reserved for the Oracle (was --teal) */
+
+  /* ── Aliases for legacy code ── */
+  --cream:        var(--paper);
+  --rust:         var(--accent);
+  --teal:         var(--accent-rare);
 }
 
 * {
@@ -22,12 +37,13 @@ html {
 }
 
 body {
-  background: var(--cream);
+  background: var(--paper);
   color: var(--ink);
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 #progress-bar {
@@ -35,7 +51,7 @@ body {
   top: 0;
   left: 0;
   height: 2px;
-  background: var(--rust);
+  background: var(--accent);
   z-index: 9999;
   width: 0%;
 }
@@ -44,7 +60,7 @@ body {
   position: fixed;
   width: 10px;
   height: 10px;
-  background: var(--rust);
+  background: var(--accent);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
@@ -63,6 +79,11 @@ body {
   #cursor { display: none; }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Typography utilities
+   Rule: Cormorant for display sizes only (≥ 2rem / 32px).
+   Anything smaller stays in DM Sans so it reads crisp.
+*/
 .font-display {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 300;
@@ -76,6 +97,10 @@ body {
   font-size: 0.7rem;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Section grid (utility sections — Career, Skills, About, Writing, Contact)
+   Hero, Work and Oracle each have their own composition.
+*/
 .section-grid {
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -122,12 +147,15 @@ body {
 }
 
 .card-grid > * {
-  background: var(--cream);
+  background: var(--paper);
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Ticker
+*/
 @keyframes ticker {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
 
 .ticker-track {
@@ -136,6 +164,9 @@ body {
   width: max-content;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Hover effects (work items, post cards)
+*/
 .work-item {
   position: relative;
   cursor: pointer;
@@ -148,7 +179,7 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--rust);
+  background: var(--accent);
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -174,32 +205,95 @@ body {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Ball animations (used on /oracle and the homepage preview)
+*/
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50%      { transform: translateY(-12px); }
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  15% { transform: translateX(-10px) rotate(-6deg); }
-  30% { transform: translateX(10px) rotate(6deg); }
-  45% { transform: translateX(-8px) rotate(-5deg); }
-  60% { transform: translateX(8px) rotate(5deg); }
-  75% { transform: translateX(-5px) rotate(-3deg); }
-  90% { transform: translateX(5px) rotate(3deg); }
+  0%, 100% { transform: translateX(0)   rotate(0deg); }
+  15%      { transform: translateX(-10px) rotate(-6deg); }
+  30%      { transform: translateX(10px)  rotate(6deg); }
+  45%      { transform: translateX(-8px)  rotate(-5deg); }
+  60%      { transform: translateX(8px)   rotate(5deg); }
+  75%      { transform: translateX(-5px)  rotate(-3deg); }
+  90%      { transform: translateX(5px)   rotate(3deg); }
 }
 
-.ball-float {
-  animation: float 4s ease-in-out infinite;
-}
+.ball-float   { animation: float 4s ease-in-out infinite; }
+.ball-shaking { animation: shake 0.65s ease; }
 
-.ball-shaking {
-  animation: shake 0.65s ease;
-}
-
+/* ─────────────────────────────────────────────────────────────
+   Scrolled nav
+*/
 .nav-scrolled {
   border-bottom: 1px solid var(--rule) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: rgba(239, 240, 242, 0.85) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Mobile bottom nav (replaces the desktop nav when hidden)
+*/
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    z-index: 100;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    background: rgba(239, 240, 242, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--rule);
+    padding: 0 0.5rem;
+  }
+  .mobile-nav a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--warm);
+  }
+  .mobile-nav a.oracle {
+    color: var(--accent-rare);
+  }
+  /* Push main content above the bottom bar */
+  body {
+    padding-bottom: 56px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Motion preferences
+   Respect prefers-reduced-motion: kill non-essential GSAP reveals,
+   parallax, scroll-driven animation. Functional motion (ticker,
+   the ball's idle float) is left alone — it's part of the artefact.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ticker-track { animation: ticker 60s linear infinite !important; }
+  .ball-float   { animation: float 4s ease-in-out infinite !important; }
 }

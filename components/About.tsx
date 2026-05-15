@@ -1,22 +1,39 @@
 import { person, details } from '@/content/data'
 
+/**
+ * About / Profile — body switches from Cormorant to DM Sans.
+ *
+ * Cormorant Garamond is gorgeous at display sizes but thins out at
+ * text sizes. The profile paragraph reads better as sturdier sans.
+ */
 export default function About() {
   return (
-    <section id="about" style={{ padding: '0 3rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+    <section
+      id="about"
+      style={{
+        padding: '0 3rem',
+        maxWidth: '1500px',
+        margin: '0 auto',
+        width: '100%',
+      }}
+    >
       <div className="section-grid">
         <div className="section-label gsap-section-label">
-          <span className="font-mono-label" style={{ color: 'var(--warm)' }}>Profile</span>
+          <span className="font-mono-label" style={{ color: 'var(--warm)' }}>
+            Profile
+          </span>
         </div>
         <div className="section-content gsap-section-content">
           <p
             style={{
-              fontFamily: 'var(--font-cormorant)',
+              fontFamily: 'var(--font-dm-sans)',
               fontWeight: 300,
-              fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
-              lineHeight: 1.55,
-              color: 'var(--ink)',
+              fontSize: 'clamp(1rem, 1.4vw, 1.1rem)',
+              lineHeight: 1.65,
+              color: 'var(--ink-soft)',
               marginBottom: '3rem',
-              maxWidth: '720px',
+              maxWidth: '64ch',
+              whiteSpace: 'pre-line',
             }}
           >
             {person.profile}
@@ -28,6 +45,7 @@ export default function About() {
               flexWrap: 'wrap',
               gap: '1px',
               background: 'var(--rule)',
+              border: '1px solid var(--rule)',
             }}
           >
             {details.map((d, i) => (
@@ -35,12 +53,15 @@ export default function About() {
                 key={i}
                 className="gsap-stagger-child"
                 style={{
-                  background: 'var(--cream)',
+                  background: 'var(--paper)',
                   padding: '1.25rem 1.5rem',
                   flex: '1 1 220px',
                 }}
               >
-                <div className="font-mono-label" style={{ color: 'var(--warm)', marginBottom: '0.4rem' }}>
+                <div
+                  className="font-mono-label"
+                  style={{ color: 'var(--warm)', marginBottom: '0.4rem' }}
+                >
                   {d.key}
                 </div>
                 <div style={{ fontSize: '0.88rem', color: 'var(--ink)' }}>

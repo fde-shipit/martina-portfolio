@@ -1,65 +1,60 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { person, heroStats } from '@/content/data'
 
+/**
+ * Hero — one focal point: the proposition.
+ *
+ * Composition (top to bottom):
+ *   - small eyebrow: name · dot · role
+ *   - large display headline ("survive production" picks up --accent)
+ *   - sub-deck paragraph
+ *   - two CTAs side by side: "View work" + "Consult the Oracle"
+ *   - bottom row: three stats + a live availability indicator
+ *
+ * No watermark, no absolutely-positioned floating Oracle, no
+ * right-side stat stack competing with the tagline.
+ */
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    let gsap: typeof import('gsap').gsap
-    let ScrollTrigger: typeof import('gsap/ScrollTrigger').ScrollTrigger
+    if (typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let cleanup: (() => void) | undefined
 
     const init = async () => {
-      const gsapModule = await import('gsap')
-      const { ScrollTrigger: ST } = await import('gsap/ScrollTrigger')
-      gsap = gsapModule.gsap
-      ScrollTrigger = ST
-      gsap.registerPlugin(ScrollTrigger)
+      const { gsap } = await import('gsap')
 
-      const eyebrow = document.getElementById('hero-eyebrow')
-      const line1 = document.getElementById('hero-name-line-1')
-      const line2 = document.getElementById('hero-name-line-2')
-      const desc = document.getElementById('hero-desc')
-      const stats = document.querySelectorAll('.hero-stat')
-      const cta = document.getElementById('hero-cta')
-      const bgText = document.getElementById('hero-bg-text')
+      const headline = document.getElementById('hero-headline')
+      const eyebrow  = document.getElementById('hero-eyebrow')
+      const sub      = document.getElementById('hero-sub')
+      const ctas     = document.getElementById('hero-ctas')
+      const meta     = document.querySelectorAll('.hero-meta-item')
 
-      if (eyebrow) gsap.fromTo(eyebrow, { opacity: 0, y: 20 }, { opacity: 1, y: 0, delay: 0.5, duration: 0.8, ease: 'power2.out' })
-
-      if (line1) {
-        gsap.set(line1, { clipPath: 'inset(0 0 100% 0)', y: 60 })
-        gsap.to(line1, { clipPath: 'inset(0 0 0% 0)', y: 0, delay: 0.6, duration: 1, ease: 'power3.out' })
+      if (eyebrow)  gsap.fromTo(eyebrow,  { opacity: 0, y: 14 }, { opacity: 1, y: 0, delay: 0.20, duration: 0.6, ease: 'power2.out' })
+      if (headline) {
+        gsap.set(headline, { clipPath: 'inset(0 0 100% 0)', y: 40 })
+        gsap.to(headline,  { clipPath: 'inset(0 0 0% 0)',   y: 0, delay: 0.35, duration: 1.0, ease: 'power3.out' })
       }
-      if (line2) {
-        gsap.set(line2, { clipPath: 'inset(0 0 100% 0)', y: 60 })
-        gsap.to(line2, { clipPath: 'inset(0 0 0% 0)', y: 0, delay: 0.75, duration: 1, ease: 'power3.out' })
-      }
-
-      if (desc) gsap.fromTo(desc, { opacity: 0, y: 20 }, { opacity: 1, y: 0, delay: 1, duration: 0.8, ease: 'power2.out' })
-
-      stats.forEach((stat, i) => {
-        gsap.fromTo(stat, { opacity: 0, x: 30 }, { opacity: 1, x: 0, delay: 0.8 + i * 0.15, duration: 0.8, ease: 'power2.out' })
+      if (sub)   gsap.fromTo(sub,   { opacity: 0, y: 16 }, { opacity: 1, y: 0, delay: 0.85, duration: 0.7, ease: 'power2.out' })
+      if (ctas)  gsap.fromTo(ctas,  { opacity: 0, y: 12 }, { opacity: 1, y: 0, delay: 1.05, duration: 0.6, ease: 'power2.out' })
+      meta.forEach((el, i) => {
+        gsap.fromTo(el, { opacity: 0, y: 16 }, { opacity: 1, y: 0, delay: 1.20 + i * 0.10, duration: 0.6, ease: 'power2.out' })
       })
 
-      if (cta) gsap.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, delay: 1.25, duration: 0.8, ease: 'power2.out' })
-
-      if (bgText) {
-        gsap.to(bgText, {
-          y: () => window.innerHeight * 0.35,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        })
-      }
+      cleanup = () => { gsap.killTweensOf('*') }
     }
 
     init()
+    return () => cleanup?.()
   }, [])
+
+  // Split headline so the emphasis phrase can italicize + take accent.
+  const [headBefore, headAfter] = person.headline.split(person.headlineEmphasis)
 
   return (
     <section
@@ -70,166 +65,184 @@ export default function Hero() {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         padding: '0 3rem',
-        paddingTop: '60px',
-        overflow: 'hidden',
+        paddingTop: '120px',
+        paddingBottom: '3rem',
+        maxWidth: '1500px',
+        margin: '0 auto',
       }}
     >
-      {/* Large background text */}
+      {/* Eyebrow */}
       <div
-        id="hero-bg-text"
+        id="hero-eyebrow"
         style={{
-          position: 'absolute',
-          bottom: '-2rem',
-          left: '-0.05em',
-          fontFamily: 'var(--font-cormorant)',
-          fontWeight: 300,
-          fontSize: 'clamp(4rem, 12vw, 12rem)',
-          color: 'transparent',
-          WebkitTextStroke: '1px var(--rule)',
-          lineHeight: 1,
-          pointerEvents: 'none',
-          whiteSpace: 'nowrap',
-          userSelect: 'none',
+          opacity: 0,
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: '0.85rem',
+          marginBottom: '2.5rem',
         }}
       >
-        {person.hashtag}
-      </div>
-
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: '900px' }}>
-        {/* Eyebrow */}
-        <div
-          id="hero-eyebrow"
-          style={{ opacity: 0 }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-dm-mono)',
-              fontSize: '0.68rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em',
-              color: 'var(--rust)',
-            }}
-          >
-            {person.role} — {person.company}
-          </span>
-        </div>
-
-        {/* Name */}
-        <div style={{ margin: '1.5rem 0 2rem', overflow: 'hidden' }}>
-          <div
-            id="hero-name-line-1"
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontSize: 'clamp(3rem, 8vw, 7rem)',
-              lineHeight: 0.95,
-              letterSpacing: '-0.02em',
-              color: 'var(--ink)',
-            }}
-          >
-            {person.name.split(' ')[0]}
-          </div>
-          <div
-            id="hero-name-line-2"
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontSize: 'clamp(3rem, 8vw, 7rem)',
-              lineHeight: 0.95,
-              fontStyle: 'italic',
-              letterSpacing: '-0.02em',
-              color: 'var(--teal)',
-            }}
-          >
-            {person.name.split(' ')[1]}
-          </div>
-        </div>
-
-        {/* Tagline */}
-        <p
-          id="hero-desc"
+        <span
           style={{
-            opacity: 0,
-            maxWidth: '560px',
-            fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-            color: 'var(--warm)',
-            lineHeight: 1.6,
-            fontWeight: 300,
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '0.68rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.14em',
+            color: 'var(--ink)',
           }}
         >
-          {person.tagline}
-        </p>
-
-        {/* CTA */}
-        <div id="hero-cta" style={{ opacity: 0, marginTop: '2.5rem' }}>
-          <a
-            href="#work"
-            style={{
-              display: 'inline-block',
-              fontFamily: 'var(--font-dm-mono)',
-              fontSize: '0.68rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              color: 'var(--ink)',
-              textDecoration: 'none',
-              borderBottom: '1px solid var(--ink)',
-              paddingBottom: '2px',
-            }}
-          >
-            View Work ↓
-          </a>
-        </div>
+          {person.name}
+        </span>
+        <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--accent)' }} />
+        <span
+          style={{
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '0.68rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.14em',
+            color: 'var(--warm)',
+          }}
+        >
+          {person.role} · {person.company} · {person.location.split(',')[0]}
+        </span>
       </div>
 
-      <a
-        href="/oracle"
-        className="oracle-hero-btn"
+      {/* Headline — the one focal point */}
+      <div style={{ overflow: 'hidden', maxWidth: '55%' }}>
+        <h1
+          id="hero-headline"
+          style={{
+            fontFamily: 'var(--font-cormorant)',
+            fontWeight: 300,
+            fontSize: 'clamp(1.8rem, 4vw, 3.6rem)',
+            lineHeight: 0.98,
+            letterSpacing: '-0.025em',
+            color: 'var(--ink)',
+          }}
+        >
+          {headBefore}
+          <em
+            style={{
+              fontStyle: 'italic',
+              color: 'var(--accent)',
+            }}
+          >
+            {person.headlineEmphasis}
+          </em>
+          {headAfter}
+        </h1>
+      </div>
+
+      {/* Sub-deck */}
+      <p
+        id="hero-sub"
         style={{
-          position: 'absolute',
-          top: '50%',
-          left: '58%',
-          transform: 'translateY(-50%)',
-          fontFamily: 'var(--font-cormorant)',
-          fontStyle: 'italic',
+          opacity: 0,
+          marginTop: '2rem',
+          maxWidth: '54ch',
+          fontFamily: 'var(--font-dm-sans)',
+          fontSize: 'clamp(1rem, 1.4vw, 1.1rem)',
           fontWeight: 300,
-          fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
-          color: 'var(--rust)',
-          textDecoration: 'none',
-          border: '1px solid var(--rust)',
-          padding: '0.75rem 1.25rem',
-          letterSpacing: '0.02em',
-          display: 'block',
-          textAlign: 'center',
-          lineHeight: 1.4,
-          zIndex: 1,
+          color: 'var(--warm)',
+          lineHeight: 1.6,
         }}
       >
-        Consult<br />the Oracle.
-      </a>
+        {person.tagline}
+      </p>
 
-      {/* Stats — right side */}
+      {/* CTAs — Oracle is a peer to View Work, no longer floating */}
+      <div
+        id="hero-ctas"
+        style={{
+          opacity: 0,
+          marginTop: '2.5rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          alignItems: 'center',
+        }}
+      >
+        <a
+          href="#work"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '0.65rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.14em',
+            color: 'var(--paper)',
+            background: 'var(--ink)',
+            padding: '0.95rem 1.3rem',
+            textDecoration: 'none',
+          }}
+        >
+          View work <span aria-hidden>→</span>
+        </a>
+        <Link
+          href="/oracle"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.55rem',
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '0.65rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.14em',
+            color: 'var(--accent-rare)',
+            border: '1px solid var(--accent-rare)',
+            padding: '0.9rem 1.25rem',
+            textDecoration: 'none',
+          }}
+        >
+          Consult the Oracle
+          <span
+            aria-hidden
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: 'var(--accent-rare)',
+            }}
+          />
+        </Link>
+      </div>
+
+      {/* Bottom row — stats + status. Spans the full hero width. */}
       <div
         style={{
-          position: 'absolute',
-          right: '3rem',
-          bottom: '3rem',
-          display: 'flex',
-          flexDirection: 'column',
+          marginTop: 'auto',
+          paddingTop: '3.5rem',
+          borderTop: '1px solid var(--rule)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '2rem',
-          maxWidth: '260px',
         }}
-        className="hero-stats-block"
+        className="hero-meta-grid"
       >
         {heroStats.map((stat, i) => (
-          <div key={i} className="hero-stat" style={{ opacity: 0 }}>
+          <div key={i} className="hero-meta-item" style={{ opacity: 0 }}>
+            <div
+              style={{
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '0.6rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.14em',
+                color: 'var(--warm)',
+                marginBottom: '0.5rem',
+              }}
+            >
+              {stat.from}
+            </div>
             <div
               style={{
                 fontFamily: 'var(--font-cormorant)',
                 fontWeight: 300,
-                fontSize: '2rem',
-                color: 'var(--rust)',
+                fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
+                color: 'var(--accent)',
                 lineHeight: 1,
               }}
             >
@@ -237,39 +250,73 @@ export default function Hero() {
             </div>
             <div
               style={{
+                marginTop: '0.6rem',
                 fontFamily: 'var(--font-dm-sans)',
-                fontSize: '0.78rem',
+                fontSize: '0.82rem',
                 color: 'var(--warm)',
-                marginTop: '0.35rem',
-                lineHeight: 1.4,
+                lineHeight: 1.45,
+                maxWidth: '32ch',
               }}
             >
               {stat.label}
             </div>
           </div>
         ))}
+
+        <div
+          className="hero-meta-item"
+          style={{
+            opacity: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            gap: '0.5rem',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: 'var(--font-dm-mono)',
+              fontSize: '0.6rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.14em',
+              color: 'var(--warm)',
+            }}
+          >
+            Status
+          </div>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.55rem',
+              fontFamily: 'var(--font-dm-mono)',
+              fontSize: '0.65rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.14em',
+              color: 'var(--ink)',
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: 'var(--accent)',
+                boxShadow: '0 0 0 3px rgba(48,134,149,0.18)',
+              }}
+            />
+            Open to talks &amp; introductions
+          </div>
+        </div>
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          .hero-stats-block {
-            position: static !important;
-            margin-top: 3rem;
-            flex-direction: row !important;
-            flex-wrap: wrap;
-            gap: 1.5rem !important;
-            max-width: 100% !important;
-          }
+        @media (max-width: 1024px) {
+          .hero-meta-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @keyframes oracle-pulse {
-          0%, 100% { opacity: 1; border-color: var(--rust); }
-          50% { opacity: 0.45; border-color: transparent; }
-        }
-        .oracle-hero-btn {
-          animation: ball-float 4s ease-in-out infinite, oracle-pulse 3s ease-in-out infinite;
-        }
-        @media (max-width: 768px) {
-          .oracle-hero-btn { display: none !important; }
+        @media (max-width: 600px) {
+          .hero-meta-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
