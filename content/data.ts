@@ -13,8 +13,8 @@ export const person = {
 
 export const heroStats = [
   { number: "2 days", label: "Down from several weeks. Security assessment redesign using Legora." },
-  { number: "5 years", label: "A legal spend visibility platform I built end-to-end ran 5 years before the business outgrew it." },
-  { number: "13,000+", label: "Staff hours saved annually. Chatbot I owned end to end." },
+  { number: "5 years", label: "A legal spend platform that ran 5 years before the business outgrew it." },
+  { number: "13,000+", label: "Staff hours saved annually. Chatbot I owned from start to finish." },
 ]
 
 export const details = [
