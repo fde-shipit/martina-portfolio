@@ -49,7 +49,7 @@ export const achievements = [
   },
   {
     number: "Infra",
-    sublabel: "single pane of glass",
+    sublabel: "unified view",
     title: "Nautobot Network Source of Truth",
     description: "Helped deploy Nautobot across multi-vendor infrastructure (Cisco, Palo Alto, Fortinet, and others) spanning hundreds of sites and thousands of devices. The work that changed how I think about technology — and the foundation any reliable AI ultimately runs on.",
     tag: "Nautobot, Infrastructure at scale",
