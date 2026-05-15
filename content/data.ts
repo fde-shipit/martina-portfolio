@@ -125,6 +125,12 @@ export const posts = [
     subheading: "The best trainer you've ever had stopped learning the day it launched.",
     hook: "Every model was trained. Past tense. A snapshot of the world up to a point in time. It's frozen there.",
   },
+  {
+    week: "Read 05",
+    title: "Forest",
+    subheading: "A forest is not a forest. Not in IT.",
+    hook: "I spent months inside an enterprise IT forest doing security remediation. I didn't know I was learning everything I'd later need to understand AI.",
+  },
 ]
 
 export const skills = [
