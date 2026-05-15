@@ -7,7 +7,7 @@ export const person = {
   phone: "0490 160 783",
   linkedin: "https://www.linkedin.com/in/martina-edwards-a674067b",
   tagline: "I build the systems that make AI actually work inside large organisations. Not the demos. The ones that run in production.",
-  profile: "AI product leader with a track record of building and deploying enterprise AI systems in complex, high-stakes environments. Specialising in agentic workflow design, human-in-the-loop architecture, and the operational rigour required to make AI outputs trustworthy in regulated industries. Known for knowing where AI can go unsupervised and where it cannot, and for building systems that reflect that distinction.",
+  profile: "Ten years building enterprise systems across infrastructure, legal ops, automation, and cyber before moving into AI product leadership. That operational foundation is what makes the difference: I don't just design AI workflows, I understand what they run on and what breaks them. Currently leading AI acceleration at a global law firm. Before that, sole product owner for a live B2B SaaS platform in climate disclosure. My focus is agentic workflow design, HITL architecture, and making AI outputs defensible in regulated environments.",
   hashtag: "#RedefinedByAI",
 }
 
