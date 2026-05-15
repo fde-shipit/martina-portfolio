@@ -107,7 +107,7 @@ export default function BuiltInTwoDays() {
             color: 'var(--cream)',
             lineHeight: 1.7,
           }}>
-            The Oracle came first. A magic 8 ball that answers one question: should you hire Martina? The portfolio was built around it — not the other way around.
+            The Oracle came first. A magic 8 ball that answers one question: should you hire Martina? The portfolio was built around it. Not the other way around.
           </p>
         </div>
 
