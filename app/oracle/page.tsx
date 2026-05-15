@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function OraclePage() {
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '6rem 2rem 4rem' }}>
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '6rem 2rem 4rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h1
           style={{
@@ -24,7 +24,17 @@ export default function OraclePage() {
         </h1>
       </div>
 
-      <Ball />
+      <div style={{
+        border: '1px solid var(--rule)',
+        padding: '3rem',
+        background: 'rgba(28, 32, 36, 0.02)',
+        width: '100%',
+        maxWidth: '900px',
+        margin: '0 auto',
+        overflow: 'hidden',
+      }}>
+        <Ball />
+      </div>
 
       <div style={{ marginTop: '5rem', borderTop: '1px solid var(--rule)', paddingTop: '2rem', textAlign: 'center' }}>
         <a

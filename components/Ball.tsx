@@ -140,8 +140,8 @@ export default function Ball() {
       <div
         className={ballClass}
         style={{
-          width: '280px',
-          height: '280px',
+          width: '340px',
+          height: '340px',
           borderRadius: '50%',
           background: 'radial-gradient(ellipse at 35% 35%, #1a3a4a 0%, #0d2030 55%, #061420 100%)',
           boxShadow: (ballState === 'lit' || ballState === 'hired')
@@ -159,8 +159,8 @@ export default function Ball() {
         {/* Inner window */}
         <div
           style={{
-            width: '140px',
-            height: '140px',
+            width: '165px',
+            height: '165px',
             borderRadius: '50%',
             background: 'radial-gradient(ellipse at 40% 40%, #1a1a2e 0%, #0a0a1a 100%)',
             display: 'flex',
@@ -369,19 +369,6 @@ export default function Ball() {
                 letterSpacing: '0.05em',
               }}>
                 {remaining} attempt{remaining === 1 ? '' : 's'} remaining
-              </p>
-            )}
-            {remaining === 0 && !rateLimited && (
-              <p style={{
-                marginTop: '0.75rem',
-                fontSize: '0.75rem',
-                color: 'var(--rust)',
-                fontFamily: 'var(--font-dm-mono)',
-                textAlign: 'center',
-                fontWeight: 500,
-                letterSpacing: '0.05em',
-              }}>
-                1 attempt remaining
               </p>
             )}
           </>
