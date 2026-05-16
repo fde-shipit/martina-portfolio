@@ -5,6 +5,10 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function Image() {
+  const font = await fetch(
+    'https://fonts.gstatic.com/s/cormorantgaramond/v21/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2'
+  ).then((res) => res.arrayBuffer())
+
   return new ImageResponse(
     (
       <div
@@ -24,16 +28,40 @@ export default async function Image() {
             martina-edwards.vercel.app
           </span>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={{ fontSize: '56px', fontWeight: 300, color: '#1a1a1a', lineHeight: 1.1, display: 'flex' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+          <div style={{
+            fontFamily: 'Cormorant Garamond',
+            fontSize: '52px',
+            fontWeight: 300,
+            color: '#1a1a1a',
+            lineHeight: 1.15,
+            display: 'flex',
+            flexWrap: 'wrap',
+            maxWidth: '900px',
+          }}>
             AI didn't replace my experience. It handed me the tools to finally use all of it.
           </div>
-          <div style={{ fontFamily: 'monospace', fontSize: '16px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666', display: 'flex' }}>
-            Martina Edwards · Manager, AI Acceleration · Melbourne
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+            <div style={{ fontFamily: 'monospace', fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666', display: 'flex' }}>
+              Martina Edwards · Manager, AI Acceleration · Melbourne
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#308695', display: 'flex' }}>
+              View portfolio →
+            </div>
           </div>
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [
+        {
+          name: 'Cormorant Garamond',
+          data: font,
+          style: 'normal',
+          weight: 300,
+        },
+      ],
+    }
   )
 }
