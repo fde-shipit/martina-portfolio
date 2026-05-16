@@ -53,9 +53,6 @@ export default function Hero() {
     return () => cleanup?.()
   }, [])
 
-  // Split headline so the emphasis phrase can italicize + take accent.
-  const [headBefore, headAfter] = person.headline.split(person.headlineEmphasis)
-
   return (
     <section
       ref={containerRef}
@@ -122,16 +119,7 @@ export default function Hero() {
             color: 'var(--ink)',
           }}
         >
-          {headBefore}
-          <em
-            style={{
-              fontStyle: 'italic',
-              color: 'var(--accent)',
-            }}
-          >
-            {person.headlineEmphasis}
-          </em>
-          {headAfter}
+          {person.headline}
         </h1>
       </div>
 

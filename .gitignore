@@ -42,3 +42,4 @@ next-env.d.ts
 
 # local exports (CV brief, etc. — kept out of the public repo)
 *.docx
+.env*.local

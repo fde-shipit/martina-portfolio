@@ -8,17 +8,17 @@ export const person = {
   linkedin: "https://www.linkedin.com/in/martina-edwards-a674067b",
 
   /* Hero headline — proposition first, name in the eyebrow. */
-  headline: "I build the AI systems that survive production.",
-  headlineEmphasis: "survive production",
+  headline: "AI didn't replace my experience. It handed me the tools to finally use all of it.",
+  headlineEmphasis: "",
 
   /* Sub-deck under the headline. */
-  tagline: "Ten years inside infrastructure, legal ops, automation and cyber before moving into AI product leadership. I don't design workflows in the abstract — I know what they run on, and I know what breaks them.",
+  tagline: "Ten years inside the infrastructure and operations layer before anyone was calling it AI. That foundation is what makes the difference now. I know what breaks, I know what holds, and I can build the thing myself. That combination is still rare. That's why you're here.",
 
   /* Profile — Profile section body. */
   profile: "Ten years building enterprise systems across infrastructure, legal ops, automation, and cyber before moving into AI product leadership. That operational foundation is what makes the difference: I don't just design AI workflows, I understand what they run on and what breaks them.\n\nMy focus is agentic workflow design, HITL architecture, and making AI outputs defensible in regulated environments. I own products end to end and drive AI acceleration across specific workstreams in complex, high-stakes environments.",
 
   /* Contact close — sharper than the hero, more personal. */
-  contactCopy: "If you're trying to ship AI inside a regulated environment and the room is split on what's safe to automate, I'm useful in that room.",
+  contactCopy: "If you're trying to ship AI and the room is split on what's safe to automate, I'm useful in that room. Let's talk.",
 
   hashtag: "#RedefinedByAI",
 }

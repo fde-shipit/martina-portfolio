@@ -422,13 +422,11 @@ export default function AfterHours() {
       <span className="mono live">Live in production</span>
     </div>
     <h1>
-      Started with a magic 8 ball.<br/>
-      Ended up with a <em>portfolio.</em>
+      Stop thinking.<br/>
+      Start shipping.
     </h1>
     <p className="sub">
-      The day job ended at 6. The build began at 9. Eight nights, two hours each.
-      A Claude-powered Oracle with guardrails, wrapped in a Next.js portfolio with
-      GSAP and a Vercel deploy. Solo. No planning phase. The chat was the build.
+      Typed a question into Claude at 9pm on a Tuesday. Eight nights later: a live product that didn't exist a fortnight ago. I couldn't stop, the possibilities are endless, so is the fun it brings. Claude is the best pair programmer you'll ever have. Start now. See where it takes you.
     </p>
   </div>
 </section>
