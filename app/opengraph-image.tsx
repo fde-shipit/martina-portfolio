@@ -7,7 +7,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function Image() {
-  const font = fs.readFileSync(path.join(process.cwd(), 'public/fonts/cormorant-light.woff2'))
+  const font = fs.readFileSync(path.join(process.cwd(), 'public/fonts/cormorant-light.ttf'))
 
   return new ImageResponse(
     (
