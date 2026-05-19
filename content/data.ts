@@ -29,7 +29,7 @@ export const person = {
 */
 export const heroStats = [
   { number: "2 days",   from: "down from several weeks",   label: "Security assessment redesign using Legora." },
-  { number: "5 years",  from: "in production before outgrown", label: "Legal spend platform built from scratch. My idea, my design, my build." },
+  { number: "5 years",  from: "ran in production", label: "Legal spend platform built from scratch. My idea, my design, my build." },
   { number: "13,000+",  from: "staff hours saved annually", label: "Legal triage chatbot — owned start to finish." },
 ]
 
@@ -66,7 +66,7 @@ export const caseStudies = [
   },
   {
     metric:   "5 years",
-    from:     "in production before outgrown",
+    from:     "ran in production",
     title:    "Legal spend visibility platform",
     summary:  "Identified an invisible annual blind spot in legal spend. Built a SharePoint and Power Automate solution that automated invoice intake, approvals, and reporting end-to-end. Ran for five years before the business outgrew it.",
     tags:     ["SharePoint", "Power Automate", "Legal ops"],
