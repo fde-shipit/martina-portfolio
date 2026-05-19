@@ -162,6 +162,13 @@ export const posts = [
     subheading: "A forest is not a forest. Not in IT.",
     hook: "I spent months inside an enterprise IT forest doing security remediation. I didn't know I was learning everything I'd later need to understand AI.",
   },
+  {
+    week: "Read 06",
+    title: "Mythos",
+    subheading: "It wasn't built to be a security tool.",
+    hook: "A butterfly, a model and an agent walk into a forest.",
+    body: "Mythos wasn't built to be a security tool. In seven weeks, it found over 2,000 unknown vulnerabilities — not just the weaknesses. The way in.",
+  },
 ]
 
 export const skills = [
