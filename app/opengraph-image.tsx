@@ -1,13 +1,13 @@
 import { ImageResponse } from 'next/og'
+import fs from 'fs'
+import path from 'path'
 
 export const alt = 'Martina Edwards — AI Acceleration'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function Image() {
-  const font = await fetch(
-    'https://fonts.gstatic.com/s/cormorantgaramond/v21/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2'
-  ).then((res) => res.arrayBuffer())
+  const font = fs.readFileSync(path.join(process.cwd(), 'public/fonts/cormorant-light.woff2'))
 
   return new ImageResponse(
     (
