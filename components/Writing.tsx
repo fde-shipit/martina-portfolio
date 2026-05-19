@@ -1,6 +1,12 @@
-import { posts, person } from '@/content/data'
+import { getSubstackPosts } from '@/lib/substack'
+import { posts as staticPosts, person } from '@/content/data'
 
-export default function Writing() {
+export default async function Writing() {
+  const substackPosts = await getSubstackPosts()
+
+  // Fall back to static data if Substack has nothing published yet
+  const useSubstack = substackPosts.length > 0
+
   return (
     <section id="writing" style={{ padding: '0 3rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
       <div className="section-grid">
@@ -19,72 +25,124 @@ export default function Writing() {
               background: 'var(--rule)',
             }}
           >
-            {posts.map((post, i) => (
-              <a
-                key={i}
-                href={person.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="post-card gsap-stagger-child"
-                style={{
-                  background: 'var(--cream)',
-                  padding: '1.75rem',
-                  textDecoration: 'none',
-                  display: 'block',
-                }}
-              >
-                <div
-                  className="font-mono-label"
-                  style={{ color: 'var(--rust)', marginBottom: '0.5rem', fontSize: '0.6rem' }}
-                >
-                  {post.week}
-                </div>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-cormorant)',
-                    fontWeight: 300,
-                    fontSize: '1.4rem',
-                    color: 'var(--ink)',
-                    marginBottom: '0.4rem',
-                  }}
-                >
-                  {post.title}
-                </h3>
-                {'subheading' in post && post.subheading && (
-                  <p
+            {useSubstack
+              ? substackPosts.map((post, i) => (
+                  <a
+                    key={i}
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="post-card gsap-stagger-child"
                     style={{
-                      fontFamily: 'var(--font-cormorant)',
-                      fontStyle: 'italic',
-                      fontWeight: 300,
-                      fontSize: '0.95rem',
-                      color: 'var(--rust)',
-                      lineHeight: 1.4,
-                      marginBottom: '0.75rem',
+                      background: 'var(--cream)',
+                      padding: '1.75rem',
+                      textDecoration: 'none',
+                      display: 'block',
                     }}
                   >
-                    {post.subheading}
-                  </p>
-                )}
-                <p style={{ fontSize: '0.82rem', color: 'var(--warm)', lineHeight: 1.5 }}>
-                  {post.hook}
-                </p>
-                <div
-                  style={{
-                    marginTop: '1.25rem',
-                    fontFamily: 'var(--font-dm-mono)',
-                    fontSize: '0.65rem',
-                    color: 'var(--rust)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                  }}
-                >
-                  Read on LinkedIn <span className="post-arrow">→</span>
-                </div>
-              </a>
-            ))}
+                    <div
+                      className="font-mono-label"
+                      style={{ color: 'var(--rust)', marginBottom: '0.5rem', fontSize: '0.6rem' }}
+                    >
+                      {post.week}
+                    </div>
+                    <h3
+                      style={{
+                        fontFamily: 'var(--font-cormorant)',
+                        fontWeight: 300,
+                        fontSize: '1.4rem',
+                        color: 'var(--ink)',
+                        marginBottom: '0.4rem',
+                      }}
+                    >
+                      {post.title}
+                    </h3>
+                    <p style={{ fontSize: '0.82rem', color: 'var(--warm)', lineHeight: 1.5 }}>
+                      {post.hook}
+                    </p>
+                    <div
+                      style={{
+                        marginTop: '1.25rem',
+                        fontFamily: 'var(--font-dm-mono)',
+                        fontSize: '0.65rem',
+                        color: 'var(--rust)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.1em',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.4rem',
+                      }}
+                    >
+                      Read on Substack <span className="post-arrow">→</span>
+                    </div>
+                  </a>
+                ))
+              : staticPosts.map((post, i) => (
+                  <a
+                    key={i}
+                    href={person.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="post-card gsap-stagger-child"
+                    style={{
+                      background: 'var(--cream)',
+                      padding: '1.75rem',
+                      textDecoration: 'none',
+                      display: 'block',
+                    }}
+                  >
+                    <div
+                      className="font-mono-label"
+                      style={{ color: 'var(--rust)', marginBottom: '0.5rem', fontSize: '0.6rem' }}
+                    >
+                      {post.week}
+                    </div>
+                    <h3
+                      style={{
+                        fontFamily: 'var(--font-cormorant)',
+                        fontWeight: 300,
+                        fontSize: '1.4rem',
+                        color: 'var(--ink)',
+                        marginBottom: '0.4rem',
+                      }}
+                    >
+                      {post.title}
+                    </h3>
+                    {'subheading' in post && post.subheading && (
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-cormorant)',
+                          fontStyle: 'italic',
+                          fontWeight: 300,
+                          fontSize: '0.95rem',
+                          color: 'var(--rust)',
+                          lineHeight: 1.4,
+                          marginBottom: '0.75rem',
+                        }}
+                      >
+                        {post.subheading}
+                      </p>
+                    )}
+                    <p style={{ fontSize: '0.82rem', color: 'var(--warm)', lineHeight: 1.5 }}>
+                      {post.hook}
+                    </p>
+                    <div
+                      style={{
+                        marginTop: '1.25rem',
+                        fontFamily: 'var(--font-dm-mono)',
+                        fontSize: '0.65rem',
+                        color: 'var(--rust)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.1em',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.4rem',
+                      }}
+                    >
+                      Read on LinkedIn <span className="post-arrow">→</span>
+                    </div>
+                  </a>
+                ))}
           </div>
         </div>
       </div>
