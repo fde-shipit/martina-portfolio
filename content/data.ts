@@ -12,7 +12,7 @@ export const person = {
   headlineEmphasis: "",
 
   /* Sub-deck under the headline. */
-  tagline: "Ten years inside the infrastructure and operations layer before anyone was calling it AI. That foundation is what makes the difference now. I know what breaks, I know what holds, and I can build the thing myself. That combination is still rare. That's why you're here.",
+  tagline: "Ten years inside the infrastructure and operations layer before anyone was calling it AI. That foundation is what makes the difference now. I know what breaks, I know what holds, and I can build the thing myself. That combination is still rare.",
 
   /* Profile — Profile section body. */
   profile: "Ten years building enterprise systems across infrastructure, legal ops, automation, and cyber before moving into AI product leadership. That operational foundation is what makes the difference: I don't just design AI workflows, I understand what they run on and what breaks them.\n\nMy focus is agentic workflow design, HITL architecture, and making AI outputs defensible in regulated environments. I own products end to end and drive AI acceleration across specific workstreams in complex, high-stakes environments.",
