@@ -15,7 +15,7 @@ export default async function Writing() {
         </div>
         <div className="section-content gsap-section-content">
           <p style={{ fontSize: '0.82rem', color: 'var(--warm)', marginBottom: '2rem', lineHeight: 1.6 }}>
-            LinkedIn series demystifying AI for non-technical audiences.
+            A series about how AI is changing how we speak, what we do, and who we are at work.
           </p>
           <div
             style={{
