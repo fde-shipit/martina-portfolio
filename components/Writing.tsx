@@ -80,7 +80,7 @@ export default async function Writing() {
               : staticPosts.map((post, i) => (
                   <a
                     key={i}
-                    href={person.linkedin}
+                    href="https://martini375179.substack.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="post-card gsap-stagger-child"
@@ -139,7 +139,7 @@ export default async function Writing() {
                         gap: '0.4rem',
                       }}
                     >
-                      Read on LinkedIn <span className="post-arrow">→</span>
+                      Read on Substack <span className="post-arrow">→</span>
                     </div>
                   </a>
                 ))}
