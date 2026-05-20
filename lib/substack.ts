@@ -7,7 +7,7 @@ export interface SubstackPost {
 
 export async function getSubstackPosts(): Promise<SubstackPost[]> {
   try {
-    const res = await fetch('https://martini375179.substack.com/feed', {
+    const res = await fetch('https://martinaedwards.substack.com/feed', {
       next: { revalidate: 3600 },
     })
     if (!res.ok) return []
