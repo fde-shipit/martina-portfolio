@@ -17,8 +17,9 @@ const desktopLinks = [
   { href: '/#work',    label: 'Work' },
   { href: '/work/after-hours', label: 'After Hours' },
   { href: '/#career',  label: 'Career' },
-  { href: '/#writing', label: 'Writing' },
-  { href: '/#skills',  label: 'Skills' },
+  { href: '/#writing',    label: 'Writing' },
+  { href: '/flashcards', label: 'Flashcards' },
+  { href: '/#skills',    label: 'Skills' },
   { href: '/#contact', label: 'Contact' },
   { href: '/oracle',   label: 'Oracle', accent: true },
 ]
