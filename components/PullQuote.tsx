@@ -88,7 +88,7 @@ export default function PullQuote() {
             fontSize: '0.7rem',
           }}
         >
-          From &ldquo;Networks&rdquo;, Redefined by AI, Field Note 10
+          From &ldquo;Networks&rdquo;, Redefined by AI, Read 10
         </div>
       </div>
     </section>
