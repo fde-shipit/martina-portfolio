@@ -30,7 +30,7 @@ export const person = {
 export const heroStats = [
   { number: "2 days",   from: "down from several weeks",   label: "Security assessment redesign using Legora." },
   { number: "5 years",  from: "ran in production", label: "Legal spend platform built from scratch. My idea, my design, my build." },
-  { number: "13,000+",  from: "staff hours saved annually", label: "Legal triage chatbot — owned start to finish." },
+  { number: "13,000+",  from: "staff hours saved annually", label: "Legal triage chatbot. Idea, workflow design, enterprise rollout." },
 ]
 
 export const details = [
@@ -59,7 +59,7 @@ export const caseStudies = [
     metric:   "13,000+",
     from:     "staff hours saved annually",
     title:    "Legal triage product · Webex",
-    summary:  "Rules-based intake with conditional logic — high-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month. Concept to rollout, owned.",
+    summary:  "Rules-based intake with conditional logic. High-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month. Workflow design, rollout and training across the enterprise.",
     tags:     ["Webex", "Rules-based logic", "Legal ops"],
     link:     "/work/legal-triage",
     artefact: "Decision tree · sample artifact output",
