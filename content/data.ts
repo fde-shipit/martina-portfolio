@@ -8,17 +8,17 @@ export const person = {
   linkedin: "https://www.linkedin.com/in/martina-edwards-a674067b",
 
   /* Hero headline — proposition first, name in the eyebrow. */
-  headline: "AI didn't replace my experience. It handed me the tools to finally use all of it.",
-  headlineEmphasis: "",
+  headline: "I build the AI systems that survive production.",
+  headlineEmphasis: "survive production",
 
   /* Sub-deck under the headline. */
-  tagline: "Ten years inside the infrastructure and operations layer before anyone was calling it AI. That foundation is what makes the difference now. I know what breaks, I know what holds, and I can build the thing myself. That combination is still rare.",
+  tagline: "Ten years inside infrastructure, legal ops, automation and cyber before moving into AI product leadership. I don't design workflows in the abstract — I know what they run on, and I know what breaks them.",
 
   /* Profile — Profile section body. */
   profile: "Ten years building enterprise systems across infrastructure, legal ops, automation, and cyber before moving into AI product leadership. That operational foundation is what makes the difference: I don't just design AI workflows, I understand what they run on and what breaks them.\n\nMy focus is agentic workflow design, HITL architecture, and making AI outputs defensible in regulated environments. I own products end to end and drive AI acceleration across specific workstreams in complex, high-stakes environments.",
 
   /* Contact close — sharper than the hero, more personal. */
-  contactCopy: "If you're trying to ship AI and the room is split on what's safe to automate, I'm useful in that room. Let's talk.",
+  contactCopy: "If you're trying to ship AI inside a regulated environment and the room is split on what's safe to automate, I'm useful in that room.",
 
   hashtag: "#RedefinedByAI",
 }
@@ -29,8 +29,8 @@ export const person = {
 */
 export const heroStats = [
   { number: "2 days",   from: "down from several weeks",   label: "Security assessment redesign using Legora." },
-  { number: "5 years",  from: "ran in production", label: "Legal spend platform built from scratch. My idea, my design, my build." },
-  { number: "13,000+",  from: "staff hours saved annually", label: "Legal triage chatbot. Idea, workflow design, enterprise rollout." },
+  { number: "5 years",  from: "in production before outgrown", label: "Legal spend platform built from scratch. My idea, my design, my build." },
+  { number: "13,000+",  from: "staff hours saved annually", label: "Legal triage chatbot — owned start to finish." },
 ]
 
 export const details = [
@@ -59,14 +59,14 @@ export const caseStudies = [
     metric:   "13,000+",
     from:     "staff hours saved annually",
     title:    "Legal triage product · Webex",
-    summary:  "Rules-based intake with conditional logic. High-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month. Workflow design, rollout and training across the enterprise.",
+    summary:  "Rules-based intake with conditional logic — high-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month. Concept to rollout, owned.",
     tags:     ["Webex", "Rules-based logic", "Legal ops"],
     link:     "/work/legal-triage",
     artefact: "Decision tree · sample artifact output",
   },
   {
     metric:   "5 years",
-    from:     "ran in production",
+    from:     "in production before outgrown",
     title:    "Legal spend visibility platform",
     summary:  "Identified an invisible annual blind spot in legal spend. Built a SharePoint and Power Automate solution that automated invoice intake, approvals, and reporting end-to-end. Ran for five years before the business outgrew it.",
     tags:     ["SharePoint", "Power Automate", "Legal ops"],
@@ -162,13 +162,6 @@ export const posts = [
     subheading: "A forest is not a forest. Not in IT.",
     hook: "I spent months inside an enterprise IT forest doing security remediation. I didn't know I was learning everything I'd later need to understand AI.",
   },
-  {
-    week: "Read 06",
-    title: "Mythos",
-    subheading: "It wasn't built to be a security tool.",
-    hook: "A butterfly, a model and an agent walk into a forest.",
-    body: "Mythos wasn't built to be a security tool. In seven weeks, it found over 2,000 unknown vulnerabilities — not just the weaknesses. The way in.",
-  },
 ]
 
 export const skills = [
@@ -226,6 +219,40 @@ export const ticker = [
   { text: "AI Acceleration" },
   { text: "#RedefinedByAI", accent: true },
 ]
+
+/* ─────────────────────────────────────────────────────────────
+   Redefined by AI — the series.
+
+   ONE LIST. Posted + written only. Drafts live in your notes, not here.
+   Numbering renumbers continuously off the array index, so when you
+   flip a written entry to posted (or add a new written one), the
+   "№ 01 … № 10" sequence reflows automatically — no manual edits to
+   the section header, the "Latest · No. NN" eyebrow, or anywhere else.
+
+   To update:
+     1. Add an entry: `{ title, status: "written", hook }`
+     2. When it's live, change status to `"posted"`
+     3. That's it.
+*/
+export type RbaStatus = 'posted' | 'written'
+export type RbaEntry = { title: string; status: RbaStatus; hook: string; href?: string }
+
+export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards: number } = {
+  entries: [
+    { title: "Model.",            status: "posted",  hook: "Same spelling. New job. Nobody sent a fax." },
+    { title: "Memory.",           status: "posted",  hook: "Three things make AI feel like it remembers. None of them are memory." },
+    { title: "Prompt Injection.", status: "posted",  hook: "Invisible to you. Not to your model." },
+    { title: "Training.",         status: "posted",  hook: "The best trainer you've ever had stopped learning the day it launched." },
+    { title: "Forest.",           status: "posted",  hook: "A forest is not a forest. Not in IT." },
+    { title: "Mythos.",           status: "posted",  hook: "In seven weeks, it found over 2,000 unknown vulnerabilities." },
+    { title: "Token.",            status: "written", hook: "Worth knowing tomorrow's bill." },
+    { title: "Vector.",           status: "written", hook: "How meaning becomes math." },
+    { title: "Transformer.",      status: "written", hook: "Attention. Hallucination. The architecture under the answer." },
+    { title: "Temperature.",      status: "written", hook: "Same model, different mood." },
+  ],
+  deckHref: "/flashcards",
+  totalCards: 35,
+}
 
 /* Sample exchange shown on the homepage Oracle preview.
    Real interactions still happen on /oracle via the Ball component. */

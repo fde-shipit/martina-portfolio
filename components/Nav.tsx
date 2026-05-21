@@ -17,9 +17,8 @@ const desktopLinks = [
   { href: '/#work',    label: 'Work' },
   { href: '/work/after-hours', label: 'After Hours' },
   { href: '/#career',  label: 'Career' },
-  { href: '/#writing',    label: 'Writing' },
-  { href: '/flashcards', label: 'Flashcards' },
-  { href: '/#skills',    label: 'Skills' },
+  { href: '/redefined-by-ai', label: 'Redefined by AI' },
+  { href: '/#skills',  label: 'Skills' },
   { href: '/#contact', label: 'Contact' },
   { href: '/oracle',   label: 'Oracle', accent: true },
 ]
@@ -27,7 +26,7 @@ const desktopLinks = [
 const mobileLinks = [
   { href: '/#work',    label: 'Work' },
   { href: '/oracle',   label: 'Oracle', accent: true },
-  { href: '/#writing', label: 'Writing' },
+  { href: '/redefined-by-ai', label: 'Series' },
   { href: '/#contact', label: 'Contact' },
 ]
 
