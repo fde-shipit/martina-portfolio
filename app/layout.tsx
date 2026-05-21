@@ -25,10 +25,10 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: 'Martina Edwards — Manager, AI Acceleration · Melbourne',
-  description: 'Ten years inside infrastructure and operations before anyone called it AI. I know what breaks, what holds, and I can build it myself. That combination is still rare.',
+  description: 'AI delivery lead with a decade in enterprise infrastructure and regulated environments.',
   openGraph: {
     title: 'Martina Edwards — Manager, AI Acceleration · Melbourne',
-    description: 'Ten years inside infrastructure and operations before anyone called it AI. I know what breaks, what holds, and I can build it myself. That combination is still rare.',
+    description: 'AI delivery lead with a decade in enterprise infrastructure and regulated environments.',
     url: 'https://martina-edwards.vercel.app',
     siteName: 'Martina Edwards',
     locale: 'en_AU',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Martina Edwards — Manager, AI Acceleration · Melbourne',
-    description: 'Ten years inside infrastructure and operations before anyone called it AI. I know what breaks, what holds, and I can build it myself. That combination is still rare.',
+    description: 'AI delivery lead with a decade in enterprise infrastructure and regulated environments.',
   },
 };
 
