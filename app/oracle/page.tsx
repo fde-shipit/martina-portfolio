@@ -293,7 +293,7 @@ export default function OraclePage() {
               Built
             </div>
             <div style={{ fontSize: '0.95rem', color: 'var(--ink)' }}>
-              Zero to deployed
+              ~3 hours, end to end
             </div>
           </div>
           <div>

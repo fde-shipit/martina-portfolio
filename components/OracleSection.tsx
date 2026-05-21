@@ -178,7 +178,7 @@ export default function OracleSection() {
               Built
             </span>
             <span style={{ fontSize: '0.85rem', color: 'var(--ink)' }}>
-              Zero to deployed
+              ~3 hours, end to end
             </span>
           </div>
         </div>

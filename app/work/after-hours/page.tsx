@@ -49,7 +49,7 @@ export default function AfterHours() {
 
   /* ── top nav ── */
   nav.top{
-    margin-top:60px;padding:1.75rem 0;border-bottom:1px solid var(--rule);
+    padding:1.75rem 0;border-bottom:1px solid var(--rule);
   }
   nav.top .row{display:flex;justify-content:space-between;align-items:baseline}
   nav.top a{color:var(--cream-mute);text-decoration:none}
@@ -68,8 +68,8 @@ export default function AfterHours() {
   }
   .hero h1{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(1.8rem,4vw,3.6rem);line-height:.94;letter-spacing:-.025em;
-    color:var(--cream);
+    font-size:clamp(3rem,8.5vw,7.6rem);line-height:.94;letter-spacing:-.025em;
+    color:var(--cream);max-width:18ch;
   }
   .hero h1 em{font-style:italic;color:var(--accent-rare)}
   .hero .sub{
@@ -422,11 +422,13 @@ export default function AfterHours() {
       <span className="mono live">Live in production</span>
     </div>
     <h1>
-      Stop thinking.<br/>
-      Start shipping.
+      Started with a magic 8 ball.<br/>
+      Ended up with a <em>portfolio.</em>
     </h1>
     <p className="sub">
-      Typed a question into Claude at 9pm on a Tuesday. Eight nights later: a live product that didn't exist a fortnight ago. I couldn't stop, the possibilities are endless, so is the fun it brings. Claude is the best pair programmer you'll ever have. Start now. See where it takes you.
+      The day job ended at 6. The build began at 9. Eight nights, two hours each.
+      A Claude-powered Oracle with guardrails, wrapped in a Next.js portfolio with
+      GSAP and a Vercel deploy. Solo. No planning phase. The chat was the build.
     </p>
   </div>
 </section>
