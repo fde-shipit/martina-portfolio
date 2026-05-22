@@ -64,13 +64,9 @@ export default function RedefinedByAi() {
             in <em>working language.</em>
           </h1>
           <p className="rba-lede">
-            Words that already existed and quietly changed jobs.{' '}
-            <b>Temperature. Token. Harness.</b> Same spelling, new meaning. The
-            series rewires them, one term at a time — written from inside the
-            work, not above it.
-          </p>
-          <p className="rba-lede rba-lede-tight">
-            Read the posts. Study the deck. <b>Both grow together.</b>
+            A series about the words AI borrowed and quietly redefined.{' '}
+            <b>Temperature. Token. Harness.</b> Written from inside the work.
+            The posts are the source material for the flashcards and the game built on top of them.
           </p>
           <div className="rba-ctas">
             {lastPosted && (

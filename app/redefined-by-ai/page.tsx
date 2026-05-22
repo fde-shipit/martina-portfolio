@@ -5,7 +5,7 @@ import RedefinedByAi from '@/components/RedefinedByAi'
 export const metadata: Metadata = {
   title: 'Redefined by AI — a vocabulary for AI, in working language',
   description:
-    'Words that already existed and quietly changed jobs. Temperature. Token. Harness. The series rewires them, one term at a time — written from inside the work.',
+    'A series about the words AI borrowed and quietly redefined. Temperature. Token. Harness. Written from inside the work. The posts are the source material for the flashcards and the game built on top of them.',
 }
 
 /**
