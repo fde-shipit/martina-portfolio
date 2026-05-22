@@ -81,8 +81,7 @@ export default function Hero() {
           </div>
 
           <p id="hero-deck" className="hero-deck" style={{ opacity: 0 }}>
-            Ten years inside the infrastructure and operations layer before anyone was
-            calling it AI.{' '}
+            Ten years inside the infrastructure and operations layer before the tooling existed to move at this speed.{' '}
             <b>I know what breaks, I know what holds, and I can build the thing myself.</b>{' '}
             That combination is still rare.
           </p>
