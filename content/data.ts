@@ -54,6 +54,7 @@ export const caseStudies = [
     tags:     ["Legora", "HITL architecture", "Multi-stakeholder"],
     link:     "/work/legora-security-assessment",
     artefact: "Workflow diagram · before / after",
+    image:    "/images/mark-workflow.svg",
   },
   {
     metric:   "13,000+",
@@ -63,6 +64,7 @@ export const caseStudies = [
     tags:     ["Webex", "Rules-based logic", "Legal ops"],
     link:     "/work/legal-triage",
     artefact: "Decision tree · sample artifact output",
+    image:    "/images/mark-decision.svg",
   },
   {
     metric:   "5 years",
@@ -72,6 +74,7 @@ export const caseStudies = [
     tags:     ["SharePoint", "Power Automate", "Legal ops"],
     link:     "/work/legal-spend",
     artefact: "Architecture sketch · invoice flow",
+    image:    "/images/mark-chain.svg",
   },
 ]
 

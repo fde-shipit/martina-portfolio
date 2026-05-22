@@ -113,27 +113,33 @@ export default function Work() {
                   minHeight: '380px',
                 }}
               >
-                {/* Visual placeholder — striped sliver. Replace with a
-                    diagram or screenshot when each case study has art. */}
-                <div
-                  aria-label={`Placeholder for ${cs.artefact}`}
-                  style={{
-                    height: '64px',
-                    border: '1px solid var(--rule)',
-                    background:
-                      'repeating-linear-gradient(135deg, var(--paper-2) 0 9px, rgba(28,32,36,0.04) 9px 10px)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'var(--font-dm-mono)',
-                    fontSize: '0.55rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.14em',
-                    color: 'var(--warm)',
-                  }}
-                >
-                  {cs.artefact}
-                </div>
+                {cs.image ? (
+                  <img
+                    src={cs.image}
+                    alt={cs.artefact}
+                    style={{ width: '100%', height: '64px', objectFit: 'cover', display: 'block' }}
+                  />
+                ) : (
+                  <div
+                    aria-label={`Placeholder for ${cs.artefact}`}
+                    style={{
+                      height: '64px',
+                      border: '1px solid var(--rule)',
+                      background:
+                        'repeating-linear-gradient(135deg, var(--paper-2) 0 9px, rgba(28,32,36,0.04) 9px 10px)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontFamily: 'var(--font-dm-mono)',
+                      fontSize: '0.55rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.14em',
+                      color: 'var(--warm)',
+                    }}
+                  >
+                    {cs.artefact}
+                  </div>
+                )}
 
                 <div
                   style={{
