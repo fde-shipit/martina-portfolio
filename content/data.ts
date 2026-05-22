@@ -237,7 +237,7 @@ export const ticker = [
      2. When it's live, change status to `"posted"`
      3. That's it.
 */
-export type RbaStatus = 'posted' | 'written'
+export type RbaStatus = 'posted' | 'written' | 'draft' | 'todo'
 export type RbaEntry = { title: string; status: RbaStatus; hook: string; href?: string }
 
 export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards: number } = {
@@ -252,6 +252,10 @@ export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards:
     { title: "Vector.",           status: "written", hook: "How meaning becomes math." },
     { title: "Transformer.",      status: "written", hook: "Attention. Hallucination. The architecture under the answer." },
     { title: "Temperature.",      status: "written", hook: "Same model, different mood." },
+    { title: "Networks.",         status: "draft",   hook: "" },
+    { title: "Runs On.",          status: "draft",   hook: "" },
+    { title: "Agents.",           status: "draft",   hook: "" },
+    { title: "Harness.",          status: "todo",    hook: "" },
   ],
   deckHref: "/flashcards",
   totalCards: 35,

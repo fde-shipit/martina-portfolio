@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { redefinedByAi } from '@/content/data'
 
@@ -8,42 +9,45 @@ import { redefinedByAi } from '@/content/data'
  *
  *   /redefined-by-ai
  *
- * One destination. Reads the posts. Studies the deck.
+ * Index is split into two groups:
+ *   - The Series: posted entries
+ *   - What's next: written / draft / todo
  *
- * The entries list is generated off content/data.ts. Drafts are
- * excluded by design — they show up here only when their status
- * flips to "written" (i.e. ready to read in the deck) or "posted"
- * (i.e. there's a real post page to link to).
- *
- * Numbering is positional: № NN is computed from array index, so
- * the entire sequence reflows when an entry is added/promoted.
- *
- * Visual:
- *   - Section eyebrow with current "Latest" auto-derived
- *   - Editorial intro (Cormorant 300, italic emphasis)
- *   - Index table — posted (teal, →) vs written (warm, ·)
- *   - "As a deck" play module — three rotated cards with a
- *     subtle ambient sway + hover fan; respects reduced-motion
+ * Deck visual auto-cycles through DECK_TERMS every 3.2 s.
+ * Five card slots: -1 leaving, 0 front, 1 mid, 2 back, 3 incoming.
  */
 
-const STATUS_LABEL: Record<'posted' | 'written', string> = {
+const STATUS_LABEL: Record<'posted' | 'written' | 'draft' | 'todo', string> = {
   posted:  'Posted',
   written: 'Written · soon',
+  draft:   'Draft',
+  todo:    'Coming',
 }
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
+const DECK_TERMS = [
+  { num: '02',  card: '02 / 35', term: 'Memory.',      def: <>Three things make AI <em>feel</em> like it remembers. None of them are memory.</> },
+  { num: '03b', card: '08 / 35', term: 'Mythos.',      def: <>In seven weeks, it found <em>over 2,000</em> unknown vulnerabilities.</> },
+  { num: '03',  card: '05 / 35', term: 'Training.',    def: <>The best trainer you've ever had stopped <em>learning</em> the day it launched.</> },
+  { num: '04',  card: '12 / 35', term: 'Temperature.', def: <>Same model, <em>different mood.</em></> },
+  { num: '01',  card: '01 / 35', term: 'Model.',       def: <>Same spelling. <em>New job.</em> Nobody sent a fax.</> },
+  { num: '03c', card: '09 / 35', term: 'Token.',       def: <>Worth knowing <em>tomorrow's bill.</em></> },
+  { num: '02b', card: '04 / 35', term: 'Injection.',   def: <>Invisible to you. <em>Not</em> to your model.</> },
+]
+
 export default function RedefinedByAi() {
   const { entries, deckHref, totalCards } = redefinedByAi
 
-  const postedCount  = entries.filter(e => e.status === 'posted').length
-  const writtenCount = entries.filter(e => e.status === 'written').length
-  const lastPosted   = [...entries].reverse().find(e => e.status === 'posted')
-  const lastIdx      = lastPosted ? entries.indexOf(lastPosted) + 1 : 0
+  const postedCount = entries.filter(e => e.status === 'posted').length
+  const toComCount  = entries.filter(e => e.status !== 'posted').length
+  const lastPosted  = [...entries].reverse().find(e => e.status === 'posted')
+  const lastIdx     = lastPosted ? entries.indexOf(lastPosted) + 1 : 0
 
   return (
     <section id="redefined-by-ai" className="rba">
       <div className="rba-inner">
+
         {/* Page header eyebrow */}
         <div className="rba-ph">
           <span className="rba-mono">
@@ -80,26 +84,38 @@ export default function RedefinedByAi() {
           </div>
         </div>
 
-        {/* Section heading */}
+        {/* Section heading — The Series */}
         <div className="rba-sh">
           <span className="rba-mono">The Series</span>
           <span className="rba-mono rba-tiny rba-right">
-            {postedCount} posted &nbsp;·&nbsp; {writtenCount} written &nbsp;·&nbsp; ongoing
+            {postedCount} posted &nbsp;·&nbsp; {toComCount} to come &nbsp;·&nbsp; ongoing
           </span>
         </div>
 
-        {/* Index */}
+        {/* Posted index */}
         <div className="rba-index" role="list">
-          {entries.map((e, i) => (
-            <Row
-              key={i}
-              num={pad(i + 1)}
-              title={e.title}
-              hook={e.hook}
-              status={e.status}
-              href={e.href}
-            />
-          ))}
+          {entries
+            .map((e, i) => ({ e, i }))
+            .filter(({ e }) => e.status === 'posted')
+            .map(({ e, i }) => (
+              <Row key={i} num={pad(i + 1)} title={e.title} hook={e.hook} status={e.status} href={e.href} />
+            ))}
+        </div>
+
+        {/* Section heading — What's next */}
+        <div className="rba-sh">
+          <span className="rba-mono">What's next</span>
+          <span className="rba-mono rba-tiny rba-right">In the pipeline</span>
+        </div>
+
+        {/* Upcoming index */}
+        <div className="rba-index" role="list">
+          {entries
+            .map((e, i) => ({ e, i }))
+            .filter(({ e }) => e.status !== 'posted')
+            .map(({ e, i }) => (
+              <Row key={i} num={pad(i + 1)} title={e.title} hook={e.hook} status={e.status} href={e.href} />
+            ))}
         </div>
 
         {/* Deck play module */}
@@ -115,7 +131,7 @@ export default function RedefinedByAi() {
             </p>
             <div className="rba-meta">
               <span><b>{totalCards}</b> terms</span>
-              <span><b>{postedCount + writtenCount}</b> entries</span>
+              <span><b>{entries.length}</b> entries</span>
               <span>grows with the series</span>
             </div>
             <Link className="rba-cta-deck" href={deckHref}>
@@ -123,10 +139,10 @@ export default function RedefinedByAi() {
             </Link>
           </div>
 
-          <DeckVis entries={entries} />
+          <DeckVis />
         </div>
-      </div>
 
+      </div>
       <style>{styles}</style>
     </section>
   )
@@ -143,7 +159,7 @@ function Row({
   num: string
   title: string
   hook: string
-  status: 'posted' | 'written'
+  status: 'posted' | 'written' | 'draft' | 'todo'
   href?: string
 }) {
   const isPosted = status === 'posted'
@@ -163,40 +179,31 @@ function Row({
   )
 }
 
-/* ── Deck visual ───────────────────────────────────────── */
-function DeckVis({ entries }: { entries: { title: string; status: 'posted' | 'written' }[] }) {
-  // Pick three posted entries to surface on the cards: latest, mid, early.
-  const posted = entries.map((e, i) => ({ ...e, idx: i + 1 })).filter(e => e.status === 'posted')
-  const top    = posted[posted.length - 1] ?? { title: '—', idx: 0 }
-  const mid    = posted[Math.floor(posted.length / 2)] ?? top
-  const front  = posted[1] ?? posted[0] ?? top
-
+/* ── Animated Deck ─────────────────────────────────────── */
+function DeckVis() {
+  const [head, setHead] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setHead(h => h + 1), 3200)
+    return () => clearInterval(id)
+  }, [])
+  const slots = [-1, 0, 1, 2, 3]
+  const N = DECK_TERMS.length
   return (
-    <div className="rba-deck-vis" aria-hidden="true">
-      <div className="rba-card rba-card-3">
-        <div className="rba-card-top">
-          <span><b>Redefined by AI</b></span>
-          <span className="rba-card-n">No. {String(top.idx).padStart(2, '0')}</span>
-        </div>
-        <div className="rba-card-term">{top.title}</div>
-      </div>
-      <div className="rba-card rba-card-2">
-        <div className="rba-card-top">
-          <span><b>Redefined by AI</b></span>
-          <span className="rba-card-n">No. {String(mid.idx).padStart(2, '0')}</span>
-        </div>
-        <div className="rba-card-term">{mid.title}</div>
-      </div>
-      <div className="rba-card rba-card-1">
-        <div className="rba-card-top">
-          <span><b>Redefined by AI</b> · Card {String(front.idx).padStart(2, '0')}</span>
-          <span className="rba-card-n">№ {String(front.idx).padStart(2, '0')}</span>
-        </div>
-        <div className="rba-card-term">{front.title}</div>
-        <div className="rba-card-def">
-          Three things make AI <em>feel</em> like it remembers. None of them are memory.
-        </div>
-      </div>
+    <div className="rba-deck-vis" aria-live="polite">
+      {slots.map(offset => {
+        const absIdx = head + offset
+        const t = DECK_TERMS[((absIdx % N) + N) % N]
+        return (
+          <div className="rba-card" data-pos={String(offset)} key={absIdx}>
+            <div className="rba-card-top">
+              <span><b>Redefined by AI</b> · Card {t.card}</span>
+              <span className="rba-card-n">№ {t.num}</span>
+            </div>
+            <div className="rba-card-term">{t.term}</div>
+            <div className="rba-card-def">{t.def}</div>
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -218,7 +225,7 @@ const styles = `
     text-transform: uppercase;
     letter-spacing: 0.16em;
   }
-  .rba-tiny { font-size: 0.6rem; letter-spacing: 0.18em; }
+  .rba-tiny   { font-size: 0.6rem; letter-spacing: 0.18em; }
   .rba-accent { color: var(--accent); }
   .rba-soft   { color: var(--warm); }
   .rba-right  { color: var(--warm); margin-left: auto; text-align: right; }
@@ -257,7 +264,6 @@ const styles = `
     color: var(--warm);
   }
   .rba-lede b { color: var(--ink); font-weight: 400; }
-  .rba-lede-tight { max-width: 52ch; }
 
   .rba-ctas {
     margin-top: 0.6rem;
@@ -332,7 +338,9 @@ const styles = `
     text-align: right;
   }
   .rba-status-posted  { color: var(--accent); }
-  .rba-status-written { color: var(--warm); }
+  .rba-status-written { color: var(--ink-soft); }
+  .rba-status-draft   { color: var(--warm); }
+  .rba-status-todo    { color: var(--warm); }
   .rba-row-arr {
     font-family: var(--font-dm-mono);
     font-size: 0.9rem;
@@ -397,8 +405,12 @@ const styles = `
   }
   .rba-cta-deck:hover .rba-arr { transform: translateX(3px); }
 
-  /* ── Card deck visual ──────────────────────────────── */
-  .rba-deck-vis { position: relative; height: 360px; }
+  /* ── Animated card deck ──────────────────────────────── */
+  .rba-deck-vis {
+    position: relative;
+    height: 360px;
+    perspective: 1400px;
+  }
   .rba-card {
     position: absolute;
     background: var(--paper-2);
@@ -408,65 +420,50 @@ const styles = `
     gap: 0.8rem;
     width: 320px;
     height: 200px;
-    transform-origin: 60% 90%;
+    transform-origin: 50% 60%;
+    will-change: transform, opacity;
     transition:
-      transform 0.7s cubic-bezier(.22,.61,.36,1),
-      opacity 0.7s ease,
-      box-shadow 0.7s ease;
-    will-change: transform;
+      transform 0.95s cubic-bezier(.22,.61,.36,1),
+      opacity   0.85s ease,
+      box-shadow 0.6s ease,
+      border-color 0.6s ease;
   }
-  .rba-card-3 {
+  /* incoming */
+  .rba-card[data-pos="3"] {
+    top: -30px; right: 150px;
+    transform: rotate(-9deg) scale(0.94);
+    opacity: 0;
+    z-index: 1;
+  }
+  /* back */
+  .rba-card[data-pos="2"] {
     top: 0; right: 100px;
-    opacity: 0;
-    transform: rotate(-4deg) translateY(8px);
-    animation: rba-in-3 0.9s 0.05s cubic-bezier(.22,.61,.36,1) forwards,
-               rba-sway-3 11s 1.2s ease-in-out infinite;
+    transform: rotate(-4deg);
+    opacity: 0.5;
+    z-index: 2;
   }
-  .rba-card-2 {
+  /* mid */
+  .rba-card[data-pos="1"] {
     top: 30px; right: 60px;
-    opacity: 0;
-    transform: rotate(2deg) translateY(8px);
-    animation: rba-in-2 0.9s 0.18s cubic-bezier(.22,.61,.36,1) forwards,
-               rba-sway-2 9s 1.4s ease-in-out infinite;
+    transform: rotate(2deg);
+    opacity: 0.75;
+    z-index: 3;
   }
-  .rba-card-1 {
+  /* front */
+  .rba-card[data-pos="0"] {
     top: 70px; right: 20px;
-    opacity: 0;
-    transform: rotate(-1deg) translateY(10px);
+    transform: rotate(-1deg);
+    opacity: 1;
     border-color: var(--rule-strong);
     box-shadow: 0 18px 36px -22px rgba(0,0,0,0.18);
-    animation: rba-in-1 0.9s 0.32s cubic-bezier(.22,.61,.36,1) forwards,
-               rba-sway-1 7.5s 1.6s ease-in-out infinite;
+    z-index: 4;
   }
-
-  @keyframes rba-in-3 { to { opacity: 0.5;  transform: rotate(-4deg) translateY(0); } }
-  @keyframes rba-in-2 { to { opacity: 0.75; transform: rotate(2deg)  translateY(0); } }
-  @keyframes rba-in-1 { to { opacity: 1;    transform: rotate(-1deg) translateY(0); } }
-
-  @keyframes rba-sway-3 {
-    0%, 100% { transform: rotate(-4deg)   translate(0, 0); }
-    50%      { transform: rotate(-5.2deg) translate(-2px, -3px); }
-  }
-  @keyframes rba-sway-2 {
-    0%, 100% { transform: rotate(2deg)    translate(0, 0); }
-    50%      { transform: rotate(2.9deg)  translate(2px, -2px); }
-  }
-  @keyframes rba-sway-1 {
-    0%, 100% { transform: rotate(-1deg)   translate(0, 0); }
-    50%      { transform: rotate(-1.6deg) translate(1px, -2px); }
-  }
-
-  /* Hover fan */
-  .rba-deck-vis:hover .rba-card { animation-play-state: paused; }
-  .rba-deck-vis:hover .rba-card-3 { transform: rotate(-9deg) translate(-14px, -6px); opacity: 0.65; }
-  .rba-deck-vis:hover .rba-card-2 { transform: rotate(5deg)  translate(8px, -4px);   opacity: 0.9; }
-  .rba-deck-vis:hover .rba-card-1 { transform: rotate(-2deg) translate(0, -8px); box-shadow: 0 26px 48px -22px rgba(0,0,0,0.24); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .rba-card, .rba-deck-vis:hover .rba-card { animation: none; transition: none; }
-    .rba-card-3 { opacity: 0.5;  transform: rotate(-4deg); }
-    .rba-card-2 { opacity: 0.75; transform: rotate(2deg); }
-    .rba-card-1 { opacity: 1;    transform: rotate(-1deg); }
+  /* leaving */
+  .rba-card[data-pos="-1"] {
+    top: 70px; right: 20px;
+    transform: translate(28px, -110px) rotate(6deg);
+    opacity: 0;
+    z-index: 5;
   }
 
   .rba-card-top {
@@ -494,8 +491,21 @@ const styles = `
     font-size: 0.82rem;
     line-height: 1.45;
     color: var(--ink-soft);
+    opacity: 0;
+    transition: opacity 0.55s ease 0.15s;
   }
+  .rba-card[data-pos="0"] .rba-card-def { opacity: 1; }
   .rba-card-def em { color: var(--accent); font-style: italic; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rba-card { transition: none; }
+    .rba-card-def { transition: none; }
+    .rba-card[data-pos="3"] { opacity: 0; }
+    .rba-card[data-pos="2"] { opacity: 0.5; }
+    .rba-card[data-pos="1"] { opacity: 0.75; }
+    .rba-card[data-pos="0"] { opacity: 1; }
+    .rba-card[data-pos="-1"] { opacity: 0; }
+  }
 
   /* ── Responsive ───────────────────────────────────── */
   @media (max-width: 1024px) {
@@ -515,6 +525,6 @@ const styles = `
     .rba-row-arr  { display: none; }
     .rba-row-title { font-size: 1.2rem; }
     .rba-card { width: 240px; height: 160px; }
-    .rba-card-term { font-size: 1.7rem; }
+    .rba-card-term { font-size: 1.9rem; }
   }
 `
