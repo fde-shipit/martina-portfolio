@@ -138,15 +138,19 @@ export default function Ball() {
           width: 100%;
           max-width: 480px;
         }
+        @media (max-width: 640px) {
+          .oracle-ball { height: auto !important; }
+        }
       `}</style>
 
       {/* The Ball */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
         <div
-          className={ballClass}
+          className={`oracle-ball${ballClass ? ' ' + ballClass : ''}`}
           style={{
             width: '300px',
             height: '300px',
+            aspectRatio: '1',
             borderRadius: '50%',
             background: 'radial-gradient(ellipse at 35% 35%, #1a3a4a 0%, #0d2030 55%, #061420 100%)',
             boxShadow: (ballState === 'lit' || ballState === 'hired')

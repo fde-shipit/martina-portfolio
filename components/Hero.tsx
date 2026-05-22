@@ -76,7 +76,7 @@ export default function Hero() {
         <div className="hero-stack">
           <div className="hero-head-wrap">
             <h1 id="hero-head" className="hero-head">
-              AI didn’t replace my experience. It handed me the tools to finally use <em>all of it.</em>
+              AI let me move at the speed of the idea. It handed me the tools to close the gap <em>myself.</em>
             </h1>
           </div>
 
