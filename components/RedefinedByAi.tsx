@@ -78,10 +78,34 @@ export default function RedefinedByAi() {
                 Read the latest <span className="rba-arr" aria-hidden>→</span>
               </a>
             )}
-            <Link className="rba-cta rba-cta-accent" href={deckHref}>
-              Open the deck <span className="rba-arr" aria-hidden>→</span>
+            <Link className="rba-cta-btn" href={deckHref}>
+              Play the deck <span className="rba-arr" aria-hidden>→</span>
             </Link>
           </div>
+        </div>
+
+        {/* Deck play module — sits between intro and series index */}
+        <div className="rba-play">
+          <div className="rba-copy">
+            <h2 className="rba-h2">
+              The same vocabulary, <em>as a game.</em>
+            </h2>
+            <p className="rba-p">
+              Every term in the series, as a flashcard.{' '}
+              <b>Learn mode</b> walks you through.{' '}
+              <b>Quiz mode</b> tests your recall. The deck grows with the writing.
+            </p>
+            <div className="rba-meta">
+              <span><b>{totalCards}</b> terms</span>
+              <span><b>{entries.length}</b> entries</span>
+              <span>grows with the series</span>
+            </div>
+            <Link className="rba-cta-btn rba-cta-btn-sm" href={deckHref}>
+              Play the deck <span className="rba-arr" aria-hidden>→</span>
+            </Link>
+          </div>
+
+          <DeckVis />
         </div>
 
         {/* Section heading — The Series */}
@@ -116,30 +140,6 @@ export default function RedefinedByAi() {
             .map(({ e, i }) => (
               <Row key={i} num={pad(i + 1)} title={e.title} hook={e.hook} status={e.status} href={e.href} />
             ))}
-        </div>
-
-        {/* Deck play module */}
-        <div className="rba-play">
-          <div className="rba-copy">
-            <h2 className="rba-h2">
-              The same vocabulary, <em>as a deck.</em>
-            </h2>
-            <p className="rba-p">
-              Every term in the series, as a flashcard.{' '}
-              <b>Learn mode</b> walks you through.{' '}
-              <b>Quiz mode</b> tests your recall. The deck grows with the writing.
-            </p>
-            <div className="rba-meta">
-              <span><b>{totalCards}</b> terms</span>
-              <span><b>{entries.length}</b> entries</span>
-              <span>grows with the series</span>
-            </div>
-            <Link className="rba-cta-deck" href={deckHref}>
-              Open the deck <span className="rba-arr" aria-hidden>→</span>
-            </Link>
-          </div>
-
-          <DeckVis />
         </div>
 
       </div>
@@ -284,6 +284,28 @@ const styles = `
     color: var(--accent);
     border-bottom-color: var(--accent);
   }
+  /* Filled button — used for the primary game CTA */
+  .rba-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-dm-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--paper);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 0.65rem 1.1rem;
+    width: fit-content;
+    transition: opacity 0.15s ease;
+  }
+  .rba-cta-btn:hover { opacity: 0.82; }
+  .rba-cta-btn:hover .rba-arr { transform: translateX(3px); }
+  /* Slightly smaller variant used inside the deck module */
+  .rba-cta-btn-sm {
+    margin-top: 1.6rem;
+  }
   .rba-arr { transition: transform 0.2s ease; }
   .rba-cta:hover .rba-arr { transform: translateX(3px); }
 
@@ -352,9 +374,10 @@ const styles = `
 
   /* Deck play module */
   .rba-play {
-    margin-top: 3.5rem;
-    padding: 3rem 0 1rem;
-    border-top: 1px solid var(--rule-strong);
+    margin-top: 0;
+    padding: 3rem 0 3.5rem;
+    border-top: none;
+    border-bottom: 1px solid var(--rule-strong);
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     column-gap: 4rem;
@@ -390,20 +413,7 @@ const styles = `
     color: var(--warm);
   }
   .rba-meta b { color: var(--ink); font-weight: 500; }
-  .rba-cta-deck {
-    margin-top: 1.6rem;
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    font-family: var(--font-dm-mono);
-    font-size: 0.66rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--accent);
-    text-decoration: none;
-    padding-bottom: 0.35rem;
-    border-bottom: 1px solid var(--accent);
-    width: fit-content;
-  }
-  .rba-cta-deck:hover .rba-arr { transform: translateX(3px); }
+  /* rba-cta-deck removed — replaced by rba-cta-btn-sm */
 
   /* ── Animated card deck ──────────────────────────────── */
   .rba-deck-vis {
