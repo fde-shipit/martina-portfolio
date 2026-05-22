@@ -117,7 +117,7 @@ export default function Work() {
                   <img
                     src={cs.image}
                     alt={cs.artefact}
-                    style={{ width: '100%', height: '64px', objectFit: 'cover', display: 'block' }}
+                    style={{ width: '100%', height: '64px', objectFit: 'contain', background: '#0c1014', display: 'block' }}
                   />
                 ) : (
                   <div

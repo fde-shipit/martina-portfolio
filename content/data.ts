@@ -90,7 +90,7 @@ export const alsoShipped = [
   },
   {
     title:   "AI vendor evaluation program",
-    summary: "Led structured POCs across AI vendors for targeted legal workflows. Redirected early experimentation toward measurable output quality and defined boundaries. Findings shaped firm-wide AI strategy.",
+    summary: "Led structured POCs across AI vendors for targeted legal workflows. Redirected early experimentation toward measurable output quality and defined boundaries.",
     tags:    ["LLM evaluation", "POC design", "AI strategy"],
   },
   {
