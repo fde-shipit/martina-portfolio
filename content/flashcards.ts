@@ -20,7 +20,7 @@ export interface FlashCard {
   /** The AI term displayed on the card front */
   term: string;
   /** Abbreviation shown below the term, if one exists */
-  abbr?: string;
+  abbr?: string | null;
   /** One or two sentences in Martina's voice — drawn from the post */
   definition: string;
   /** Concrete example, analogy, or "Worth knowing" anchor */
@@ -106,8 +106,8 @@ const REDEFINED_POSTS: FlashCard[] = [
     term: "Token",
     postNumber: "3c",
     postTitle: "Token",
-    status: "written",
-    // postUrl: "",  ← add when posted
+    status: "posted",
+    postUrl: "", // ← add Substack URL
     definition:
       "Not a substitute — a deliberate chunk of text. A word, part of a word, sometimes just punctuation. The atomic unit the model reads. Because tokens aren't tied to any single language, meaning travels between languages without the model being lost in translation.",
     example: "platform.openai.com/tokenizer — paste any text and watch it chunk",
@@ -116,14 +116,15 @@ const REDEFINED_POSTS: FlashCard[] = [
     term: "Vector",
     postNumber: "3d",
     postTitle: "Vector",
-    status: "written",
-    // postUrl: "",  ← add when posted
+    status: "posted",
+    postUrl: "", // ← add Substack URL
     definition:
       "Every word has a position in space defined by its relationships with every other word it has ever appeared near. Not a definition — coordinates in thousands of dimensions. Nobody designed those positions. They emerged from billions of sentences, each one nudging meaning until it stabilised.",
     example: "Google TurboQuant — compression with near-zero accuracy loss",
   },
   {
     term: "Transformer",
+    abbr: null,
     postNumber: "3e",
     postTitle: "Transformer, Attention, Hallucination",
     status: "written",
