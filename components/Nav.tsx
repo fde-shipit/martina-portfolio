@@ -15,7 +15,6 @@ import { person } from '@/content/data'
 
 const desktopLinks = [
   { href: '/#work',    label: 'Work' },
-  { href: '/work/after-hours', label: 'After Hours' },
   { href: '/#career',  label: 'Career' },
   { href: '/redefined-by-ai', label: 'Redefined by AI' },
   { href: '/#skills',  label: 'Skills' },

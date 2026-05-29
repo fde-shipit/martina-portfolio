@@ -160,7 +160,7 @@ body {
 
 .ticker-track {
   display: flex;
-  animation: ticker 60s linear infinite;
+  animation: ticker 42s linear infinite;
   width: max-content;
 }
 
@@ -294,6 +294,6 @@ body {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .ticker-track { animation: ticker 60s linear infinite !important; }
+  .ticker-track { animation: ticker 42s linear infinite !important; }
   .ball-float   { animation: float 4s ease-in-out infinite !important; }
 }

@@ -39,8 +39,8 @@ export default function OraclePage() {
             {/* ── Intro ── */}
             <div className="orc-intro">
               <h1 className="orc-h1">
-                Ask before you{' '}
-                <em>hire her.</em>
+                This is going to be{' '}
+                <em>fun.</em>
               </h1>
               <p className="orc-lede">
                 Most portfolio sites tell you they understand AI. This one lets you interrogate it.

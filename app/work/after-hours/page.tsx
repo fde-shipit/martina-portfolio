@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'After Hours — Martina Edwards',
-  description: "Started with a magic 8 ball. Ended up with a portfolio. Eight nights, two hours each. Solo.",
+  title: 'How the Oracle was built — Martina Edwards',
+  description: "A guardrailed Claude endpoint, a rate limiter, and a magic 8-ball interface. Eight nights, two hours each. Here is how the Oracle was built.",
 }
 
 /**
@@ -404,7 +404,7 @@ export default function AfterHours() {
   <div className="wrap">
     <div className="row">
       <Link href="/" className="mono">← Martina Edwards</Link>
-      <span className="mono sec">§ After Hours · case study</span>
+      <span className="mono sec">§ The Oracle · case study</span>
     </div>
   </div>
 </nav>
@@ -423,12 +423,12 @@ export default function AfterHours() {
     </div>
     <h1>
       Started with a magic 8 ball.<br/>
-      Ended up with a <em>portfolio.</em>
+      Built an <em>Oracle.</em>
     </h1>
     <p className="sub">
-      The day job ended at 6. The build began at 9. Eight nights, two hours each.
-      A Claude-powered Oracle with guardrails, wrapped in a Next.js portfolio with
-      GSAP and a Vercel deploy. Solo. No planning phase. The chat was the build.
+      Eight nights, two hours each. A guardrailed Claude endpoint with rate limiting,
+      ten classifiers, and around 80 hand-written responses. Wrapped in a Next.js
+      portfolio to give it a home. Solo. No planning phase. The chat was the build.
     </p>
   </div>
 </section>

@@ -42,7 +42,6 @@ export default function Hero() {
       const headline = document.getElementById('hero-head')
       const deck     = document.getElementById('hero-deck')
       const cards    = document.querySelectorAll<HTMLElement>('.hero-feature-card')
-      const foot     = document.getElementById('hero-foot')
 
       if (meta)     gsap.fromTo(meta,     { opacity: 0, y: 10 }, { opacity: 1, y: 0, delay: 0.18, duration: 0.55, ease: 'power2.out' })
       if (headline) {
@@ -51,7 +50,6 @@ export default function Hero() {
       }
       if (deck)          gsap.fromTo(deck,  { opacity: 0, y: 14 }, { opacity: 1, y: 0, delay: 0.80, duration: 0.60, ease: 'power2.out' })
       if (cards.length)  gsap.fromTo(cards, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.10, delay: 1.05, duration: 0.55, ease: 'power2.out' })
-      if (foot)          gsap.fromTo(foot,  { opacity: 0, y: 10 }, { opacity: 1, y: 0, delay: 1.40, duration: 0.55, ease: 'power2.out' })
 
       cleanup = () => { gsap.killTweensOf('*') }
     }
@@ -122,7 +120,7 @@ export default function Hero() {
               Her answers might surprise you.
             </p>
             <div className="hfc-card-actions">
-              <Link href="/oracle" className="hfc-cta hfc-cta--rare">
+              <Link href="/work/after-hours" className="hfc-cta hfc-cta--rare">
                 How it&apos;s built <span className="hfc-arr" aria-hidden="true">→</span>
               </Link>
               <a
@@ -166,14 +164,6 @@ export default function Hero() {
 
         </div>
 
-        {/* ── Status bar ── */}
-        <div id="hero-foot" className="hero-foot" style={{ opacity: 0 }}>
-          <span className="hero-status">
-            <span className="hero-dot" aria-hidden="true" />
-            Open to talks &amp; introductions
-          </span>
-          <span className="hero-foot-right">Replying within a day</span>
-        </div>
 
       </div>
 
@@ -397,38 +387,6 @@ export default function Hero() {
           animation: hfc-shimmer 4.5s linear infinite;
         }
 
-        /* ─── status bar ─────────────────────────────────────────── */
-        .hero-foot {
-          padding: 1.2rem 0 1.8rem;
-          border-top: 1px solid var(--rule);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 1.5rem;
-        }
-        .hero-status {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.6rem;
-          font-family: var(--font-dm-mono);
-          font-size: 0.66rem;
-          text-transform: uppercase;
-          letter-spacing: 0.16em;
-          color: var(--ink);
-        }
-        .hero-dot {
-          width: 6px; height: 6px; border-radius: 50%;
-          background: var(--accent);
-          box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
-        }
-        .hero-foot-right {
-          font-family: var(--font-dm-mono);
-          font-size: 0.66rem;
-          text-transform: uppercase;
-          letter-spacing: 0.16em;
-          color: var(--warm);
-        }
-
         /* ─── responsive ─────────────────────────────────────────── */
         @media (max-width: 900px) {
           .hero-features { grid-template-columns: 1fr; }
@@ -440,7 +398,6 @@ export default function Hero() {
           .hero-stack  { padding: 2rem 0 1.5rem; max-width: 100%; }
           .hero-head   { font-size: 1.9rem; max-width: 100%; }
           .hero-deck   { font-size: 0.95rem; }
-          .hero-foot   { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 2rem; }
         }
 
         /* honour reduced-motion */
