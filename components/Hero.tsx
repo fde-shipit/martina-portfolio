@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { person } from '@/content/data'
 
@@ -16,18 +16,6 @@ import { person } from '@/content/data'
  */
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
-
-  const handleConfetti = useCallback(async () => {
-    try {
-      const confetti = (await import('canvas-confetti')).default
-      void confetti({
-        particleCount: 40,
-        spread: 45,
-        origin: { y: 0.65 },
-        colors: ['#FFD700', '#D4AF37', '#C9A227', '#FFF4A0', '#E8C40A'],
-      })
-    } catch { /* animation is non-essential */ }
-  }, [])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -103,7 +91,6 @@ export default function Hero() {
               <a
                 href="/flashcards"
                 className="hfc-confetti-btn"
-                onMouseEnter={handleConfetti}
               >
                 Launch the quiz
               </a>
@@ -126,7 +113,6 @@ export default function Hero() {
               <a
                 href="/oracle"
                 className="hfc-confetti-btn hfc-confetti-btn--rare"
-                onMouseEnter={handleConfetti}
               >
                 Try the Oracle
               </a>
@@ -155,7 +141,6 @@ export default function Hero() {
                 className="hfc-confetti-btn"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={handleConfetti}
               >
                 Open the agent
               </a>
@@ -259,23 +244,20 @@ export default function Hero() {
           color: inherit;
           position: relative;
           overflow: hidden;
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                      background 0.3s ease;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* accent sweep — grows from left along bottom edge */
+        /* teal accent line sweeps in from left along bottom edge */
         .hero-feature-card::after {
           content: '';
           position: absolute;
           bottom: 0; left: 0;
-          height: 1px; width: 0;
+          height: 2px; width: 0;
           background: var(--accent);
-          transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .hero-feature-card:hover::after  { width: 100%; }
-        .hero-feature-card:hover         { transform: translateY(-2px); background: var(--paper-2); }
-        /* oracle variant — raspberry sweep */
-        .hfc-oracle::after               { background: var(--accent-rare); }
+        .hero-feature-card:hover::after { width: 100%; }
+        .hero-feature-card:hover        { transform: translateY(-3px); }
 
         /* eyebrow */
         .hfc-eyebrow {
