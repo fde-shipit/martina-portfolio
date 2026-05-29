@@ -3,7 +3,6 @@ import Ticker from '@/components/Ticker'
 import OracleSection from '@/components/OracleSection'
 import About from '@/components/About'
 import Work from '@/components/Work'
-import PullQuote from '@/components/PullQuote'
 import Career from '@/components/Career'
 import Writing from '@/components/Writing'
 import Skills from '@/components/Skills'
@@ -27,7 +26,6 @@ export default function Home() {
 
       <About />
       <Work />
-      <PullQuote />
       <Skills />
       <Career />
       <Writing />

@@ -228,6 +228,8 @@ export const ticker = [
   { text: "Knows when none of them do yet.", accent: true },
   { text: "AI Acceleration" },
   { text: "#RedefinedByAI", accent: true },
+  { text: "The intelligence is only as reliable as what it runs on.", accent: true },
+  { text: "From \"Networks\", Redefined by AI" },
 ]
 
 /* ─────────────────────────────────────────────────────────────

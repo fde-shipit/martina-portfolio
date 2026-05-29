@@ -9,32 +9,23 @@ import { person } from '@/content/data'
  *
  * Eyebrow · Headline · Deck · Feature cards (3 products) · Status bar
  *
- * The 3 text CTAs are replaced by editorial feature cards:
+ * Feature cards:
  *   Redefined by AI  |  The Oracle  |  News Agent
- * Cards sit below the headline stack, above the status bar.
- * News Agent gets a shiny confetti button linking to the live app.
+ * Each card has a text CTA and a shiny confetti button.
+ * All confetti is golden and contained.
  */
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
 
-  const handleAgentClick = useCallback(async () => {
+  const handleConfetti = useCallback(async () => {
     try {
       const confetti = (await import('canvas-confetti')).default
       void confetti({
-        particleCount: 90,
-        spread: 75,
-        origin: { y: 0.62 },
-        colors: ['#308695', '#D45769', '#EFF0F2', '#3A424B'],
+        particleCount: 40,
+        spread: 45,
+        origin: { y: 0.65 },
+        colors: ['#FFD700', '#D4AF37', '#C9A227', '#FFF4A0', '#E8C40A'],
       })
-      setTimeout(() => {
-        void confetti({
-          particleCount: 50,
-          spread: 55,
-          angle: 115,
-          origin: { x: 0.72, y: 0.65 },
-          colors: ['#308695', '#D45769'],
-        })
-      }, 180)
     } catch { /* animation is non-essential */ }
   }, [])
 
@@ -99,30 +90,49 @@ export default function Hero() {
         <div className="hero-features">
 
           {/* Redefined by AI */}
-          <Link href="/redefined-by-ai" className="hero-feature-card hfc-series" style={{ opacity: 0 }}>
+          <div className="hero-feature-card hfc-series" style={{ opacity: 0 }}>
             <div className="hfc-eyebrow">Series · 8 reads</div>
             <div className="hfc-title">Redefined by AI</div>
             <p className="hfc-body">
-              A series for people who work alongside AI but didn&apos;t study it.
-              Plain language, real concepts, written from inside the infrastructure.
+              A vocabulary for AI, in working language. A series about the words AI borrowed
+              and quietly redefined. Temperature. Token. Harness. Written from inside the work.
+              The posts feed the flashcards. The flashcards feed the quiz.
             </p>
-            <div className="hfc-cta">
-              Read the series <span className="hfc-arr" aria-hidden="true">→</span>
+            <div className="hfc-card-actions">
+              <Link href="/redefined-by-ai" className="hfc-cta">
+                Read the latest <span className="hfc-arr" aria-hidden="true">→</span>
+              </Link>
+              <a
+                href="/flashcards"
+                className="hfc-confetti-btn"
+                onMouseEnter={handleConfetti}
+              >
+                Launch the quiz
+              </a>
             </div>
-          </Link>
+          </div>
 
           {/* The Oracle */}
-          <Link href="/oracle" className="hero-feature-card hfc-oracle" style={{ opacity: 0 }}>
+          <div className="hero-feature-card hfc-oracle" style={{ opacity: 0 }}>
             <div className="hfc-eyebrow hfc-eyebrow--rare">AI artefact · guardrailed</div>
             <div className="hfc-title">The Oracle</div>
             <p className="hfc-body">
-              Ask it anything about Martina — her work, approach, availability.
+              Ask it anything about Martina. Her work, approach, availability.
               It answers what it knows and refuses everything else.
             </p>
-            <div className="hfc-cta hfc-cta--rare">
-              Consult the Oracle <span className="hfc-arr" aria-hidden="true">→</span>
+            <div className="hfc-card-actions">
+              <Link href="/oracle" className="hfc-cta hfc-cta--rare">
+                Consult the Oracle <span className="hfc-arr" aria-hidden="true">→</span>
+              </Link>
+              <a
+                href="/oracle"
+                className="hfc-confetti-btn hfc-confetti-btn--rare"
+                onMouseEnter={handleConfetti}
+              >
+                Try the Oracle
+              </a>
             </div>
-          </Link>
+          </div>
 
           {/* News Agent */}
           <div className="hero-feature-card hfc-news" style={{ opacity: 0 }}>
@@ -130,9 +140,9 @@ export default function Hero() {
             <div className="hfc-title">News Agent</div>
             <p className="hfc-body">
               Pick topics, run live web searches, get a structured briefing.
-              Built to be forked — open source, documented, deployable in an evening.
+              Built to be forked. Open source, documented, deployable in an evening.
             </p>
-            <div className="hfc-news-actions">
+            <div className="hfc-card-actions">
               <a
                 href="https://martina-edwards.vercel.app/setup-guide-windows.html"
                 className="hfc-cta hfc-guide"
@@ -146,7 +156,7 @@ export default function Hero() {
                 className="hfc-confetti-btn"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={handleAgentClick}
+                onMouseEnter={handleConfetti}
               >
                 Open the agent
               </a>
@@ -321,8 +331,6 @@ export default function Hero() {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          margin-top: auto;
-          padding-top: 0.5rem;
         }
         .hfc-cta--rare { color: var(--accent-rare); }
 
@@ -330,8 +338,8 @@ export default function Hero() {
         .hfc-cta:hover .hfc-arr,
         .hfc-guide:hover .hfc-arr { transform: translateX(3px); }
 
-        /* news agent: two-action row */
-        .hfc-news-actions {
+        /* card actions row — used by all three cards */
+        .hfc-card-actions {
           display: flex;
           align-items: center;
           gap: 1.1rem;
@@ -367,12 +375,26 @@ export default function Hero() {
             var(--accent)   100%
           );
           background-size: 240% auto;
-          animation: hfc-shimmer 2.6s linear infinite;
+          animation: hfc-shimmer 4.5s linear infinite;
           white-space: nowrap;
           cursor: pointer;
           transition: opacity 0.2s ease;
         }
         .hfc-confetti-btn:hover { opacity: 0.82; }
+
+        /* raspberry (Oracle) variant */
+        .hfc-confetti-btn--rare {
+          background: linear-gradient(
+            108deg,
+            var(--accent-rare)   0%,
+            var(--accent-rare)   28%,
+            color-mix(in srgb, var(--accent-rare) 45%, white) 50%,
+            var(--accent-rare)   72%,
+            var(--accent-rare)   100%
+          );
+          background-size: 240% auto;
+          animation: hfc-shimmer 4.5s linear infinite;
+        }
 
         /* ─── status bar ─────────────────────────────────────────── */
         .hero-foot {
@@ -409,7 +431,7 @@ export default function Hero() {
         /* ─── responsive ─────────────────────────────────────────── */
         @media (max-width: 900px) {
           .hero-features { grid-template-columns: 1fr; }
-          .hfc-news-actions { gap: 1.4rem; }
+          .hfc-card-actions { gap: 1.4rem; }
         }
         @media (max-width: 768px) {
           .hero-inner  { padding: 0 1.25rem; }
@@ -422,9 +444,10 @@ export default function Hero() {
 
         /* honour reduced-motion */
         @media (prefers-reduced-motion: reduce) {
-          .hfc-confetti-btn       { animation: none !important; }
+          .hfc-confetti-btn,
+          .hfc-confetti-btn--rare       { animation: none !important; }
           .hero-feature-card,
-          .hero-feature-card::after { transition: none !important; }
+          .hero-feature-card::after     { transition: none !important; }
         }
       `}</style>
     </section>
