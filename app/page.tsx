@@ -1,6 +1,5 @@
 import Hero from '@/components/Hero'
 import Ticker from '@/components/Ticker'
-import OracleSection from '@/components/OracleSection'
 import About from '@/components/About'
 import Work from '@/components/Work'
 import Career from '@/components/Career'
@@ -19,10 +18,6 @@ export default function Home() {
 
       <Hero />
       <Ticker />
-
-      {/* Oracle preview — promoted from buried hero link to its own section,
-          sitting between Hero and Work so it's the second thing a visitor sees. */}
-      <OracleSection />
 
       <About />
       <Work />

@@ -1,356 +1,409 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Nav from '@/components/Nav'
 import Ball from '@/components/Ball'
-import { person } from '@/content/data'
+import { oraclePreview } from '@/content/data'
 
 export const metadata: Metadata = {
   title: 'The Oracle — Martina Edwards',
   description:
-    'A working AI artefact, not a gimmick. Ask the Oracle questions about Martina\'s work, approach and availability. Bounded scope, explicit refusals, built in an afternoon.',
+    'A working AI artefact built in an afternoon. Ask questions about Martina\'s work, approach and availability. Bounded scope, explicit refusals, no hallucinated facts.',
 }
 
 /**
- * /oracle — redesigned to frame what this thing actually IS.
+ * /oracle — project page for The Oracle.
  *
- *   - Two-column on desktop: framing copy + the Ball
- *   - Guardrails block below explains scope + refusals (mirrors the
- *     homepage preview, so the page makes sense as a direct landing)
- *   - Provenance footer: stack, build time, link to the case study
- *
- * The Ball component itself is unchanged structurally — just re-themed
- * to raspberry via the updated component.
+ * Structure mirrors /redefined-by-ai:
+ *   Page eyebrow · Intro + CTAs · Ball (centred) ·
+ *   Guardrails (refuses / answers) · Sample exchange · Provenance
  */
 export default function OraclePage() {
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        paddingTop: '120px',
-        paddingBottom: '4rem',
-        background: 'var(--paper)',
-      }}
-    >
-      {/* ── Top crumb ── */}
-      <div
-        style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '0 3rem 2rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-        }}
-      >
-        <Link
-          href="/"
-          className="font-mono-label"
-          style={{
-            color: 'var(--warm)',
-            textDecoration: 'none',
-            fontSize: '0.62rem',
-          }}
-        >
-          ← {person.name}
-        </Link>
-        <span
-          className="font-mono-label"
-          style={{ color: 'var(--accent-rare)', fontSize: '0.62rem' }}
-        >
-          § The Oracle
-        </span>
-      </div>
+    <>
+      <Nav />
+      <main>
+        <section className="orc">
+          <div className="orc-inner">
 
-      {/* ── Hero row: framing copy + ball ── */}
-      <section
-        className="oracle-hero"
-        style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '0 3rem',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
-          alignItems: 'center',
-          borderTop: '1px solid var(--rule)',
-          paddingTop: '4rem',
-        }}
-      >
-        {/* Left: framing copy */}
-        <div>
-          <div
-            className="font-mono-label"
-            style={{
-              color: 'var(--accent-rare)',
-              marginBottom: '1.5rem',
-            }}
-          >
-            Built in 3 hours · Claude · guardrailed
-          </div>
+            {/* ── Page header eyebrow ── */}
+            <div className="orc-ph">
+              <span className="orc-mono">
+                <span className="orc-rare">The Oracle</span>
+                <span className="orc-soft"> &nbsp;·&nbsp; AI artefact · guardrailed</span>
+              </span>
+              <span className="orc-mono orc-tiny orc-right">
+                Next.js · Claude API · Vercel
+              </span>
+            </div>
 
-          <h1
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontSize: 'clamp(2.4rem, 5vw, 4.2rem)',
-              lineHeight: 1,
-              letterSpacing: '-0.02em',
-              color: 'var(--ink)',
-              marginBottom: '1.75rem',
-            }}
-          >
-            Ask before you{' '}
-            <em
-              style={{
-                fontStyle: 'italic',
-                color: 'var(--accent-rare)',
-              }}
-            >
-              hire her.
-            </em>
-          </h1>
-
-          <p
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: '1rem',
-              color: 'var(--warm)',
-              lineHeight: 1.65,
-              maxWidth: '52ch',
-              marginBottom: '1.5rem',
-            }}
-          >
-            This is the Oracle. It answers questions about Martina&apos;s work,
-            approach, and availability — and politely declines everything else.
-            Bounded scope, explicit refusals, no hallucinated facts. The same
-            architecture I&apos;d ship for a regulated client, scaled down to
-            one source of truth: my CV.
-          </p>
-
-          <p
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: '0.95rem',
-              color: 'var(--ink-soft)',
-              lineHeight: 1.6,
-              maxWidth: '52ch',
-              fontStyle: 'italic',
-            }}
-          >
-            Tap a question below, or write your own. Five attempts per session.
-          </p>
-        </div>
-
-        {/* Right: the ball + interaction */}
-        <div
-          style={{
-            background: 'var(--paper-2)',
-            border: '1px solid var(--rule)',
-            padding: '3rem 2.5rem',
-            position: 'relative',
-          }}
-        >
-          <Ball />
-        </div>
-      </section>
-
-      {/* ── Guardrails strip ── */}
-      <section
-        style={{
-          maxWidth: '1400px',
-          margin: '5rem auto 0',
-          padding: '0 3rem',
-        }}
-      >
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '200px 1fr',
-            gap: '2rem',
-            alignItems: 'baseline',
-            paddingTop: '3rem',
-            borderTop: '1px solid var(--rule)',
-          }}
-          className="oracle-guard-wrap"
-        >
-          <div>
-            <span
-              className="font-mono-label"
-              style={{ color: 'var(--accent-rare)' }}
-            >
-              Guardrails
-            </span>
-            <p
-              style={{
-                marginTop: '1rem',
-                fontSize: '0.82rem',
-                color: 'var(--warm)',
-                lineHeight: 1.5,
-                maxWidth: '24ch',
-              }}
-            >
-              Visible because explainability is the whole point.
-            </p>
-          </div>
-
-          <div
-            className="oracle-guard-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '1px',
-              background: 'var(--rule)',
-              border: '1px solid var(--rule)',
-            }}
-          >
-            {/* What it refuses */}
-            <div
-              style={{
-                background: 'var(--paper)',
-                padding: '1.75rem',
-              }}
-            >
-              <div
-                className="font-mono-label"
-                style={{ color: 'var(--accent-rare)', marginBottom: '1rem' }}
-              >
-                ✕ Refuses
+            {/* ── Intro ── */}
+            <div className="orc-intro">
+              <h1 className="orc-h1">
+                Ask before you{' '}
+                <em>hire her.</em>
+              </h1>
+              <p className="orc-lede">
+                Most portfolio sites tell you they understand AI. This one lets you interrogate it.
+                Built in an afternoon using Claude. Guardrails built the way I would build them for a client:{' '}
+                bounded scope, explicit refusals, no hallucinated facts.{' '}
+                <b>The same architecture I would ship for a regulated client, scaled down to
+                one source of truth: my CV.</b>
+              </p>
+              <div className="orc-ctas">
+                <a href="#oracle-ball" className="orc-cta">
+                  Consult the Oracle <span className="orc-arr" aria-hidden="true">↓</span>
+                </a>
+                <Link href="/work/after-hours" className="orc-cta">
+                  Read the case study <span className="orc-arr" aria-hidden="true">→</span>
+                </Link>
               </div>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.6rem',
-                  fontSize: '0.88rem',
-                  color: 'var(--ink)',
-                  lineHeight: 1.5,
-                }}
-              >
-                <li>Claims about people other than Martina</li>
-                <li>Compensation, contract terms, anything negotiable</li>
-                <li>Predictions or opinions on third-party tools</li>
-                <li>Anything outside the source-of-truth (the CV)</li>
-              </ul>
             </div>
 
-            {/* What it answers */}
-            <div
-              style={{
-                background: 'var(--paper)',
-                padding: '1.75rem',
-              }}
-            >
-              <div
-                className="font-mono-label"
-                style={{ color: 'var(--accent)', marginBottom: '1rem' }}
-              >
-                ✓ Answers
+            {/* ── The Ball — centred ── */}
+            <div id="oracle-ball" className="orc-ball-wrap">
+              <Ball />
+            </div>
+
+            {/* ── Guardrails ── */}
+            <div className="orc-mechanics">
+              <div className="orc-mech-hdr">
+                <h2 className="orc-h2">
+                  Built like a small{' '}
+                  <em>enterprise feature.</em>
+                </h2>
+                <p className="orc-mech-sub">
+                  Visible because explainability is the whole point.
+                </p>
               </div>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.6rem',
-                  fontSize: '0.88rem',
-                  color: 'var(--ink)',
-                  lineHeight: 1.5,
-                }}
-              >
-                <li>Scope, methodology, and what she actually shipped</li>
-                <li>Why she&apos;d approach a problem a particular way</li>
-                <li>Honest &ldquo;I don&apos;t know&rdquo; with a contact pointer</li>
-                <li>Availability and where she&apos;s based</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ── Provenance footer ── */}
-      <section
-        style={{
-          maxWidth: '1400px',
-          margin: '5rem auto 0',
-          padding: '3rem 3rem 0',
-          borderTop: '1px solid var(--rule)',
-        }}
-      >
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '2rem',
-            alignItems: 'start',
-          }}
-          className="oracle-prov-grid"
-        >
-          <div>
-            <div
-              className="font-mono-label"
-              style={{ color: 'var(--warm)', marginBottom: '0.5rem' }}
-            >
-              Built
+              <div className="orc-guard-grid">
+                <div className="orc-guard-col">
+                  <div className="orc-guard-label orc-guard-label--no">✕ Refuses</div>
+                  <ul className="orc-guard-list">
+                    <li>Claims about people other than Martina</li>
+                    <li>Compensation, contract terms, anything negotiable</li>
+                    <li>Predictions or opinions on third-party tools</li>
+                    <li>Anything outside the source of truth (the CV)</li>
+                  </ul>
+                </div>
+                <div className="orc-guard-col">
+                  <div className="orc-guard-label orc-guard-label--yes">✓ Answers</div>
+                  <ul className="orc-guard-list">
+                    <li>Scope, methodology, and what she actually shipped</li>
+                    <li>Why she would approach a problem a particular way</li>
+                    <li>Honest &ldquo;I don&apos;t know&rdquo; with a contact pointer</li>
+                    <li>Availability and where she&apos;s based</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div style={{ fontSize: '0.95rem', color: 'var(--ink)' }}>
-              ~3 hours, end to end
-            </div>
-          </div>
-          <div>
-            <div
-              className="font-mono-label"
-              style={{ color: 'var(--warm)', marginBottom: '0.5rem' }}
-            >
-              Stack
-            </div>
-            <div style={{ fontSize: '0.95rem', color: 'var(--ink)' }}>
-              Next.js · Claude API · Vercel
-            </div>
-          </div>
-          <div>
-            <div
-              className="font-mono-label"
-              style={{ color: 'var(--warm)', marginBottom: '0.5rem' }}
-            >
-              Guardrails
-            </div>
-            <div style={{ fontSize: '0.95rem', color: 'var(--ink)' }}>
-              ≈ 60 lines · about 2× the prompt
-            </div>
-          </div>
-          <div>
-            <div
-              className="font-mono-label"
-              style={{ color: 'var(--warm)', marginBottom: '0.5rem' }}
-            >
-              Why this exists
-            </div>
-            <Link
-              href="/work/after-hours"
-              style={{
-                fontSize: '0.95rem',
-                color: 'var(--accent-rare)',
-                textDecoration: 'none',
-                borderBottom: '1px solid var(--accent-rare)',
-              }}
-            >
-              Read the case study →
-            </Link>
-          </div>
-        </div>
-      </section>
 
-      <style>{`
-        @media (max-width: 1024px) {
-          .oracle-hero { grid-template-columns: 1fr !important; gap: 3rem !important; }
-          .oracle-prov-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 768px) {
-          .oracle-guard-wrap { grid-template-columns: 1fr !important; }
-          .oracle-guard-grid { grid-template-columns: 1fr !important; }
-          .oracle-prov-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-    </main>
+            {/* ── Sample exchange ── */}
+            <div className="orc-sample">
+              <div className="orc-sh">
+                <span className="orc-mono orc-soft">Sample exchange</span>
+              </div>
+              <div className="orc-exchanges">
+                {oraclePreview.exchanges.map((ex, i) => (
+                  <div key={i} className="orc-exchange">
+                    <span className={`orc-who${ex.who === 'Oracle' ? ' orc-who--oracle' : ''}`}>
+                      {ex.who}
+                    </span>
+                    <span className={`orc-what${ex.tone === 'answer' ? ' orc-what--answer' : ''}`}>
+                      {ex.what}
+                    </span>
+                  </div>
+                ))}
+                {/* Refusal example */}
+                <div className="orc-exchange">
+                  <span className="orc-who">You</span>
+                  <span className="orc-what">What&apos;s her current salary?</span>
+                </div>
+                <div className="orc-exchange">
+                  <span className="orc-who orc-who--oracle">Oracle</span>
+                  <div className="orc-refusal">
+                    Out of scope. The Oracle answers questions about Martina&apos;s work,
+                    approach, and availability. Compensation is between you and her.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Provenance ── */}
+            <div className="orc-prov">
+              <div className="orc-prov-col">
+                <div className="orc-prov-label">Built</div>
+                <div className="orc-prov-val">~3 hours, end to end</div>
+              </div>
+              <div className="orc-prov-col">
+                <div className="orc-prov-label">Stack</div>
+                <div className="orc-prov-val">Next.js · Claude API · Vercel</div>
+              </div>
+              <div className="orc-prov-col">
+                <div className="orc-prov-label">Guardrails</div>
+                <div className="orc-prov-val">~60 lines · about 2x the prompt</div>
+              </div>
+              <div className="orc-prov-col">
+                <div className="orc-prov-label">Why this exists</div>
+                <Link href="/work/after-hours" className="orc-prov-link">
+                  Read the case study →
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <style>{styles}</style>
+      </main>
+    </>
   )
 }
+
+const styles = `
+  /* ── shell ──────────────────────────────────────────────── */
+  .orc {
+    position: relative;
+    padding: 6rem 3rem 6rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .orc-inner { max-width: 1180px; margin: 0 auto; }
+
+  /* ── type helpers ─────────────────────────────────────── */
+  .orc-mono {
+    font-family: var(--font-dm-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .orc-tiny   { font-size: 0.6rem; letter-spacing: 0.18em; }
+  .orc-rare   { color: var(--accent-rare); }
+  .orc-soft   { color: var(--warm); }
+  .orc-right  { color: var(--warm); margin-left: auto; text-align: right; }
+
+  /* ── page header ─────────────────────────────────────── */
+  .orc-ph {
+    padding: 0 0 2rem;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── intro ───────────────────────────────────────────── */
+  .orc-intro {
+    padding: 3rem 0 3rem;
+    max-width: 880px;
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .orc-h1 {
+    font-family: var(--font-cormorant);
+    font-weight: 300;
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .orc-h1 em { font-style: italic; font-weight: 400; color: var(--accent-rare); }
+  .orc-lede {
+    max-width: 58ch;
+    font-family: var(--font-dm-sans);
+    font-weight: 300;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--warm);
+  }
+  .orc-lede b { color: var(--ink); font-weight: 400; }
+
+  .orc-ctas {
+    margin-top: 0.6rem;
+    display: flex; gap: 2.2rem; align-items: center; flex-wrap: wrap;
+  }
+  .orc-cta {
+    font-family: var(--font-dm-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+    color: var(--accent-rare);
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--accent-rare);
+    transition: opacity 0.15s ease;
+  }
+  .orc-cta:hover { opacity: 0.7; }
+  .orc-arr { display: inline-block; transition: transform 0.2s ease; }
+  .orc-cta:hover .orc-arr { transform: translateX(3px); }
+
+  /* ── ball — centred ──────────────────────────────────── */
+  .orc-ball-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem 6rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 5rem;
+  }
+
+  /* ── section heading ─────────────────────────────────── */
+  .orc-sh {
+    padding-bottom: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  /* ── guardrails ──────────────────────────────────────── */
+  .orc-mechanics {
+    padding: 3rem 0 3.5rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .orc-mech-hdr {
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .orc-h2 {
+    font-family: var(--font-cormorant);
+    font-weight: 300;
+    font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    max-width: 22ch;
+  }
+  .orc-h2 em { font-style: italic; }
+  .orc-mech-sub {
+    font-family: var(--font-dm-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--warm);
+  }
+
+  .orc-guard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .orc-guard-col {
+    background: var(--paper);
+    padding: 1.75rem;
+    display: flex; flex-direction: column; gap: 0.9rem;
+  }
+  .orc-guard-label {
+    font-family: var(--font-dm-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .orc-guard-label--no  { color: var(--accent-rare); }
+  .orc-guard-label--yes { color: var(--accent); }
+  .orc-guard-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.6rem;
+    font-family: var(--font-dm-sans);
+    font-weight: 300;
+    font-size: 0.88rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* ── sample exchange ─────────────────────────────────── */
+  .orc-sample {
+    padding: 3rem 0 3.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .orc-exchanges {
+    display: flex; flex-direction: column; gap: 1.25rem;
+    max-width: 640px;
+  }
+  .orc-exchange {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+  .orc-who {
+    font-family: var(--font-dm-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--ink);
+    padding-top: 0.25rem;
+  }
+  .orc-who--oracle { color: var(--accent-rare); }
+  .orc-what {
+    font-family: var(--font-cormorant);
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .orc-what--answer {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .orc-refusal {
+    background: rgba(212,87,105,0.06);
+    border-left: 2px solid var(--accent-rare);
+    padding: 0.6rem 0.9rem;
+    font-family: var(--font-dm-sans);
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ── provenance ──────────────────────────────────────── */
+  .orc-prov {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 3rem 0 0;
+  }
+  .orc-prov-label {
+    font-family: var(--font-dm-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--warm);
+    margin-bottom: 0.5rem;
+  }
+  .orc-prov-val {
+    font-family: var(--font-dm-sans);
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .orc-prov-link {
+    font-family: var(--font-dm-sans);
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--accent-rare);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-rare);
+    transition: opacity 0.15s ease;
+  }
+  .orc-prov-link:hover { opacity: 0.7; }
+
+  /* ── responsive ──────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .orc { padding: 5rem 2rem 5rem; }
+    .orc-prov { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .orc { padding: 4.5rem 1.25rem 4rem; }
+    .orc-ph { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .orc-ctas { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .orc-guard-grid { grid-template-columns: 1fr; }
+    .orc-prov { grid-template-columns: 1fr; }
+    .orc-ball-wrap { padding: 3.5rem 0 4rem; }
+  }
+`
