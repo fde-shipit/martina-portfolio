@@ -374,9 +374,14 @@ export default function AfterHours() {
   .cta .btn{
     font-family:'DM Mono',monospace;font-size:.65rem;text-transform:uppercase;
     letter-spacing:.14em;padding:.95rem 1.5rem;text-decoration:none;
+    color:var(--cream);
+    background:linear-gradient(to right,var(--accent-rare) 50%,transparent 50%);
+    background-size:200% 100%;
+    background-position:right center;
+    border:1px solid var(--rule-strong);
+    transition:background-position 0.3s cubic-bezier(0.16,1,0.3,1),color 0.3s cubic-bezier(0.16,1,0.3,1);
   }
-  .cta .btn.primary{color:var(--ink);background:var(--accent-rare)}
-  .cta .btn.ghost{color:var(--cream);border:1px solid var(--rule-strong)}
+  .cta .btn:hover{background-position:left center;color:#fff}
 
   /* ── footer ── */
   footer{padding:2.5rem 0;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:.62rem;color:var(--cream-mute);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em}

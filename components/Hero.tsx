@@ -11,8 +11,7 @@ import { person } from '@/content/data'
  *
  * Feature cards:
  *   Redefined by AI  |  The Oracle  |  News Agent
- * Each card has a text CTA and a shiny confetti button.
- * All confetti is golden and contained.
+ * Each card has a text CTA and a fill-sweep button.
  */
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -325,48 +324,39 @@ export default function Hero() {
           padding-top: 0;
         }
 
-        /* ── shiny confetti button ── */
-        @keyframes hfc-shimmer {
-          0%   { background-position: -240% center; }
-          100% { background-position: 240% center; }
-        }
+        /* ── fill-sweep button ── */
         .hfc-confetti-btn {
           font-family: var(--font-dm-mono);
           font-size: 0.62rem;
           text-transform: uppercase;
           letter-spacing: 0.14em;
           text-decoration: none;
-          color: var(--paper);
+          color: var(--ink);
           display: inline-block;
           padding: 0.55rem 1rem;
-          background: linear-gradient(
-            108deg,
-            var(--accent)   0%,
-            var(--accent)   28%,
-            color-mix(in srgb, var(--accent) 45%, white) 50%,
-            var(--accent)   72%,
-            var(--accent)   100%
-          );
-          background-size: 240% auto;
-          animation: hfc-shimmer 4.5s linear infinite;
+          background: linear-gradient(to right, var(--accent) 50%, transparent 50%);
+          background-size: 200% 100%;
+          background-position: right center;
+          border: 1px solid var(--rule-strong);
           white-space: nowrap;
           cursor: pointer;
-          transition: opacity 0.2s ease;
+          transition: background-position 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .hfc-confetti-btn:hover { opacity: 0.82; }
+        .hfc-confetti-btn:hover {
+          background-position: left center;
+          color: #fff;
+        }
 
-        /* raspberry (Oracle) variant */
+        /* Oracle (raspberry) variant */
         .hfc-confetti-btn--rare {
-          background: linear-gradient(
-            108deg,
-            var(--accent-rare)   0%,
-            var(--accent-rare)   28%,
-            color-mix(in srgb, var(--accent-rare) 45%, white) 50%,
-            var(--accent-rare)   72%,
-            var(--accent-rare)   100%
-          );
-          background-size: 240% auto;
-          animation: hfc-shimmer 4.5s linear infinite;
+          background: linear-gradient(to right, var(--accent-rare) 50%, transparent 50%);
+          background-size: 200% 100%;
+          background-position: right center;
+        }
+        .hfc-confetti-btn--rare:hover {
+          background-position: left center;
+          color: #fff;
         }
 
         /* ─── responsive ─────────────────────────────────────────── */
@@ -385,7 +375,7 @@ export default function Hero() {
         /* honour reduced-motion */
         @media (prefers-reduced-motion: reduce) {
           .hfc-confetti-btn,
-          .hfc-confetti-btn--rare       { animation: none !important; }
+          .hfc-confetti-btn--rare       { transition: none !important; }
           .hero-feature-card,
           .hero-feature-card::after     { transition: none !important; }
         }

@@ -284,7 +284,7 @@ const styles = `
     color: var(--accent);
     border-bottom-color: var(--accent);
   }
-  /* Filled button — used for the primary game CTA */
+  /* Fill-sweep button — used for the primary game CTA */
   .rba-cta-btn {
     display: inline-flex;
     align-items: center;
@@ -293,14 +293,21 @@ const styles = `
     font-size: 0.66rem;
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: var(--paper);
-    background: var(--ink);
+    color: var(--ink);
+    background: linear-gradient(to right, var(--accent) 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right center;
+    border: 1px solid var(--rule-strong);
     text-decoration: none;
     padding: 0.65rem 1.1rem;
     width: fit-content;
-    transition: opacity 0.15s ease;
+    transition: background-position 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .rba-cta-btn:hover { opacity: 0.82; }
+  .rba-cta-btn:hover {
+    background-position: left center;
+    color: #fff;
+  }
   .rba-cta-btn:hover .rba-arr { transform: translateX(3px); }
   /* Slightly smaller variant used inside the deck module */
   .rba-cta-btn-sm {
