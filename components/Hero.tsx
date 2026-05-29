@@ -49,7 +49,7 @@ export default function Hero() {
         gsap.to(headline,  { clipPath: 'inset(0 0 0% 0)',   y: 0, delay: 0.32, duration: 0.95, ease: 'power3.out' })
       }
       if (deck)          gsap.fromTo(deck,  { opacity: 0, y: 14 }, { opacity: 1, y: 0, delay: 0.80, duration: 0.60, ease: 'power2.out' })
-      if (cards.length)  gsap.fromTo(cards, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.10, delay: 1.05, duration: 0.55, ease: 'power2.out' })
+      if (cards.length)  gsap.fromTo(cards, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.13, delay: 1.05, duration: 0.70, ease: 'power2.out' })
 
       cleanup = () => { gsap.killTweensOf('*') }
     }
