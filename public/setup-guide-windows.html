@@ -714,7 +714,7 @@ npm --version</pre>
           </div>
         </div>
         <div class="step-body">
-          <p class="step-desc">Go to the repo at <a href="https://github.com/YOUR-USERNAME/the-digest" target="_blank">github.com/YOUR-USERNAME/the-digest</a>. In the top-right corner, click <strong>Fork</strong> → <strong>Create fork</strong>. GitHub creates a copy of the repo under your own account. You'll now be at <code>github.com/YOUR-USERNAME/the-digest</code>.</p>
+          <p class="step-desc">Go to the repo at <a href="https://github.com/fde-shipit/ai-news-agent" target="_blank">github.com/fde-shipit/ai-news-agent</a>. In the top-right corner, click <strong>Fork</strong> → <strong>Create fork</strong>. GitHub creates a copy of the repo under your own account. You'll now be at <code>github.com/YOUR-USERNAME/ai-news-agent</code>.</p>
           <div class="callout info"><span class="callout-icon"></span><span class="callout-text">Forking means you own your copy. You can change anything without affecting the original. You can also pull in future updates from the original whenever you want.</span></div>
         </div>
       </div>
@@ -837,15 +837,15 @@ git config --global user.email "your@email.com"</pre>
           </div>
         </div>
         <div class="step-body">
-          <p class="step-desc">Open the <code>.gitignore</code> file in the project root. Look for a line that says <code>.env.local</code> — it should already be there. This tells Git to never track this file, even if you run <code>git add .</code></p>
+          <p class="step-desc">Open the <code>.gitignore</code> file in the project root. Look for a line that matches the pattern <code>.env*.local</code> — it should already be there. This tells Git to never track this file or other local env files, even if you run <code>git add .</code></p>
           <p class="step-desc">To double-check it's working, run:</p>
           <div class="code-block">
             <div class="code-label">Git Bash</div>
             <button class="copy-btn" onclick="copyCode(this)">copy</button>
             <pre>git status</pre>
           </div>
-          <p class="step-desc">Your <code>.env.local</code> file should <strong>not</strong> appear in the output. If it does, <code>.env.local</code> is not in your <code>.gitignore</code> — add it before proceeding.</p>
-          <div class="callout danger"><span class="callout-icon"></span><span class="callout-text"><strong>.env.local vs .env</strong> — Next.js treats these differently. <code>.env.local</code> is always gitignored by default. Plain <code>.env</code> is not. Always use <code>.env.local</code> for secrets on your machine.</span></div>
+          <p class="step-desc">Your <code>.env.local</code> and other local env files should <strong>not</strong> appear in the output. If they do, the pattern is not in your <code>.gitignore</code> — add it before proceeding.</p>
+          <div class="callout danger"><span class="callout-icon"></span><span class="callout-text"><strong>.env*.local vs .env</strong> — Next.js treats files matching <code>.env*.local</code> differently from plain <code>.env</code> files. The pattern <code>.env*.local</code> matches <code>.env.local</code>, <code>.env.development.local</code>, and other local env files. Always use this pattern for secrets on your machine.</span></div>
         </div>
       </div>
 
@@ -918,8 +918,50 @@ git config --global user.email "your@email.com"</pre>
           </div>
         </div>
         <div class="step-body">
-          <p class="step-desc">Pick a topic, select a signal type, and click Generate. Watch the agent log. You should see web searches completing and a digest appearing. If you get an API error, check that your key in <code>.env.local</code> is correct and has no extra spaces.</p>
+          <p class="step-desc">Pick up to 2 topics, select a signal type, and click Generate. Watch the agent log. You should see web searches completing and a digest appearing. If you get an API error, check that your key in <code>.env.local</code> is correct and has no extra spaces.</p>
           <div class="callout warn"><span class="callout-icon"></span><span class="callout-text">Every successful generate call costs roughly $0.05–0.10. Run a few tests here, then set your spend limit in Step 8 before sharing it with anyone.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+
+  <!-- ── CLAUDE CODE ────────────────────────────────────────────────── -->
+  <section class="section" id="claude-code">
+    <p class="section-super">Step 6 (Optional)</p>
+    <h2 class="section-title">Deploy with <em>Claude Code.</em></h2>
+    <p class="section-intro">If you have Claude Code installed in your editor, you can use it to walk through deployment interactively — no need to manually follow the steps.</p>
+
+    <div class="steps">
+
+      <div class="step" id="step-code-1">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-check" onclick="event.stopPropagation(); markComplete(this)">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="step-content">
+            <div class="step-num">Step 6 (Optional)</div>
+            <div class="step-title">Run /deploy in Claude Code</div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p class="step-desc">Open the terminal in VS Code and run:</p>
+          <div class="code-block">
+            <div class="code-label">Git Bash</div>
+            <button class="copy-btn" onclick="copyCode(this)">copy</button>
+            <pre>claude</pre>
+          </div>
+          <p class="step-desc">Then type:</p>
+          <div class="code-block">
+            <div class="code-label">Claude Prompt</div>
+            <button class="copy-btn" onclick="copyCode(this)">copy</button>
+            <pre>/deploy</pre>
+          </div>
+          <p class="step-desc">Claude Code will guide you through the entire deployment process interactively, asking clarifying questions and helping you set up your production environment step by step.</p>
+          <div class="callout tip"><span class="callout-icon"></span><span class="callout-text">This is a hands-on guided experience. Claude Code can help troubleshoot issues, explain what's happening at each step, and catch mistakes before they cause problems.</span></div>
         </div>
       </div>
 
