@@ -220,25 +220,6 @@ export const skills = [
 ]
 
 export const ticker = [
-  { text: "AI that runs in production" },
-  { text: "#RedefinedByAI", accent: true },
-  { text: "HITL architecture" },
-  { text: "2 days. Down from several weeks.", accent: true },
-  { text: "Agentic workflows" },
-  { text: "Legora" },
-  { text: "13,000 hours saved", accent: true },
-  { text: "Regulated environments" },
-  { text: "Copilot Studio" },
-  { text: "5 years in production", accent: true },
-  { text: "Harvey" },
-  { text: "Melbourne" },
-  { text: "Vendor evaluation" },
-  { text: "Enterprise AI" },
-  { text: "Knows where AI can go unsupervised", accent: true },
-  { text: "Claude" },
-  { text: "Knows when none of them do yet.", accent: true },
-  { text: "AI Acceleration" },
-  { text: "#RedefinedByAI", accent: true },
   { text: "The intelligence is only as reliable as what it runs on.", accent: true },
   { text: "From \"Networks\", Redefined by AI" },
 ]
