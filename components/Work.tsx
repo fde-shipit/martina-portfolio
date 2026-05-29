@@ -4,7 +4,6 @@ import { caseStudies, alsoShipped } from '@/content/data'
 /**
  * Work — two tiers.
  *
- * Top row: two interactive live cards (AI Flashcards, AI Quiz).
  * Tier 1 · caseStudies: three projects with real metrics.
  * Tier 2 · alsoShipped: compact cards with tags and links.
  */
@@ -27,80 +26,6 @@ export default function Work() {
         </div>
 
         <div className="section-content gsap-section-content">
-          {/* ─── Interactive live cards ─── */}
-          {[
-            {
-              href:  '/flashcards',
-              label: 'Interactive · live',
-              title: 'AI Flashcards',
-              summary: 'A vocabulary for AI, in working language. The words AI borrowed and quietly redefined — Temperature, Token, Harness. Built to make the ideas stick.',
-              cta:   'Launch the flashcards →',
-            },
-            {
-              href:  '/quiz',
-              label: 'Interactive · live',
-              title: 'AI Quiz',
-              summary: 'Test what you know. Twelve concepts, one question each. Built from the Redefined by AI series.',
-              cta:   'Take the quiz →',
-            },
-          ].map((card) => (
-            <Link
-              key={card.href}
-              href={card.href}
-              style={{ textDecoration: 'none', display: 'block', marginBottom: '1rem' }}
-              className="work-item gsap-stagger-child"
-            >
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr auto',
-                  gap: '1.5rem',
-                  alignItems: 'center',
-                  padding: '1.5rem 1.75rem',
-                  background: 'var(--paper-2)',
-                  border: '1px solid var(--rule)',
-                }}
-              >
-                <div>
-                  <div
-                    className="font-mono-label"
-                    style={{ color: 'var(--accent)', marginBottom: '0.4rem' }}
-                  >
-                    {card.label}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-cormorant)',
-                      fontWeight: 300,
-                      fontSize: '1.4rem',
-                      color: 'var(--ink)',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {card.title}
-                  </div>
-                  <p
-                    style={{
-                      marginTop: '0.4rem',
-                      fontSize: '0.85rem',
-                      color: 'var(--warm)',
-                      lineHeight: 1.5,
-                      maxWidth: '60ch',
-                    }}
-                  >
-                    {card.summary}
-                  </p>
-                </div>
-                <span
-                  className="font-mono-label"
-                  style={{ color: 'var(--accent)', whiteSpace: 'nowrap' }}
-                >
-                  {card.cta}
-                </span>
-              </div>
-            </Link>
-          ))}
-          <div style={{ marginBottom: '1.5rem' }} />
 
           {/* ─── Tier 1 · caseStudies ─── */}
           <div

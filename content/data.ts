@@ -84,6 +84,15 @@ export const caseStudies = [
 */
 export const alsoShipped = [
   {
+    title:   "Flashcards & Quiz",
+    summary: "A vocabulary for AI in working language. The words AI borrowed and quietly redefined. Learn them with the flashcards, test them with the quiz.",
+    tags:    ["Next.js", "Redefined by AI", "Interactive"],
+    links: [
+      { label: "Flashcards →", href: "/flashcards" },
+      { label: "Take the quiz", href: "/quiz" },
+    ],
+  },
+  {
     title:   "B2B SaaS platform delivery — AASB S2",
     summary: "Sole accountability for roadmap, releases, client onboarding and incident management on a live B2B SaaS solving AASB S2 climate disclosure. Five clients onboarded in eight months. Three full releases delivered in parallel. No dedicated eng lead, no dedicated CS function.",
     tags:    ["Vercel", "PostgreSQL", "Release governance"],
