@@ -113,6 +113,13 @@ export const alsoShipped = [
     summary: "Facilitated Agile rituals across company-wide ITSM projects on ServiceNow. Worked with cyber on vulnerability remediation (Qualys, Mandiant), translating findings into prioritised backlogs and change-managed fixes.",
     tags:    ["ServiceNow", "Qualys", "Change management"],
   },
+  {
+    title:   "The Digest · open source AI news agent",
+    summary: "Built with Next.js and Claude. Pick topics, run live web searches, get a structured briefing. Open sourced as a learning project for developers new to the Anthropic API.",
+    tags:    ["Next.js", "Claude API", "Open Source"],
+    link:    "https://ai-news-agent-gules.vercel.app",
+    github:  "https://github.com/fde-shipit/ai-news-agent",
+  },
 ]
 
 /* The case study with its own page. Now lives at /work/after-hours. */
