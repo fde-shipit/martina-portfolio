@@ -114,11 +114,22 @@ export const alsoShipped = [
     tags:    ["ServiceNow", "Qualys", "Change management"],
   },
   {
+    title:   "The Oracle",
+    summary: '<em>&ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo;</em> is how this started. Have some fun and ask the Oracle anything. Her answers might surprise you.',
+    tags:    ["Claude API", "Next.js", "Vercel"],
+    links: [
+      { label: "How it's built →", href: "/oracle" },
+      { label: "Try the Oracle",   href: "/oracle" },
+    ],
+  },
+  {
     title:   "News Agent · open source AI news agent",
-    summary: "Built with Next.js and Claude. Pick topics, run live web searches, get a structured briefing. Open sourced as a learning project for developers new to the Anthropic API.",
+    summary: "Live web search agent. Open source, documented, and deployable in an evening. Try it and then deploy it yourself with the topics you love most. Mine is about AI.",
     tags:    ["Next.js", "Claude API", "Open Source"],
-    link:    "https://ai-news-agent-gules.vercel.app",
-    github:  "https://github.com/fde-shipit/ai-news-agent",
+    links: [
+      { label: "Setup guide →",  href: "https://martina-edwards.vercel.app/setup-guide-windows.html", external: true },
+      { label: "Open the agent", href: "https://ai-news-agent-gules.vercel.app", external: true },
+    ],
   },
 ]
 

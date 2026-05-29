@@ -232,7 +232,11 @@ export default function Work() {
                 border: '1px solid var(--rule)',
               }}
             >
-              {alsoShipped.map((a, i) => (
+              {alsoShipped.map((a, i) => {
+                const item = a as typeof a & {
+                  links?: { label: string; href: string; external?: boolean }[]
+                }
+                return (
                 <div
                   key={i}
                   className="gsap-stagger-child"
@@ -255,15 +259,15 @@ export default function Work() {
                   >
                     {a.title}
                   </div>
+                  {/* dangerouslySetInnerHTML supports <em> italic in summary */}
                   <p
                     style={{
                       fontSize: '0.8rem',
                       color: 'var(--warm)',
                       lineHeight: 1.5,
                     }}
-                  >
-                    {a.summary}
-                  </p>
+                    dangerouslySetInnerHTML={{ __html: a.summary }}
+                  />
                   <div
                     style={{
                       marginTop: '0.4rem',
@@ -276,8 +280,39 @@ export default function Work() {
                   >
                     {a.tags.join(' · ')}
                   </div>
+                  {item.links && item.links.length > 0 && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: '1.25rem',
+                        flexWrap: 'wrap',
+                        marginTop: '0.5rem',
+                        paddingTop: '0.6rem',
+                        borderTop: '1px solid var(--rule)',
+                      }}
+                    >
+                      {item.links.map((l, k) => (
+                        <a
+                          key={k}
+                          href={l.href}
+                          {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                          style={{
+                            fontFamily: 'var(--font-dm-mono)',
+                            fontSize: '0.58rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.14em',
+                            color: 'var(--accent)',
+                            textDecoration: 'none',
+                          }}
+                        >
+                          {l.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </div>

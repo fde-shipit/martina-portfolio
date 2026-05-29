@@ -117,12 +117,13 @@ export default function Hero() {
             <div className="hfc-eyebrow hfc-eyebrow--rare">AI artefact · guardrailed</div>
             <div className="hfc-title">The Oracle</div>
             <p className="hfc-body">
-              Ask it anything about Martina. Her work, approach, availability.
-              It answers what it knows and refuses everything else.
+              <em>&ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo;</em>{' '}
+              is how this started. Have some fun and ask the Oracle anything.
+              Her answers might surprise you.
             </p>
             <div className="hfc-card-actions">
               <Link href="/oracle" className="hfc-cta hfc-cta--rare">
-                Consult the Oracle <span className="hfc-arr" aria-hidden="true">→</span>
+                How it&apos;s built <span className="hfc-arr" aria-hidden="true">→</span>
               </Link>
               <a
                 href="/oracle"
@@ -139,8 +140,8 @@ export default function Hero() {
             <div className="hfc-eyebrow">Open source · Claude API</div>
             <div className="hfc-title">News Agent</div>
             <p className="hfc-body">
-              Pick topics, run live web searches, get a structured briefing.
-              Built to be forked. Open source, documented, deployable in an evening.
+              Live web search agent. Open source, documented, and deployable in an evening.
+              Try it and then deploy it yourself with the topics you love most. Mine is about AI.
             </p>
             <div className="hfc-card-actions">
               <a
