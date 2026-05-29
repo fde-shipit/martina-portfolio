@@ -114,7 +114,7 @@ export const alsoShipped = [
     tags:    ["ServiceNow", "Qualys", "Change management"],
   },
   {
-    title:   "The Digest · open source AI news agent",
+    title:   "News Agent · open source AI news agent",
     summary: "Built with Next.js and Claude. Pick topics, run live web searches, get a structured briefing. Open sourced as a learning project for developers new to the Anthropic API.",
     tags:    ["Next.js", "Claude API", "Open Source"],
     link:    "https://ai-news-agent-gules.vercel.app",

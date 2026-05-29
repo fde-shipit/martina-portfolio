@@ -1,34 +1,42 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { person } from '@/content/data'
 
 /**
  * Hero — quiet editorial.
  *
- * Single column. Generous whitespace. No ornament.
+ * Eyebrow · Headline · Deck · Feature cards (3 products) · Status bar
  *
- *   ─────────────────────────────────────────────────────────  (hairline)
- *   Manager, AI Acceleration · HSF Kramer        Melbourne, Australia · 2026
- *   ─────────────────────────────────────────────────────────  (hairline)
- *
- *      AI didn't replace my experience. It handed me the tools
- *      to finally use *all of it.*
- *
- *      Ten years inside the infrastructure and operations layer
- *      before anyone was calling it AI. **I know what breaks, …**
- *
- *      View work →   Consult the Oracle   Redefined by AI →
- *
- *   ─────────────────────────────────────────────────────────  (hairline)
- *   ● Open to talks & introductions             Replying within a day
- *
- * No spine, no clamp-to-massive headline, no four-cell ledger.
- * The proposition does the heavy lifting; everything else is in service.
+ * The 3 text CTAs are replaced by editorial feature cards:
+ *   Redefined by AI  |  The Oracle  |  News Agent
+ * Cards sit below the headline stack, above the status bar.
+ * News Agent gets a shiny confetti button linking to the live app.
  */
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
+
+  const handleAgentClick = useCallback(async () => {
+    try {
+      const confetti = (await import('canvas-confetti')).default
+      void confetti({
+        particleCount: 90,
+        spread: 75,
+        origin: { y: 0.62 },
+        colors: ['#308695', '#D45769', '#EFF0F2', '#3A424B'],
+      })
+      setTimeout(() => {
+        void confetti({
+          particleCount: 50,
+          spread: 55,
+          angle: 115,
+          origin: { x: 0.72, y: 0.65 },
+          colors: ['#308695', '#D45769'],
+        })
+      }, 180)
+    } catch { /* animation is non-essential */ }
+  }, [])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -42,7 +50,7 @@ export default function Hero() {
       const meta     = document.getElementById('hero-meta')
       const headline = document.getElementById('hero-head')
       const deck     = document.getElementById('hero-deck')
-      const ctas     = document.getElementById('hero-ctas')
+      const cards    = document.querySelectorAll<HTMLElement>('.hero-feature-card')
       const foot     = document.getElementById('hero-foot')
 
       if (meta)     gsap.fromTo(meta,     { opacity: 0, y: 10 }, { opacity: 1, y: 0, delay: 0.18, duration: 0.55, ease: 'power2.out' })
@@ -50,9 +58,9 @@ export default function Hero() {
         gsap.set(headline, { clipPath: 'inset(0 0 100% 0)', y: 28 })
         gsap.to(headline,  { clipPath: 'inset(0 0 0% 0)',   y: 0, delay: 0.32, duration: 0.95, ease: 'power3.out' })
       }
-      if (deck)  gsap.fromTo(deck,  { opacity: 0, y: 14 }, { opacity: 1, y: 0, delay: 0.80, duration: 0.6, ease: 'power2.out' })
-      if (ctas)  gsap.fromTo(ctas,  { opacity: 0, y: 12 }, { opacity: 1, y: 0, delay: 1.00, duration: 0.55, ease: 'power2.out' })
-      if (foot)  gsap.fromTo(foot,  { opacity: 0, y: 10 }, { opacity: 1, y: 0, delay: 1.15, duration: 0.55, ease: 'power2.out' })
+      if (deck)          gsap.fromTo(deck,  { opacity: 0, y: 14 }, { opacity: 1, y: 0, delay: 0.80, duration: 0.60, ease: 'power2.out' })
+      if (cards.length)  gsap.fromTo(cards, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.10, delay: 1.05, duration: 0.55, ease: 'power2.out' })
+      if (foot)          gsap.fromTo(foot,  { opacity: 0, y: 10 }, { opacity: 1, y: 0, delay: 1.40, duration: 0.55, ease: 'power2.out' })
 
       cleanup = () => { gsap.killTweensOf('*') }
     }
@@ -64,7 +72,8 @@ export default function Hero() {
   return (
     <section ref={containerRef} id="hero" className="hero-quiet">
       <div className="hero-inner">
-        {/* Eyebrow — role/company · location/year, both hairline-divided */}
+
+        {/* ── Eyebrow ── */}
         <div id="hero-meta" className="hero-meta" style={{ opacity: 0 }}>
           <span className="hero-role">
             {person.role} <span className="hero-role-soft">· {person.company}</span>
@@ -72,48 +81,97 @@ export default function Hero() {
           <span className="hero-loc">{person.location} · 2026</span>
         </div>
 
-        {/* Center stack — proposition */}
+        {/* ── Headline + deck ── */}
         <div className="hero-stack">
           <div className="hero-head-wrap">
             <h1 id="hero-head" className="hero-head">
               AI let me move at the speed of the idea. It handed me the tools to close the gap <em>myself.</em>
             </h1>
           </div>
-
           <p id="hero-deck" className="hero-deck" style={{ opacity: 0 }}>
             Ten years inside the infrastructure and operations layer before the tooling existed to move at this speed.{' '}
             <b>I know what breaks, I know what holds, and I can build the thing myself.</b>{' '}
             That combination is still rare.
           </p>
-
-          <div id="hero-ctas" className="hero-ctas" style={{ opacity: 0 }}>
-            <a className="hero-cta" href="#work">
-              View work <span className="hero-arr" aria-hidden>→</span>
-            </a>
-            <Link className="hero-cta hero-cta-oracle" href="/oracle">
-              Consult the Oracle
-            </Link>
-            <Link className="hero-cta hero-cta-series" href="/redefined-by-ai">
-              Redefined by AI <span className="hero-arr" aria-hidden>→</span>
-            </Link>
-          </div>
         </div>
 
-        {/* Bottom row — status only */}
+        {/* ── Feature cards ── */}
+        <div className="hero-features">
+
+          {/* Redefined by AI */}
+          <Link href="/redefined-by-ai" className="hero-feature-card hfc-series" style={{ opacity: 0 }}>
+            <div className="hfc-eyebrow">Series · 8 reads</div>
+            <div className="hfc-title">Redefined by AI</div>
+            <p className="hfc-body">
+              A series for people who work alongside AI but didn&apos;t study it.
+              Plain language, real concepts, written from inside the infrastructure.
+            </p>
+            <div className="hfc-cta">
+              Read the series <span className="hfc-arr" aria-hidden="true">→</span>
+            </div>
+          </Link>
+
+          {/* The Oracle */}
+          <Link href="/oracle" className="hero-feature-card hfc-oracle" style={{ opacity: 0 }}>
+            <div className="hfc-eyebrow hfc-eyebrow--rare">AI artefact · guardrailed</div>
+            <div className="hfc-title">The Oracle</div>
+            <p className="hfc-body">
+              Ask it anything about Martina — her work, approach, availability.
+              It answers what it knows and refuses everything else.
+            </p>
+            <div className="hfc-cta hfc-cta--rare">
+              Consult the Oracle <span className="hfc-arr" aria-hidden="true">→</span>
+            </div>
+          </Link>
+
+          {/* News Agent */}
+          <div className="hero-feature-card hfc-news" style={{ opacity: 0 }}>
+            <div className="hfc-eyebrow">Open source · Claude API</div>
+            <div className="hfc-title">News Agent</div>
+            <p className="hfc-body">
+              Pick topics, run live web searches, get a structured briefing.
+              Built to be forked — open source, documented, deployable in an evening.
+            </p>
+            <div className="hfc-news-actions">
+              <a
+                href="https://martina-edwards.vercel.app/setup-guide-windows.html"
+                className="hfc-cta hfc-guide"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Setup guide <span className="hfc-arr" aria-hidden="true">→</span>
+              </a>
+              <a
+                href="https://ai-news-agent-gules.vercel.app"
+                className="hfc-confetti-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseEnter={handleAgentClick}
+              >
+                Open the agent
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ── Status bar ── */}
         <div id="hero-foot" className="hero-foot" style={{ opacity: 0 }}>
           <span className="hero-status">
-            <span className="hero-dot" aria-hidden />
+            <span className="hero-dot" aria-hidden="true" />
             Open to talks &amp; introductions
           </span>
           <span className="hero-foot-right">Replying within a day</span>
         </div>
+
       </div>
 
       <style>{`
+        /* ─── hero shell ─────────────────────────────────────────── */
         .hero-quiet {
           position: relative;
           min-height: 100vh;
-          padding-top: 60px;             /* below the global fixed nav */
+          padding-top: 60px;
           display: flex;
           flex-direction: column;
         }
@@ -127,7 +185,7 @@ export default function Hero() {
           flex: 1;
         }
 
-        /* Eyebrow row */
+        /* ─── eyebrow ────────────────────────────────────────────── */
         .hero-meta {
           margin-top: 1.6rem;
           padding-bottom: 1.2rem;
@@ -148,13 +206,13 @@ export default function Hero() {
         .hero-role-soft { color: var(--warm); }
         .hero-loc       { color: var(--warm); }
 
-        /* Center stack */
+        /* ─── headline + deck ────────────────────────────────────── */
         .hero-stack {
           flex: 1;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 2.4rem 0;
+          padding: 2.4rem 0 2rem;
           max-width: 880px;
         }
         .hero-head-wrap { overflow: hidden; }
@@ -168,11 +226,7 @@ export default function Hero() {
           max-width: 36ch;
           text-wrap: balance;
         }
-        .hero-head em {
-          font-style: italic;
-          font-weight: 400;
-        }
-
+        .hero-head em { font-style: italic; font-weight: 400; }
         .hero-deck {
           margin-top: 1.2rem;
           max-width: 56ch;
@@ -182,46 +236,146 @@ export default function Hero() {
           line-height: 1.6;
           color: var(--warm);
         }
-        .hero-deck b {
-          color: var(--ink);
-          font-weight: 400;
+        .hero-deck b { color: var(--ink); font-weight: 400; }
+
+        /* ─── feature cards ──────────────────────────────────────── */
+        .hero-features {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1px;
+          background: var(--rule);
+          border: 1px solid var(--rule);
+          margin-bottom: 2rem;
         }
 
-        /* CTAs — minimal text links, no buttons */
-        .hero-ctas {
-          margin-top: 1.6rem;
+        .hero-feature-card {
+          background: var(--paper);
+          padding: 1.6rem 1.5rem 1.75rem;
           display: flex;
-          gap: 2.4rem;
-          align-items: center;
-          flex-wrap: wrap;
-        }
-        .hero-cta {
-          font-family: var(--font-dm-mono);
-          font-size: 0.66rem;
-          text-transform: uppercase;
-          letter-spacing: 0.16em;
+          flex-direction: column;
+          gap: 0.7rem;
           text-decoration: none;
+          color: inherit;
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      background 0.3s ease;
+        }
+
+        /* accent sweep — grows from left along bottom edge */
+        .hero-feature-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0; left: 0;
+          height: 1px; width: 0;
+          background: var(--accent);
+          transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hero-feature-card:hover::after  { width: 100%; }
+        .hero-feature-card:hover         { transform: translateY(-2px); background: var(--paper-2); }
+        /* oracle variant — raspberry sweep */
+        .hfc-oracle::after               { background: var(--accent-rare); }
+
+        /* eyebrow */
+        .hfc-eyebrow {
+          font-family: var(--font-dm-mono);
+          font-size: 0.62rem;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: var(--accent);
+        }
+        .hfc-eyebrow--rare { color: var(--accent-rare); }
+
+        /* title */
+        .hfc-title {
+          font-family: var(--font-cormorant);
+          font-weight: 300;
+          font-size: 1.55rem;
+          line-height: 1.15;
+          letter-spacing: -0.01em;
           color: var(--ink);
+          transition: color 0.25s ease;
+        }
+        .hero-feature-card:hover .hfc-title { color: var(--accent); }
+        .hfc-oracle:hover .hfc-title        { color: var(--accent-rare); }
+
+        /* body */
+        .hfc-body {
+          font-family: var(--font-dm-sans);
+          font-weight: 300;
+          font-size: 0.88rem;
+          line-height: 1.55;
+          color: var(--warm);
+          flex: 1;
+          margin: 0;
+        }
+
+        /* standard text-link CTA */
+        .hfc-cta {
+          font-family: var(--font-dm-mono);
+          font-size: 0.62rem;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: var(--ink);
+          text-decoration: none;
           display: inline-flex;
           align-items: center;
-          gap: 0.6rem;
-          padding-bottom: 0.35rem;
-          border-bottom: 1px solid var(--ink);
-        }
-        .hero-cta-oracle {
-          color: var(--accent-rare);
-          border-bottom-color: var(--accent-rare);
-        }
-        .hero-cta-series {
-          color: var(--accent);
-          border-bottom-color: var(--accent);
-        }
-        .hero-arr { transition: transform 0.2s ease; display: inline-block; }
-        .hero-cta:hover .hero-arr { transform: translateX(3px); }
-
-        /* Bottom row */
-        .hero-foot {
+          gap: 0.5rem;
           margin-top: auto;
+          padding-top: 0.5rem;
+        }
+        .hfc-cta--rare { color: var(--accent-rare); }
+
+        .hfc-arr { display: inline-block; transition: transform 0.2s ease; }
+        .hfc-cta:hover .hfc-arr,
+        .hfc-guide:hover .hfc-arr { transform: translateX(3px); }
+
+        /* news agent: two-action row */
+        .hfc-news-actions {
+          display: flex;
+          align-items: center;
+          gap: 1.1rem;
+          flex-wrap: wrap;
+          margin-top: auto;
+          padding-top: 0.5rem;
+        }
+        .hfc-guide {
+          margin-top: 0;
+          padding-top: 0;
+        }
+
+        /* ── shiny confetti button ── */
+        @keyframes hfc-shimmer {
+          0%   { background-position: -240% center; }
+          100% { background-position: 240% center; }
+        }
+        .hfc-confetti-btn {
+          font-family: var(--font-dm-mono);
+          font-size: 0.62rem;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          text-decoration: none;
+          color: var(--paper);
+          display: inline-block;
+          padding: 0.55rem 1rem;
+          background: linear-gradient(
+            108deg,
+            var(--accent)   0%,
+            var(--accent)   28%,
+            color-mix(in srgb, var(--accent) 45%, white) 50%,
+            var(--accent)   72%,
+            var(--accent)   100%
+          );
+          background-size: 240% auto;
+          animation: hfc-shimmer 2.6s linear infinite;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+        }
+        .hfc-confetti-btn:hover { opacity: 0.82; }
+
+        /* ─── status bar ─────────────────────────────────────────── */
+        .hero-foot {
           padding: 1.2rem 0 1.8rem;
           border-top: 1px solid var(--rule);
           display: flex;
@@ -252,35 +406,25 @@ export default function Hero() {
           color: var(--warm);
         }
 
-        /* Responsive */
+        /* ─── responsive ─────────────────────────────────────────── */
+        @media (max-width: 900px) {
+          .hero-features { grid-template-columns: 1fr; }
+          .hfc-news-actions { gap: 1.4rem; }
+        }
         @media (max-width: 768px) {
-          .hero-inner { padding: 0 1.25rem; }
-          .hero-meta {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.4rem;
-            margin-top: 1.4rem;
-          }
-          .hero-stack {
-            padding: 2rem 0;
-            max-width: 100%;
-          }
-          .hero-head {
-            font-size: 1.9rem;
-            max-width: 100%;
-          }
-          .hero-deck { font-size: 0.95rem; }
-          .hero-ctas {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-          }
-          .hero-foot {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-            padding-bottom: 2rem;
-          }
+          .hero-inner  { padding: 0 1.25rem; }
+          .hero-meta   { flex-direction: column; align-items: flex-start; gap: 0.4rem; margin-top: 1.4rem; }
+          .hero-stack  { padding: 2rem 0 1.5rem; max-width: 100%; }
+          .hero-head   { font-size: 1.9rem; max-width: 100%; }
+          .hero-deck   { font-size: 0.95rem; }
+          .hero-foot   { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 2rem; }
+        }
+
+        /* honour reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+          .hfc-confetti-btn       { animation: none !important; }
+          .hero-feature-card,
+          .hero-feature-card::after { transition: none !important; }
         }
       `}</style>
     </section>

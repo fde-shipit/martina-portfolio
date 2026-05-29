@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dev Setup Guide — The Digest · Martina Edwards</title>
+<title>Dev Setup Guide: The Digest · Martina Edwards</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     --font-dm-sans: 'DM Sans', system-ui, sans-serif;
     --font-dm-mono: 'DM Mono', ui-monospace, Menlo, monospace;
 
-    /* Portfolio tokens — see styleguide */
+    /* Portfolio tokens, see styleguide */
     --paper: #EFF0F2;
     --paper-2: #F7F7F5;          /* subtle inset card / panel */
     --ink: #1C2024;
@@ -22,8 +22,8 @@
     --pale: #E2E4E8;
     --rule: rgba(28, 32, 36, 0.12);
     --rule-strong: rgba(28, 32, 36, 0.24);
-    --accent: #308695;           /* teal — dominant accent */
-    --accent-rare: #D45769;      /* raspberry — Oracle only, used sparingly */
+    --accent: #308695;           /* teal, dominant accent */
+    --accent-rare: #D45769;      /* raspberry, Oracle only, used sparingly */
     --code-bg: #1C2024;
     --code-ink: #EFF0F2;
     --code-comment: #6A7480;
@@ -251,7 +251,7 @@
     text-wrap: pretty;
   }
 
-  /* meta strip under title — inset card with hairline border */
+  /* meta strip under title, inset card with hairline border */
   .meta-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -437,7 +437,7 @@
     color: var(--ink);
   }
 
-  /* accounts grid — card insets, hairlines via gap-trick */
+  /* accounts grid, card insets, hairlines via gap-trick */
   .accounts {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -668,13 +668,13 @@
 
     <p class="lede">
       A step-by-step walkthrough for setting up your development pipeline from
-      scratch — accounts, tools, local environment, and your first production
+      scratch, accounts, tools, local environment, and your first production
       deploy. No prior deployment experience needed.
     </p>
 
     <div class="meta-strip">
       <div class="item"><span class="k">Platform</span><span class="v">Windows 10 / 11</span></div>
-      <div class="item"><span class="k">Time</span><span class="v">45 – 60 min</span></div>
+      <div class="item"><span class="k">Time</span><span class="v">45 to 60 min</span></div>
       <div class="item"><span class="k">Assumes</span><span class="v">VS Code &amp; Git</span></div>
       <div class="item"><span class="k">Terminal</span><span class="v">Git Bash</span></div>
     </div>
@@ -684,7 +684,7 @@
       <div class="step-tag"><span class="n">Step 1</span></div>
       <h2 class="step-title">Create your <em>accounts.</em></h2>
       <p>
-        Four services. Three are completely free. One charges per use — and
+        Four services. Three are completely free. One charges per use, and
         you'll set a hard spending cap before using it. Open each link in a new
         tab and come back here.
       </p>
@@ -705,13 +705,13 @@
         <div class="acct">
           <span class="sigil">◎</span>
           <div class="name">Anthropic</div>
-          <div class="desc">The AI that powers the digests. You pay per use — about $0.05–0.10 per run.</div>
+          <div class="desc">The AI that powers the digests. You pay per use, about $0.05 to $0.10 per run.</div>
           <div class="pill paid">Pay-per-use</div>
         </div>
         <div class="acct">
           <span class="sigil">⚡</span>
           <div class="name">Upstash</div>
-          <div class="desc">Redis database for rate limiting. Multi-user mode only — skip if self-hosting.</div>
+          <div class="desc">Redis database for rate limiting. Multi-user mode only, skip if self-hosting.</div>
           <div class="pill">Free tier</div>
         </div>
       </div>
@@ -722,10 +722,10 @@
           <h3>Create a GitHub account at github.com</h3>
           <p>
             Go to <a class="accent" href="https://github.com">github.com</a> → Sign up. Use your real
-            email — GitHub will send you a verification link. Choose the free plan when asked.
+            email, GitHub will send you a verification link. Choose the free plan when asked.
           </p>
           <div class="note-card">
-            Pick a professional username — it'll appear in your repo URLs and on
+            Pick a professional username, it'll appear in your repo URLs and on
             your Vercel deployment links.
           </div>
         </div>
@@ -737,7 +737,7 @@
           <h3>Create a Vercel account at vercel.com</h3>
           <p>
             Go to <a class="accent" href="https://vercel.com">vercel.com</a> → Sign Up →
-            <strong>Continue with GitHub</strong>. This connects the two accounts immediately —
+            <strong>Continue with GitHub</strong>. This connects the two accounts immediately,
             which you need anyway. Authorize Vercel when GitHub asks.
           </p>
           <div class="note-card">
@@ -757,7 +757,7 @@
           </p>
           <div class="note-card">
             The Anthropic account for API access is <strong>separate</strong> from a Claude.ai
-            subscription. You need both if you use Claude.ai — but only the API account is
+            subscription. You need both if you use Claude.ai, but only the API account is
             needed to run The Digest.
           </div>
         </div>
@@ -770,7 +770,7 @@
       <h2 class="step-title">Install <em>Node.js.</em></h2>
       <p>
         Node.js is the runtime that lets you run JavaScript on your computer
-        (not just in a browser). It also installs <code class="inline">npm</code> — the package
+        (not just in a browser). It also installs <code class="inline">npm</code>, the package
         manager you'll use to install project dependencies.
       </p>
 
@@ -780,8 +780,8 @@
           <h3>Download and install Node.js LTS</h3>
           <p>
             Go to <a class="accent" href="https://nodejs.org">nodejs.org</a>. You'll see two
-            buttons — download the one labelled <strong>LTS</strong> (Long Term Support). This is
-            the stable version. Run the installer and accept all defaults — you don't need to
+            buttons, download the one labelled <strong>LTS</strong> (Long Term Support). This is
+            the stable version. Run the installer and accept all defaults, you don't need to
             change anything.
           </p>
           <div class="note-card">
@@ -796,7 +796,7 @@
         <div class="body">
           <h3>Verify it installed correctly</h3>
           <p>
-            Open VS Code. Open the terminal with <code class="inline">Ctrl + `</code> (backtick —
+            Open VS Code. Open the terminal with <code class="inline">Ctrl + `</code> (backtick,
             the key above Tab). Make sure it's using Git Bash (see next section if not). Run these
             two commands:
           </p>
@@ -806,9 +806,9 @@
 npm --version</pre>
           </div>
           <p>
-            You should see version numbers — something like <code class="inline">v20.11.0</code>
+            You should see version numbers, something like <code class="inline">v20.11.0</code>
             and <code class="inline">10.2.4</code>. If you see "command not found", close and
-            reopen VS Code, then try again — the installer sometimes needs a restart to take effect.
+            reopen VS Code, then try again, the installer sometimes needs a restart to take effect.
           </p>
         </div>
       </div>
@@ -820,7 +820,7 @@ npm --version</pre>
       <h2 class="step-title">Set up your <em>terminal.</em></h2>
       <p>
         You already have Git Bash installed (it came with Git). This gives you
-        Linux-style commands that every tutorial assumes — inside VS Code, so
+        Linux-style commands that every tutorial assumes, inside VS Code, so
         you never need to leave your editor.
       </p>
 
@@ -835,7 +835,7 @@ npm --version</pre>
           </p>
           <p>
             Now open a new terminal (<code class="inline">Ctrl + `</code>). You should see a
-            prompt ending in <code class="inline">$</code> — that's Git Bash. If it still shows
+            prompt ending in <code class="inline">$</code>, that's Git Bash. If it still shows
             PowerShell (the prompt ends in <code class="inline">&gt;</code>), close the terminal
             and open a new one.
           </p>
@@ -851,7 +851,7 @@ npm --version</pre>
         <div class="body">
           <h3>The five commands you'll actually use</h3>
           <p>
-            You don't need to memorise the terminal. You need these five commands —
+            You don't need to memorise the terminal. You need these five commands,
             everything else you can look up.
           </p>
           <div class="cmd-list">
@@ -863,7 +863,7 @@ npm --version</pre>
           </div>
           <div class="note-card">
             Tab autocompletes folder and file names. Type the first few letters and press
-            Tab — it fills in the rest.
+            Tab, it fills in the rest.
           </div>
         </div>
       </div>
@@ -876,7 +876,7 @@ npm --version</pre>
       <p>
         Forking creates your own copy of the project on GitHub. Cloning
         downloads it to your computer. You'll work on your local copy, then
-        push changes back to GitHub — which triggers an automatic deploy.
+        push changes back to GitHub, which triggers an automatic deploy.
       </p>
 
       <div class="substep">
@@ -926,7 +926,7 @@ cd ai-news-agent</pre>
         <div class="body">
           <h3>Configure Git with your identity</h3>
           <p>
-            If you've never used Git on this machine, run these once — it tells Git who's
+            If you've never used Git on this machine, run these once, it tells Git who's
             making changes:
           </p>
           <div class="code">
@@ -943,7 +943,7 @@ git config --global user.email "your@email.com"</pre>
 
     <!-- ── Step 5 ── -->
     <section class="step" id="secrets">
-      <div class="step-tag"><span class="n">Step 5</span><span class="note">— read this carefully</span></div>
+      <div class="step-tag"><span class="n">Step 5</span><span class="note">· read this carefully</span></div>
       <h2 class="step-title">Configure your <em>API key.</em></h2>
       <p>
         This is the most important section in the guide. API keys are
@@ -952,7 +952,7 @@ git config --global user.email "your@email.com"</pre>
       </p>
       <div class="note-card warn">
         <strong>The golden rule:</strong> your API key must never be committed to Git. If it ends
-        up on GitHub — even for a minute, even in a private repo — rotate it immediately at
+        up on GitHub, even for a minute, even in a private repo, rotate it immediately at
         console.anthropic.com and generate a new one. Bots scan GitHub continuously for exposed
         keys.
       </div>
@@ -964,7 +964,7 @@ git config --global user.email "your@email.com"</pre>
           <p>
             Go to <a class="accent" href="https://console.anthropic.com/settings/keys">console.anthropic.com/settings/keys</a>
             → <strong>Create Key</strong>. Give it a name (e.g. "the-digest-local"). Copy the key
-            — it starts with <code class="inline">sk-ant-</code>. You can only see it once, so
+           , it starts with <code class="inline">sk-ant-</code>. You can only see it once, so
             copy it now.
           </p>
           <div class="note-card">
@@ -982,12 +982,12 @@ git config --global user.email "your@email.com"</pre>
             In the project root (the <code class="inline">ai-news-agent</code> folder), create a new
             file called <code class="inline">.env.local</code>. In VS Code you can right-click the
             file explorer sidebar → New File. Name it exactly <code class="inline">.env.local</code>
-            — the dot at the start matters.
+           , the dot at the start matters.
           </p>
           <p>Add this content, replacing the placeholder with your real key:</p>
           <div class="code">
             <div class="head"><span>.env.local</span><button data-copy="cmd-env">copy</button></div>
-<pre id="cmd-env"><span class="c"># Anthropic API key — never commit this file</span>
+<pre id="cmd-env"><span class="c"># Anthropic API key - never commit this file</span>
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
 <span class="c"># Self-hosted mode (no login required)</span>
@@ -1002,7 +1002,7 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
           <h3>Verify .gitignore is protecting it</h3>
           <p>
             Open the <code class="inline">.gitignore</code> file in the project root. Look for a
-            line that matches the pattern <code class="inline">.env*.local</code> — it should already
+            line that matches the pattern <code class="inline">.env*.local</code>, it should already
             be there. This tells Git to never track this file or other local env files, even if you
             run <code class="inline">git add .</code>
           </p>
@@ -1014,10 +1014,10 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
           <p>
             Your <code class="inline">.env.local</code> and other local env files should
             <strong>not</strong> appear in the output. If they do, the pattern is not in your
-            <code class="inline">.gitignore</code> — add it before proceeding.
+            <code class="inline">.gitignore</code>, add it before proceeding.
           </p>
           <div class="note-card">
-            <strong>.env*.local vs .env</strong> — Next.js treats files matching
+            <strong>.env*.local vs .env</strong>: Next.js treats files matching
             <code class="inline">.env*.local</code> differently from plain
             <code class="inline">.env</code> files. The pattern <code class="inline">.env*.local</code>
             matches <code class="inline">.env.local</code>,
@@ -1034,7 +1034,7 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
       <h2 class="step-title">Run it <em>locally.</em></h2>
       <p>
         Before deploying to the world, run it on your own machine first. This
-        is where you test changes, catch errors, and see what users will see —
+        is where you test changes, catch errors, and see what users will see,
         without affecting anyone.
       </p>
 
@@ -1044,7 +1044,7 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
           <h3>Install project dependencies</h3>
           <p>
             In the terminal, make sure you're in the project folder (run
-            <code class="inline">pwd</code> — you should see
+            <code class="inline">pwd</code>, you should see
             <code class="inline">/c/Users/you/Documents/ai-news-agent</code> or similar). Then run:
           </p>
           <div class="code">
@@ -1054,11 +1054,11 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
           <p>
             This reads the <code class="inline">package.json</code> file and downloads all the
             libraries the project needs into a <code class="inline">node_modules</code> folder.
-            It takes 1–2 minutes. You'll see a lot of text scrolling — that's normal.
+            It takes 1 to 2 minutes. You'll see a lot of text scrolling, that's normal.
           </p>
           <div class="note-card">
             <code class="inline">node_modules</code> can be hundreds of megabytes, but it's also
-            in <code class="inline">.gitignore</code> — it never gets committed. Anyone who
+            in <code class="inline">.gitignore</code>, it never gets committed. Anyone who
             clones your repo just runs <code class="inline">npm install</code> themselves.
           </div>
         </div>
@@ -1083,7 +1083,7 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
           </p>
           <div class="note-card">
             The dev server reloads automatically when you save a file. You'll see changes in the
-            browser instantly — you don't need to restart it.
+            browser instantly, you don't need to restart it.
           </div>
         </div>
       </div>
@@ -1099,7 +1099,7 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
             spaces.
           </p>
           <div class="note-card warn">
-            Every successful generate call costs roughly $0.05–0.10. Run a few tests here, then
+            Every successful generate call costs roughly $0.05 to $0.10. Run a few tests here, then
             set your spend limit in Step 8 before sharing it with anyone.
           </div>
         </div>
@@ -1127,7 +1127,7 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
           </p>
           <p>
             On the configuration screen: leave all settings as defaults. Next.js is detected
-            automatically. Do not click Deploy yet — you need to add your environment variables
+            automatically. Do not click Deploy yet, you need to add your environment variables
             first.
           </p>
         </div>
@@ -1139,16 +1139,16 @@ NEXT_PUBLIC_MULTI_USER=false</pre>
           <h3>Add your environment variables</h3>
           <p>
             On the same configuration screen, expand <strong>Environment Variables</strong>. Add
-            each variable from your <code class="inline">.env.local</code> file — key on the
+            each variable from your <code class="inline">.env.local</code> file, key on the
             left, value on the right:
           </p>
           <div class="code">
-            <div class="head"><span>Vercel — add one at a time</span><button data-copy="cmd-vercel-env">copy</button></div>
+            <div class="head"><span>Vercel, add one at a time</span><button data-copy="cmd-vercel-env">copy</button></div>
 <pre id="cmd-vercel-env">ANTHROPIC_API_KEY         sk-ant-your-key-here
 NEXT_PUBLIC_MULTI_USER    false</pre>
           </div>
           <div class="note-card">
-            This is the safe way to store secrets in production. Vercel encrypts these values —
+            This is the safe way to store secrets in production. Vercel encrypts these values,
             they're never visible to anyone, including you, after you save them. This is very
             different from putting them in your code.
           </div>
@@ -1160,7 +1160,7 @@ NEXT_PUBLIC_MULTI_USER    false</pre>
         <div class="body">
           <h3>Deploy</h3>
           <p>
-            Click <strong>Deploy</strong>. Vercel builds your project — you can watch the logs in
+            Click <strong>Deploy</strong>. Vercel builds your project, you can watch the logs in
             real time. When it finishes, you'll see a confetti animation and a live URL like
             <code class="inline">ai-news-agent-abc123.vercel.app</code>.
           </p>
@@ -1178,11 +1178,11 @@ NEXT_PUBLIC_MULTI_USER    false</pre>
 
     <!-- ── Step 8 ── -->
     <section class="step" id="limits">
-      <div class="step-tag"><span class="n">Step 8</span><span class="note">— do this before sharing it</span></div>
+      <div class="step-tag"><span class="n">Step 8</span><span class="note">· do this before sharing it</span></div>
       <h2 class="step-title">Set your <em>spend limits.</em></h2>
       <p>
         Before you share the URL with anyone, cap your Anthropic spending. This
-        is your backstop — if something goes wrong or traffic spikes
+        is your backstop, if something goes wrong or traffic spikes
         unexpectedly, this is what stops a surprise bill.
       </p>
 
@@ -1192,12 +1192,12 @@ NEXT_PUBLIC_MULTI_USER    false</pre>
           <h3>Set a monthly hard cap in Anthropic console</h3>
           <p>
             Go to <a class="accent" href="https://console.anthropic.com/settings/billing">console.anthropic.com/settings/billing</a>
-            → <strong>Usage limits</strong>. Set a monthly budget cap — $10–20 is sensible for a
+            → <strong>Usage limits</strong>. Set a monthly budget cap, $10 to $20 is sensible for a
             personal project. When this limit is hit, the API stops responding until the next
             billing period. Your site shows an error rather than charging you more.
           </p>
           <div class="note-card">
-            At ~$0.07 per digest run, $20/month = roughly 280 runs. That's about 9 a day —
+            At ~$0.07 per digest run, $20/month = roughly 280 runs. That's about 9 a day,
             plenty for personal use or a small audience.
           </div>
         </div>
@@ -1206,7 +1206,7 @@ NEXT_PUBLIC_MULTI_USER    false</pre>
 
     <!-- ── Step 9 ── -->
     <section class="step" id="changes">
-      <div class="step-tag"><span class="n">Step 9</span><span class="note">— the ongoing cycle</span></div>
+      <div class="step-tag"><span class="n">Step 9</span><span class="note">· the ongoing cycle</span></div>
       <h2 class="step-title">Making <em>changes.</em></h2>
       <p>
         Once you're deployed, the cycle for every future change is the same
@@ -1222,7 +1222,7 @@ NEXT_PUBLIC_MULTI_USER    false</pre>
             you're happy, run:
           </p>
           <div class="code">
-            <div class="head"><span>Git Bash — in order</span><button data-copy="cmd-push">copy</button></div>
+            <div class="head"><span>Git Bash, in order</span><button data-copy="cmd-push">copy</button></div>
 <pre id="cmd-push">git add .
 git commit -m "describe what you changed"
 git push</pre>
@@ -1256,7 +1256,7 @@ git push</pre>
             deployment to pick up the new value.
           </p>
           <div class="note-card warn">
-            Vercel doesn't automatically pick up env var changes — you need to trigger a redeploy
+            Vercel doesn't automatically pick up env var changes, you need to trigger a redeploy
             after changing them.
           </div>
         </div>
@@ -1283,7 +1283,7 @@ git push</pre>
         <div class="tag">Error</div>
         <h4>401 Unauthorized from the API</h4>
         <p>
-          Your API key is wrong or missing. Check <code class="inline">.env.local</code> — make
+          Your API key is wrong or missing. Check <code class="inline">.env.local</code>, make
           sure the key starts with <code class="inline">sk-ant-</code> and has no extra spaces or
           line breaks. After editing <code class="inline">.env.local</code>, restart the dev
           server.
@@ -1311,7 +1311,7 @@ git push</pre>
         </p>
         <p>
           The Vercel build log is one of the most useful debugging tools you have. Don't skip
-          past the red lines — the first one is usually the actual problem.
+          past the red lines, the first one is usually the actual problem.
         </p>
       </div>
 
@@ -1319,7 +1319,7 @@ git push</pre>
         <div class="tag">Error</div>
         <h4>"Permission denied" when running Git commands</h4>
         <p>
-          GitHub requires authentication. Run <code class="inline">git push</code> — it'll open
+          GitHub requires authentication. Run <code class="inline">git push</code>, it'll open
           a browser window asking you to sign in to GitHub. Authorise it. After that first
           sign-in, pushes work silently. If you're on a machine that's already signed in to
           GitHub via VS Code, this usually sorts itself automatically.
