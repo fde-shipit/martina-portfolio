@@ -184,28 +184,18 @@ export default function CvPage() {
                 ))}
               </div>
 
-              {/* Also shipped — full grid */}
+              {/* Professional work cards */}
               <div
+                className="cv-also-grid"
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '200px 1fr',
-                  gap: '2rem',
-                  alignItems: 'baseline',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '1px',
+                  background: 'var(--rule)',
+                  border: '1px solid var(--rule)',
                 }}
-                className="cv-also-wrap"
               >
-                <div />
-                <div
-                  className="cv-also-grid"
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '1px',
-                    background: 'var(--rule)',
-                    border: '1px solid var(--rule)',
-                  }}
-                >
-                  {alsoShipped.map((a, i) => {
+                  {alsoShipped.slice(3).map((a, i) => {
                     const item = a as ShippedItem
                     return (
                       <div
@@ -279,12 +269,116 @@ export default function CvPage() {
                     )
                   })}
                 </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Section: Builds ── */}
+        <section
+          style={{
+            borderTop: '1px solid var(--rule)',
+            padding: '4rem 3rem',
+            maxWidth: '1500px',
+            margin: '0 auto',
+            width: '100%',
+          }}
+        >
+          <div className="section-grid">
+            <div className="section-label">
+              <span className="font-mono-label" style={{ color: 'var(--warm)' }}>
+                Builds
+              </span>
+            </div>
+            <div className="section-content">
+              <div
+                className="cv-also-grid"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '1px',
+                  background: 'var(--rule)',
+                  border: '1px solid var(--rule)',
+                }}
+              >
+                {alsoShipped.slice(0, 3).map((a, i) => {
+                  const item = a as ShippedItem
+                  return (
+                    <div
+                      key={i}
+                      style={{
+                        background: 'var(--paper)',
+                        padding: '1.25rem 1.3rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.4rem',
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontFamily: 'var(--font-dm-sans)',
+                          fontWeight: 500,
+                          fontSize: '0.95rem',
+                          color: 'var(--ink)',
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {a.title}
+                      </div>
+                      <p
+                        style={{ fontSize: '0.8rem', color: 'var(--warm)', lineHeight: 1.5 }}
+                        dangerouslySetInnerHTML={{ __html: a.summary }}
+                      />
+                      <div
+                        style={{
+                          marginTop: '0.4rem',
+                          fontFamily: 'var(--font-dm-mono)',
+                          fontSize: '0.55rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.14em',
+                          color: 'var(--accent)',
+                        }}
+                      >
+                        {a.tags.join(' · ')}
+                      </div>
+                      {item.links && item.links.length > 0 && (
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '1.25rem',
+                            flexWrap: 'wrap',
+                            marginTop: '0.5rem',
+                            paddingTop: '0.6rem',
+                            borderTop: '1px solid var(--rule)',
+                          }}
+                        >
+                          {item.links.map((l, k) => (
+                            <a
+                              key={k}
+                              href={l.href}
+                              {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                              style={{
+                                fontFamily: 'var(--font-dm-mono)',
+                                fontSize: '0.58rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.14em',
+                                color: 'var(--accent)',
+                                textDecoration: 'none',
+                              }}
+                            >
+                              {l.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── Section 3: Skills — reuse Skills component ── */}
+        {/* ── Section: Skills — reuse Skills component ── */}
         <div style={{ borderTop: '1px solid var(--rule)', paddingTop: '4rem' }}>
           <Skills />
         </div>
@@ -313,11 +407,12 @@ export default function CvPage() {
       <style>{`
         @media (max-width: 900px) {
           .cv-work-cases { grid-template-columns: 1fr !important; }
-          .cv-also-wrap  { grid-template-columns: 1fr !important; }
           .cv-also-grid  { grid-template-columns: 1fr !important; }
+          .cv-builds-grid { grid-template-columns: 1fr !important; }
         }
         @media (min-width: 901px) and (max-width: 1200px) {
-          .cv-also-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .cv-also-grid   { grid-template-columns: repeat(2, 1fr) !important; }
+          .cv-builds-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
       `}</style>
     </>

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 import Writing from '@/components/Writing'
+import GsapScrollAnimations from '@/components/gsap/ScrollAnimations'
+import ScrollAnimations from '@/components/ScrollAnimations'
 import { alsoShipped, person } from '@/content/data'
 
 export const metadata: Metadata = {
@@ -20,6 +22,8 @@ export default function BuildsPage() {
     <>
       <Nav />
       <main style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+        <GsapScrollAnimations />
+        <ScrollAnimations />
 
         {/* ── Page heading ── */}
         <div
@@ -67,7 +71,7 @@ export default function BuildsPage() {
           }}
         >
           <div className="section-grid">
-            <div className="section-label">
+            <div className="section-label gsap-section-label">
               <span
                 className="font-mono-label"
                 style={{ color: 'var(--warm)' }}
@@ -75,7 +79,7 @@ export default function BuildsPage() {
                 Built with AI
               </span>
             </div>
-            <div className="section-content">
+            <div className="section-content gsap-section-content">
               <div
                 className="builds-grid"
                 style={{
@@ -91,6 +95,7 @@ export default function BuildsPage() {
                   return (
                     <div
                       key={i}
+                      className="gsap-stagger-child"
                       style={{
                         background: 'var(--paper)',
                         padding: '1.25rem 1.3rem',
@@ -180,12 +185,12 @@ export default function BuildsPage() {
             }}
           >
             <div className="section-grid">
-              <div className="section-label">
+              <div className="section-label gsap-section-label">
                 <span className="font-mono-label" style={{ color: 'var(--warm)' }}>
                   #RedefinedByAI
                 </span>
               </div>
-              <div className="section-content">
+              <div className="section-content gsap-section-content">
                 {/* Writing is rendered below — section label is above */}
               </div>
             </div>
@@ -204,13 +209,14 @@ export default function BuildsPage() {
           }}
         >
           <div className="section-grid">
-            <div className="section-label">
+            <div className="section-label gsap-section-label">
               <span className="font-mono-label" style={{ color: 'var(--warm)' }}>
                 This website
               </span>
             </div>
-            <div className="section-content">
+            <div className="section-content gsap-section-content">
               <div
+                className="gsap-stagger-child"
                 style={{
                   border: '1px solid var(--rule)',
                   background: 'var(--paper)',
