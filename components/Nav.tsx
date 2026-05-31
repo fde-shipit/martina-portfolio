@@ -14,18 +14,16 @@ import { person } from '@/content/data'
  */
 
 const desktopLinks = [
-  { href: '/#work',    label: 'Work' },
-  { href: '/#career',  label: 'Career' },
-  { href: '/redefined-by-ai', label: 'Redefined by AI' },
-  { href: '/#skills',  label: 'Skills' },
+  { href: '/',         label: 'Home' },
+  { href: '/builds',   label: 'Builds' },
+  { href: '/cv',       label: 'CV' },
   { href: '/#contact', label: 'Contact' },
-  { href: '/oracle',   label: 'Oracle', accent: true },
 ]
 
 const mobileLinks = [
-  { href: '/#work',    label: 'Work' },
-  { href: '/oracle',   label: 'Oracle', accent: true },
-  { href: '/redefined-by-ai', label: 'Series' },
+  { href: '/',         label: 'Home' },
+  { href: '/builds',   label: 'Builds' },
+  { href: '/cv',       label: 'CV' },
   { href: '/#contact', label: 'Contact' },
 ]
 
@@ -100,7 +98,7 @@ export default function Nav() {
                 fontSize: '0.65rem',
                 textTransform: 'uppercase',
                 letterSpacing: '0.12em',
-                color: link.accent ? 'var(--accent-rare)' : 'var(--warm)',
+                color: 'var(--warm)',
                 textDecoration: 'none',
                 opacity: 0,
                 animation: `fadeDown 0.4s ease forwards ${0.4 + i * 0.08}s`,
@@ -132,7 +130,7 @@ export default function Nav() {
           <Link
             key={link.href}
             href={link.href}
-            className={link.accent ? 'oracle' : ''}
+            className=""
           >
             {link.label}
           </Link>

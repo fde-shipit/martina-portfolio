@@ -1,10 +1,8 @@
 import Hero from '@/components/Hero'
 import Ticker from '@/components/Ticker'
 import About from '@/components/About'
-import Work from '@/components/Work'
-import Career from '@/components/Career'
-import Writing from '@/components/Writing'
-import Skills from '@/components/Skills'
+import SelectedWork from '@/components/SelectedWork'
+import BuildsPreview from '@/components/BuildsPreview'
 import Contact from '@/components/Contact'
 import GsapScrollAnimations from '@/components/gsap/ScrollAnimations'
 import ScrollAnimations from '@/components/ScrollAnimations'
@@ -20,10 +18,8 @@ export default function Home() {
       <Ticker />
 
       <About />
-      <Work />
-      <Skills />
-      <Career />
-      <Writing />
+      <SelectedWork />
+      <BuildsPreview />
       <Contact />
 
       <footer
