@@ -27,6 +27,9 @@ export default function CvPage() {
             maxWidth: '1500px',
             margin: '0 auto',
             borderBottom: '1px solid var(--rule)',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '4rem',
           }}
         >
           <h1
@@ -37,10 +40,26 @@ export default function CvPage() {
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               color: 'var(--ink)',
+              flexShrink: 0,
             }}
           >
             CV.
           </h1>
+          <p
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 300,
+              fontStyle: 'italic',
+              fontSize: 'clamp(1.4rem, 2.4vw, 2rem)',
+              lineHeight: 1.25,
+              letterSpacing: '-0.01em',
+              color: 'var(--ink)',
+              maxWidth: '52ch',
+              paddingTop: '0.5rem',
+            }}
+          >
+            There&apos;s never been more to solve. Most of it is noise. That gap is where I work.
+          </p>
         </div>
 
         {/* ── Section 1: Profile — reuse About component ── */}

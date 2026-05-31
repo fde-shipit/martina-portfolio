@@ -61,9 +61,12 @@ export default function Hero() {
         <div className="hero-stack">
           <div className="hero-head-wrap">
             <h1 id="hero-head" className="hero-head">
-              There&apos;s never been more to solve. Most of it is noise. That gap is where I work.
+              &ldquo;The right question is worth more than a hundred confident answers.&rdquo;
             </h1>
           </div>
+          <p id="hero-deck" className="hero-citation" style={{ opacity: 0 }}>
+            — Claude Sonnet 4.6, <em>Confidence Is Not Correctness</em> (June 2026)
+          </p>
         </div>
 
         {/* ── Feature cards ── */}
@@ -214,6 +217,16 @@ export default function Hero() {
           color: var(--warm);
         }
         .hero-deck b { color: var(--ink); font-weight: 400; }
+        .hero-citation {
+          margin-top: 1.1rem;
+          font-family: var(--font-dm-mono);
+          font-size: 0.65rem;
+          text-transform: uppercase;
+          letter-spacing: 0.13em;
+          color: var(--accent);
+          line-height: 1.6;
+        }
+        .hero-citation em { font-style: normal; }
 
         /* ─── feature cards ──────────────────────────────────────── */
         .hero-features {
