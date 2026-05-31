@@ -194,9 +194,7 @@ export default function CvPage() {
                 }}
                 className="cv-also-wrap"
               >
-                <span className="font-mono-label" style={{ color: 'var(--warm)' }}>
-                  Also shipped
-                </span>
+                <div />
                 <div
                   className="cv-also-grid"
                   style={{

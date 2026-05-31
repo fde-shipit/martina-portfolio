@@ -102,7 +102,7 @@ export const alsoShipped = [
     ],
   },
   {
-    title:   "News Agent · open source AI news agent",
+    title:   "News Agent",
     summary: "Wanted a web search agent so I built one. Open source, deployable in an evening. Mine tracks AI. Point it at anything.",
     tags:    ["Next.js", "Claude API", "Open Source"],
     links: [
