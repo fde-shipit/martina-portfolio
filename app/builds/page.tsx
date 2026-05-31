@@ -21,14 +21,14 @@ export default function BuildsPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <main style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
         <GsapScrollAnimations />
         <ScrollAnimations />
 
         {/* ── Page heading ── */}
         <div
           style={{
-            padding: '3rem 3rem 4rem',
+            padding: '3rem 3rem 2.5rem',
             maxWidth: '1500px',
             margin: '0 auto',
             borderBottom: '1px solid var(--rule)',
@@ -64,7 +64,7 @@ export default function BuildsPage() {
         {/* ── Section 1: Built with AI ── */}
         <section
           style={{
-            padding: '4rem 3rem',
+            padding: '2.5rem 3rem',
             maxWidth: '1500px',
             margin: '0 auto',
             width: '100%',
@@ -173,7 +173,7 @@ export default function BuildsPage() {
         <section
           style={{
             borderTop: '1px solid var(--rule)',
-            paddingTop: '4rem',
+            paddingTop: '2.5rem',
           }}
         >
           <div
@@ -202,7 +202,7 @@ export default function BuildsPage() {
         <section
           style={{
             borderTop: '1px solid var(--rule)',
-            padding: '4rem 3rem',
+            padding: '2.5rem 3rem',
             maxWidth: '1500px',
             margin: '0 auto',
             width: '100%',
@@ -290,7 +290,7 @@ export default function BuildsPage() {
             justifyContent: 'space-between',
             alignItems: 'center',
             maxWidth: '1500px',
-            margin: '4rem auto 0',
+            margin: '2.5rem auto 0',
           }}
         >
           <span className="font-mono-label" style={{ color: 'var(--warm)', fontSize: '0.62rem' }}>

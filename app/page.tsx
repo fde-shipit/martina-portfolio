@@ -9,7 +9,7 @@ import { person } from '@/content/data'
 
 export default function Home() {
   return (
-    <main style={{ paddingBottom: '6rem' }}>
+    <main style={{ paddingBottom: '4rem' }}>
       <GsapScrollAnimations />
       <ScrollAnimations />
 
@@ -28,7 +28,7 @@ export default function Home() {
           justifyContent: 'space-between',
           alignItems: 'center',
           maxWidth: '1500px',
-          margin: '4rem auto 0',
+          margin: '2.5rem auto 0',
         }}
       >
         <span
