@@ -3,7 +3,6 @@ import Nav from '@/components/Nav'
 import About from '@/components/About'
 import Career from '@/components/Career'
 import Skills from '@/components/Skills'
-import SkillsCta from '@/components/SkillsCta'
 import { caseStudies, alsoShipped, person } from '@/content/data'
 
 export const metadata: Metadata = {
@@ -379,7 +378,7 @@ export default function CvPage() {
 
         {/* ── Section: Skills — reuse Skills component ── */}
         <div style={{ paddingTop: '2.5rem' }}>
-          <Skills appendCell={<SkillsCta />} />
+          <Skills />
         </div>
 
         <footer
