@@ -133,7 +133,20 @@ export default function SelectedWork() {
             ))}
           </div>
 
-          <div style={{ marginTop: '1.5rem', textAlign: 'right' }}>
+          <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Link
+              href="/builds"
+              style={{
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '0.65rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                color: 'var(--accent)',
+                textDecoration: 'none',
+              }}
+            >
+              See all builds →
+            </Link>
             <Link
               href="/cv"
               style={{

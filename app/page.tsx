@@ -1,7 +1,5 @@
 import Hero from '@/components/Hero'
-import About from '@/components/About'
 import SelectedWork from '@/components/SelectedWork'
-import BuildsPreview from '@/components/BuildsPreview'
 import Contact from '@/components/Contact'
 import GsapScrollAnimations from '@/components/gsap/ScrollAnimations'
 import ScrollAnimations from '@/components/ScrollAnimations'
@@ -15,9 +13,27 @@ export default function Home() {
 
       <Hero />
 
-      <About />
+      <div style={{
+        padding: '4rem 3rem',
+        maxWidth: '1500px',
+        margin: '0 auto',
+        width: '100%',
+        textAlign: 'center',
+      }}>
+        <p style={{
+          fontFamily: 'var(--font-cormorant)',
+          fontWeight: 300,
+          fontStyle: 'italic',
+          fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)',
+          lineHeight: 1.3,
+          color: 'var(--ink)',
+          letterSpacing: '-0.01em',
+        }}>
+          Most enterprises are still entangled in red tape. I&apos;m months ahead. When you realise you need someone like me, you know where to find me.
+        </p>
+      </div>
+
       <SelectedWork />
-      <BuildsPreview />
       <Contact />
 
       <footer
