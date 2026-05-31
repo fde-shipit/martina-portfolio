@@ -61,14 +61,9 @@ export default function Hero() {
         <div className="hero-stack">
           <div className="hero-head-wrap">
             <h1 id="hero-head" className="hero-head">
-              AI let me move at the speed of the idea. It handed me the tools to close the gap <em>myself.</em>
+              There&apos;s never been more to solve. Most of it is noise. That gap is where I work.
             </h1>
           </div>
-          <p id="hero-deck" className="hero-deck" style={{ opacity: 0 }}>
-            Ten years inside the infrastructure and operations layer before the tooling existed to move at this speed.{' '}
-            <b>I know what breaks, I know what holds, and I can build the thing myself.</b>{' '}
-            That combination is still rare.
-          </p>
         </div>
 
         {/* ── Feature cards ── */}
@@ -79,9 +74,8 @@ export default function Hero() {
             <div className="hfc-eyebrow">Series · 8 reads</div>
             <div className="hfc-title">Redefined by AI</div>
             <p className="hfc-body">
-              A vocabulary for AI, in working language. A series about the words AI borrowed
-              and quietly redefined. Temperature. Token. Harness. Written from inside the work.
-              The posts feed the flashcards. The flashcards feed the quiz.
+              The words AI borrowed and quietly redefined. Written from inside the work.
+              It all feeds a game. Come play.
             </p>
             <div className="hfc-card-actions">
               <Link href="/redefined-by-ai" className="hfc-cta">
@@ -101,9 +95,7 @@ export default function Hero() {
             <div className="hfc-eyebrow hfc-eyebrow--rare">AI artefact · guardrailed</div>
             <div className="hfc-title">The Oracle</div>
             <p className="hfc-body">
-              <em>&ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo;</em>{' '}
-              is how this started. Have some fun and ask the Oracle anything.
-              Her answers might surprise you.
+              &ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo; So I did.
             </p>
             <div className="hfc-card-actions">
               <Link href="/work/after-hours" className="hfc-cta hfc-cta--rare">
@@ -123,8 +115,8 @@ export default function Hero() {
             <div className="hfc-eyebrow">Open source · Claude API</div>
             <div className="hfc-title">News Agent</div>
             <p className="hfc-body">
-              Live web search agent. Open source, documented, and deployable in an evening.
-              Try it and then deploy it yourself with the topics you love most. Mine is about AI.
+              Wanted a web search agent so I built one. Open source, deployable in an evening.
+              Mine tracks AI. Point it at anything.
             </p>
             <div className="hfc-card-actions">
               <a

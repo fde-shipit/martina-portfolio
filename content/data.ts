@@ -50,7 +50,7 @@ export const caseStudies = [
     metric:   "2 days",
     from:     "down from several weeks",
     title:    "Security assessment redesign · Legora",
-    summary:  "Replaced weeks of uncoordinated multi-party review with a structured HITL process that legal, product, and security teams trust. Multi-stakeholder workflow rebuilt around Legora.",
+    summary:  "Replaced weeks of uncoordinated multi-party review with a structured HITL process that legal, product, and security teams trust.",
     tags:     ["Legora", "HITL architecture", "Multi-stakeholder"],
     link:     "/work/legora-security-assessment",
     artefact: "Workflow diagram · before / after",
@@ -60,7 +60,7 @@ export const caseStudies = [
     metric:   "13,000+",
     from:     "staff hours saved annually",
     title:    "Legal triage product · Webex",
-    summary:  "Rules-based intake with conditional logic — high-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month. Concept to rollout, owned.",
+    summary:  "Rules-based intake with conditional logic — high-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month.",
     tags:     ["Webex", "Rules-based logic", "Legal ops"],
     link:     "/work/legal-triage",
     artefact: "Decision tree · sample artifact output",
@@ -70,7 +70,7 @@ export const caseStudies = [
     metric:   "5 years",
     from:     "in production before outgrown",
     title:    "Legal spend visibility platform",
-    summary:  "Identified an invisible annual blind spot in legal spend. Built a SharePoint and Power Automate solution that automated invoice intake, approvals, and reporting end-to-end. Ran for five years before the business outgrew it.",
+    summary:  "Built a SharePoint and Power Automate solution that automated invoice intake, approvals, and reporting end-to-end. Ran for five years before the business outgrew it.",
     tags:     ["SharePoint", "Power Automate", "Legal ops"],
     link:     "/work/legal-spend",
     artefact: "Architecture sketch · invoice flow",
@@ -85,7 +85,7 @@ export const caseStudies = [
 export const alsoShipped = [
   {
     title:   "Flashcards & Quiz",
-    summary: "A vocabulary for AI in working language. The words AI borrowed and quietly redefined. Learn them with the flashcards, test them with the quiz.",
+    summary: "The words AI borrowed and quietly redefined. Written from inside the work. It all feeds a game. Come play.",
     tags:    ["Next.js", "Redefined by AI", "Interactive"],
     links: [
       { label: "Flashcards →", href: "/flashcards" },
@@ -94,7 +94,7 @@ export const alsoShipped = [
   },
   {
     title:   "The Oracle",
-    summary: '<em>&ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo;</em> is how this started. Have some fun and ask the Oracle anything. Her answers might surprise you.',
+    summary: '&ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo; So I did.',
     tags:    ["Claude API", "Next.js", "Vercel"],
     links: [
       { label: "How it's built →", href: "/oracle" },
@@ -103,7 +103,7 @@ export const alsoShipped = [
   },
   {
     title:   "News Agent · open source AI news agent",
-    summary: "Live web search agent. Open source, documented, and deployable in an evening. Try it and then deploy it yourself with the topics you love most. Mine is about AI.",
+    summary: "Wanted a web search agent so I built one. Open source, deployable in an evening. Mine tracks AI. Point it at anything.",
     tags:    ["Next.js", "Claude API", "Open Source"],
     links: [
       { label: "Setup guide →",  href: "https://martina-edwards.vercel.app/setup-guide-windows.html", external: true },

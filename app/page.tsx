@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero'
-import Ticker from '@/components/Ticker'
 import About from '@/components/About'
 import SelectedWork from '@/components/SelectedWork'
 import BuildsPreview from '@/components/BuildsPreview'
@@ -15,7 +14,6 @@ export default function Home() {
       <ScrollAnimations />
 
       <Hero />
-      <Ticker />
 
       <About />
       <SelectedWork />
