@@ -37,6 +37,7 @@ export default function BuildsPreview() {
           >
             {buildCards.map((a, i) => {
               const item = a as ShippedItem
+              const accent = a.title === 'The Oracle' ? 'var(--accent-rare)' : 'var(--accent)'
               return (
                 <div
                   key={i}
@@ -71,7 +72,7 @@ export default function BuildsPreview() {
                       fontSize: '0.55rem',
                       textTransform: 'uppercase',
                       letterSpacing: '0.14em',
-                      color: 'var(--accent)',
+                      color: accent,
                     }}
                   >
                     {a.tags.join(' · ')}
@@ -97,7 +98,7 @@ export default function BuildsPreview() {
                             fontSize: '0.58rem',
                             textTransform: 'uppercase',
                             letterSpacing: '0.14em',
-                            color: 'var(--accent)',
+                            color: accent,
                             textDecoration: 'none',
                           }}
                         >

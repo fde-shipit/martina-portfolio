@@ -92,16 +92,21 @@ export default function BuildsPage() {
               >
                 {builtWithAi.map((a, i) => {
                   const item = a as ShippedItem
+                  const accent = a.title === 'The Oracle' ? 'var(--accent-rare)' : 'var(--accent)'
+                  const isOracle = a.title === 'The Oracle'
                   return (
                     <div
                       key={i}
-                      className="gsap-stagger-child"
+                      className={`gsap-stagger-child builds-card${isOracle ? ' builds-card--oracle' : ''}`}
                       style={{
                         background: 'var(--paper)',
                         padding: '1.25rem 1.3rem',
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '0.4rem',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                       }}
                     >
                       <div
@@ -126,7 +131,7 @@ export default function BuildsPage() {
                           fontSize: '0.55rem',
                           textTransform: 'uppercase',
                           letterSpacing: '0.14em',
-                          color: 'var(--accent)',
+                          color: accent,
                         }}
                       >
                         {a.tags.join(' · ')}
@@ -152,7 +157,7 @@ export default function BuildsPage() {
                                 fontSize: '0.58rem',
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.14em',
-                                color: 'var(--accent)',
+                                color: accent,
                                 textDecoration: 'none',
                               }}
                             >
@@ -303,8 +308,22 @@ export default function BuildsPage() {
       </main>
 
       <style>{`
+        .builds-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0; left: 0;
+          height: 2px; width: 0;
+          background: var(--accent);
+          transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .builds-card--oracle::after { background: var(--accent-rare); }
+        .builds-card:hover::after   { width: 100%; }
+        .builds-card:hover          { transform: translateY(-3px); }
         @media (max-width: 900px) {
           .builds-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .builds-card, .builds-card::after { transition: none !important; }
         }
       `}</style>
     </>

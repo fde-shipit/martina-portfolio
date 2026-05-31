@@ -238,7 +238,7 @@ export default function Hero() {
           transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* teal accent line sweeps in from left along bottom edge */
+        /* accent line sweeps in from left along bottom edge */
         .hero-feature-card::after {
           content: '';
           position: absolute;
@@ -248,6 +248,7 @@ export default function Hero() {
           transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .hero-feature-card:hover::after { width: 100%; }
+        .hfc-oracle::after              { background: var(--accent-rare); }
         .hero-feature-card:hover        { transform: translateY(-3px); }
 
         /* eyebrow */
