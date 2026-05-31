@@ -3,6 +3,7 @@ import Nav from '@/components/Nav'
 import About from '@/components/About'
 import Career from '@/components/Career'
 import Skills from '@/components/Skills'
+import SkillsCta from '@/components/SkillsCta'
 import { caseStudies, alsoShipped, person } from '@/content/data'
 
 export const metadata: Metadata = {
@@ -18,12 +19,12 @@ export default function CvPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <main style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
 
         {/* ── Page heading + download CTA ── */}
         <div
           style={{
-            padding: '3rem 3rem 4rem',
+            padding: '3rem 3rem 2.5rem',
             maxWidth: '1500px',
             margin: '0 auto',
             borderBottom: '1px solid var(--rule)',
@@ -44,20 +45,19 @@ export default function CvPage() {
         </div>
 
         {/* ── Section 1: Profile — reuse About component ── */}
-        <div style={{ paddingTop: '4rem' }}>
+        <div style={{ paddingTop: '2.5rem' }}>
           <About />
         </div>
 
         {/* ── Section 2: Career ── */}
-        <div style={{ borderTop: '1px solid var(--rule)', paddingTop: '4rem' }}>
+        <div style={{ paddingTop: '2.5rem' }}>
           <Career />
         </div>
 
         {/* ── Section 3: Work delivered ── */}
         <section
           style={{
-            borderTop: '1px solid var(--rule)',
-            padding: '4rem 3rem',
+            padding: '2.5rem 3rem',
             maxWidth: '1500px',
             margin: '0 auto',
             width: '100%',
@@ -276,8 +276,7 @@ export default function CvPage() {
         {/* ── Section: Builds ── */}
         <section
           style={{
-            borderTop: '1px solid var(--rule)',
-            padding: '4rem 3rem',
+            padding: '2.5rem 3rem',
             maxWidth: '1500px',
             margin: '0 auto',
             width: '100%',
@@ -379,20 +378,18 @@ export default function CvPage() {
         </section>
 
         {/* ── Section: Skills — reuse Skills component ── */}
-        <div style={{ borderTop: '1px solid var(--rule)', paddingTop: '4rem' }}>
-          <Skills />
+        <div style={{ paddingTop: '2.5rem' }}>
+          <Skills appendCell={<SkillsCta />} />
         </div>
-
 
         <footer
           style={{
-            borderTop: '1px solid var(--rule)',
             padding: '2rem 3rem',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
             maxWidth: '1500px',
-            margin: '4rem auto 0',
+            margin: '2.5rem auto 0',
           }}
         >
           <span className="font-mono-label" style={{ color: 'var(--warm)', fontSize: '0.62rem' }}>

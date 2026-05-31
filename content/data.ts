@@ -202,7 +202,7 @@ export const skills = [
   {
     category: "AI Tools",
     items: [
-      "Claude and Copilot Studio — agentic workflow design and deployment, not just configuration. Knows which tool fits the workflow. Knows when none of them do yet.",
+      "Claude and Copilot Studio, agentic workflow design and deployment, not just configuration. Knows which tool fits the workflow. Knows when none of them do yet.",
       "Also: Legora · Harvey · Power Automate · Power BI",
     ],
   },
