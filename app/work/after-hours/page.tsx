@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'After Hours — Martina Edwards',
-  description: "Started with a magic 8 ball. Ended up with a portfolio. Eight nights, two hours each. Solo.",
+  title: 'How the Oracle was built — Martina Edwards',
+  description: "A guardrailed Claude endpoint, a rate limiter, and a magic 8-ball interface. Eight nights, two hours each. Here is how the Oracle was built.",
 }
 
 /**
@@ -49,7 +49,7 @@ export default function AfterHours() {
 
   /* ── top nav ── */
   nav.top{
-    margin-top:60px;padding:1.75rem 0;border-bottom:1px solid var(--rule);
+    padding:1.75rem 0;border-bottom:1px solid var(--rule);
   }
   nav.top .row{display:flex;justify-content:space-between;align-items:baseline}
   nav.top a{color:var(--cream-mute);text-decoration:none}
@@ -68,8 +68,8 @@ export default function AfterHours() {
   }
   .hero h1{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(1.8rem,4vw,3.6rem);line-height:.94;letter-spacing:-.025em;
-    color:var(--cream);
+    font-size:clamp(3rem,8.5vw,7.6rem);line-height:.94;letter-spacing:-.025em;
+    color:var(--cream);max-width:18ch;
   }
   .hero h1 em{font-style:italic;color:var(--accent-rare)}
   .hero .sub{
@@ -374,9 +374,14 @@ export default function AfterHours() {
   .cta .btn{
     font-family:'DM Mono',monospace;font-size:.65rem;text-transform:uppercase;
     letter-spacing:.14em;padding:.95rem 1.5rem;text-decoration:none;
+    color:var(--cream);
+    background:linear-gradient(to right,var(--accent-rare) 50%,transparent 50%);
+    background-size:200% 100%;
+    background-position:right center;
+    border:1px solid var(--rule-strong);
+    transition:background-position 0.3s cubic-bezier(0.16,1,0.3,1),color 0.3s cubic-bezier(0.16,1,0.3,1);
   }
-  .cta .btn.primary{color:var(--ink);background:var(--accent-rare)}
-  .cta .btn.ghost{color:var(--cream);border:1px solid var(--rule-strong)}
+  .cta .btn:hover{background-position:left center;color:#fff}
 
   /* ── footer ── */
   footer{padding:2.5rem 0;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:.62rem;color:var(--cream-mute);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em}
@@ -404,7 +409,7 @@ export default function AfterHours() {
   <div className="wrap">
     <div className="row">
       <Link href="/" className="mono">← Martina Edwards</Link>
-      <span className="mono sec">§ After Hours · case study</span>
+      <span className="mono sec">§ The Oracle · case study</span>
     </div>
   </div>
 </nav>
@@ -423,12 +428,12 @@ export default function AfterHours() {
     </div>
     <h1>
       Started with a magic 8 ball.<br/>
-      Ended up with a <em>portfolio.</em>
+      Built an <em>Oracle.</em>
     </h1>
     <p className="sub">
-      The day job ended at 6. The build began at 9. Eight nights, two hours each.
-      A Claude-powered Oracle with guardrails, wrapped in a Next.js portfolio with
-      GSAP and a Vercel deploy. Solo. No planning phase. The chat was the build.
+      Eight nights, two hours each. A guardrailed Claude endpoint with rate limiting,
+      ten classifiers, and around 80 hand-written responses. Wrapped in a Next.js
+      portfolio to give it a home. Solo. No planning phase. The chat was the build.
     </p>
   </div>
 </section>

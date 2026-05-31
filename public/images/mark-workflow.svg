@@ -1,0 +1,29 @@
+<svg width="100%" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b2"/>
+      <feMerge><feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-hard" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b2"/>
+      <feMerge><feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="220" rx="10" fill="#0c1014"/>
+  <g filter="url(#glow-soft)">
+    <line x1="95" y1="88" x2="148" y2="148" stroke="#D45769" stroke-width="1.5" opacity="0.6"/>
+    <line x1="148" y1="148" x2="178" y2="72" stroke="#D45769" stroke-width="1.5" opacity="0.6"/>
+    <line x1="95" y1="88" x2="178" y2="72" stroke="#D45769" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  <circle cx="95" cy="88" r="8" fill="#D45769" opacity="0.8" filter="url(#glow-soft)"/>
+  <circle cx="148" cy="148" r="8" fill="#D45769" opacity="0.8" filter="url(#glow-soft)"/>
+  <circle cx="178" cy="72" r="8" fill="#D45769" opacity="0.8" filter="url(#glow-soft)"/>
+  <g filter="url(#glow-soft)">
+    <line x1="218" y1="110" x2="262" y2="110" stroke="#3dbfcf" stroke-width="2" stroke-linecap="round"/>
+    <polyline points="254,103 263,110 254,117" fill="none" stroke="#3dbfcf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <circle cx="300" cy="110" r="16" fill="#2a9aaa" filter="url(#glow-hard)"/>
+  <circle cx="300" cy="110" r="9" fill="#6de8f5" opacity="0.9"/>
+</svg>

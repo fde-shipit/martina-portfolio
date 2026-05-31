@@ -1,22 +1,11 @@
 import Link from 'next/link'
-import { caseStudies, alsoShipped } from '@/content/data'
+import { caseStudies } from '@/content/data'
 
-/**
- * Work — two tiers.
- *
- * Tier 1 · caseStudies: three projects with real metrics.
- * Tier 2 · alsoShipped: compact cards with tags and links.
- */
-export default function Work() {
+export default function SelectedWork() {
   return (
     <section
       id="work"
-      style={{
-        padding: '0 3rem',
-        maxWidth: '1500px',
-        margin: '0 auto',
-        width: '100%',
-      }}
+      style={{ padding: '0 3rem', maxWidth: '1500px', margin: '0 auto', width: '100%' }}
     >
       <div className="section-grid">
         <div className="section-label gsap-section-label">
@@ -26,8 +15,6 @@ export default function Work() {
         </div>
 
         <div className="section-content gsap-section-content">
-
-          {/* ─── Tier 1 · caseStudies ─── */}
           <div
             className="work-cases"
             style={{
@@ -146,112 +133,20 @@ export default function Work() {
             ))}
           </div>
 
-          {/* ─── Tier 2 · alsoShipped ─── */}
-          <div
-            style={{
-              marginTop: '3rem',
-              display: 'grid',
-              gridTemplateColumns: '200px 1fr',
-              gap: '2rem',
-              alignItems: 'baseline',
-            }}
-            className="work-also-wrap"
-          >
-            <span className="font-mono-label" style={{ color: 'var(--warm)' }}>
-              Also shipped
-            </span>
-            <div
-              className="work-also-grid"
+          <div style={{ marginTop: '1.5rem', textAlign: 'right' }}>
+            <Link
+              href="/cv"
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1px',
-                background: 'var(--rule)',
-                border: '1px solid var(--rule)',
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '0.65rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                color: 'var(--accent)',
+                textDecoration: 'none',
               }}
             >
-              {alsoShipped.map((a, i) => {
-                const item = a as typeof a & {
-                  links?: { label: string; href: string; external?: boolean }[]
-                }
-                return (
-                <div
-                  key={i}
-                  className="gsap-stagger-child"
-                  style={{
-                    background: 'var(--paper)',
-                    padding: '1.25rem 1.3rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.4rem',
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontWeight: 500,
-                      fontSize: '0.95rem',
-                      color: 'var(--ink)',
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {a.title}
-                  </div>
-                  {/* dangerouslySetInnerHTML supports <em> italic in summary */}
-                  <p
-                    style={{
-                      fontSize: '0.8rem',
-                      color: 'var(--warm)',
-                      lineHeight: 1.5,
-                    }}
-                    dangerouslySetInnerHTML={{ __html: a.summary }}
-                  />
-                  <div
-                    style={{
-                      marginTop: '0.4rem',
-                      fontFamily: 'var(--font-dm-mono)',
-                      fontSize: '0.55rem',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.14em',
-                      color: 'var(--accent)',
-                    }}
-                  >
-                    {a.tags.join(' · ')}
-                  </div>
-                  {item.links && item.links.length > 0 && (
-                    <div
-                      style={{
-                        display: 'flex',
-                        gap: '1.25rem',
-                        flexWrap: 'wrap',
-                        marginTop: '0.5rem',
-                        paddingTop: '0.6rem',
-                        borderTop: '1px solid var(--rule)',
-                      }}
-                    >
-                      {item.links.map((l, k) => (
-                        <a
-                          key={k}
-                          href={l.href}
-                          {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                          style={{
-                            fontFamily: 'var(--font-dm-mono)',
-                            fontSize: '0.58rem',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.14em',
-                            color: 'var(--accent)',
-                            textDecoration: 'none',
-                          }}
-                        >
-                          {l.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                )
-              })}
-            </div>
+              View full CV →
+            </Link>
           </div>
         </div>
       </div>
@@ -259,11 +154,6 @@ export default function Work() {
       <style>{`
         @media (max-width: 900px) {
           .work-cases { grid-template-columns: 1fr !important; }
-          .work-also-wrap { grid-template-columns: 1fr !important; }
-          .work-also-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (min-width: 901px) and (max-width: 1200px) {
-          .work-also-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
       `}</style>
     </section>

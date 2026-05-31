@@ -24,8 +24,21 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Martina Edwards — AI Acceleration",
-  description: "AI product leader. Agentic workflows, HITL architecture, enterprise AI delivery.",
+  title: 'Martina Edwards — Manager, AI Acceleration · Melbourne',
+  description: 'AI delivery lead with a decade in enterprise infrastructure and regulated environments.',
+  openGraph: {
+    title: 'Martina Edwards — Manager, AI Acceleration · Melbourne',
+    description: 'AI delivery lead with a decade in enterprise infrastructure and regulated environments.',
+    url: 'https://martina-edwards.vercel.app',
+    siteName: 'Martina Edwards',
+    locale: 'en_AU',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Martina Edwards — Manager, AI Acceleration · Melbourne',
+    description: 'AI delivery lead with a decade in enterprise infrastructure and regulated environments.',
+  },
 };
 
 export default function RootLayout({

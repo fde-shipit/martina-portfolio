@@ -1,0 +1,1391 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dev Setup Guide: The Digest · Martina Edwards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+    --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+    --font-dm-mono: 'DM Mono', ui-monospace, Menlo, monospace;
+
+    /* Portfolio tokens, see styleguide */
+    --paper: #EFF0F2;
+    --paper-2: #F7F7F5;          /* subtle inset card / panel */
+    --ink: #1C2024;
+    --ink-soft: #3A424B;
+    --warm: #5A6470;
+    --pale: #E2E4E8;
+    --rule: rgba(28, 32, 36, 0.12);
+    --rule-strong: rgba(28, 32, 36, 0.24);
+    --accent: #308695;           /* teal, dominant accent */
+    --accent-rare: #D45769;      /* raspberry, Oracle only, used sparingly */
+    --code-bg: #1C2024;
+    --code-ink: #EFF0F2;
+    --code-comment: #6A7480;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-dm-sans);
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  /* hairline */
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 0.1em; transition: border-color 160ms ease, color 160ms ease; }
+  a:hover { border-bottom-color: var(--ink); }
+  a.accent { color: var(--accent); border-bottom-color: var(--accent); }
+  a.accent:hover { border-bottom-color: var(--ink); color: var(--ink); }
+
+  .font-mono-label {
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+  }
+
+  /* ─────────────────────────── header ─────────────────────────── */
+  header.site {
+    background: var(--paper);
+  }
+  .site-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 1.6rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .brand {
+    font-family: var(--font-cormorant);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.15rem;
+    border-bottom: none;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+  nav.site-nav {
+    display: flex;
+    gap: 2.4rem;
+    align-items: center;
+  }
+  nav.site-nav a {
+    font-family: var(--font-dm-mono);
+    font-size: 0.65rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    border-bottom: none;
+    padding: 0;
+    transition: color 0.3s ease;
+  }
+  nav.site-nav a:hover { color: var(--accent); }
+  nav.site-nav a.oracle { color: var(--accent-rare); }
+  nav.site-nav a.oracle:hover { color: var(--ink); }
+
+  /* sub-header strip with progress */
+  .subhead {
+    border-top: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .subhead-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .crumb {
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+  }
+  .crumb .sep { margin: 0 0.6em; color: var(--rule-strong); }
+  .crumb .here { color: var(--ink); }
+  .progress {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .progress-bar {
+    width: 140px;
+    height: 2px;
+    background: var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-bar > i {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ─────────────────────────── layout ─────────────────────────── */
+  main {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 4rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ── contents (sticky sidebar) ── */
+  aside.contents {
+    padding: 4rem 0;
+  }
+  .contents-sticky {
+    position: sticky;
+    top: 2rem;
+  }
+  .contents h2 {
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+    margin: 0 0 1.4rem 0;
+  }
+  .toc-group {
+    margin-bottom: 1.6rem;
+  }
+  .toc-group-label {
+    font-family: var(--font-dm-sans);
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+  }
+  .toc-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--rule-strong);
+  }
+  .toc-group li {
+    padding: 0;
+  }
+  .toc-group a {
+    display: block;
+    padding: 0.32rem 0 0.32rem 0.9rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    border-bottom: none;
+    border-left: 1px solid transparent;
+    margin-left: -1px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .toc-group a:hover { color: var(--ink); }
+  .toc-group a.active { color: var(--accent); border-left-color: var(--accent); }
+
+  /* ── article ── */
+  article {
+    padding: 3.5rem 0 8rem 0;
+    max-width: 720px;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.6rem;
+  }
+  .eyebrow .label {
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+  }
+  .eyebrow .sigil {
+    font-family: var(--font-cormorant);
+    font-style: italic;
+    color: var(--accent);
+    margin-right: 0.4em;
+  }
+
+  h1.title {
+    font-family: var(--font-cormorant);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 4.4vw, 3.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 0 0 1.8rem 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h1.title em { font-style: italic; font-weight: 400; }
+
+  .lede {
+    font-family: var(--font-dm-sans);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 2.4rem 0;
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  /* meta strip under title, inset card with hairline border */
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 4rem;
+    gap: 1.4rem;
+  }
+  .meta-strip .item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .meta-strip .item .k {
+    font-family: var(--font-dm-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+  }
+  .meta-strip .item .v {
+    font-family: var(--font-dm-sans);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* sections / steps */
+  section.step {
+    padding: 4rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  section.step:first-of-type { border-top: none; padding-top: 0; }
+
+  .step-tag {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .step-tag .n {
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+  }
+  .step-tag .note {
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+
+  h2.step-title {
+    font-family: var(--font-cormorant);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 0 0 1.4rem 0;
+    color: var(--ink);
+  }
+  h2.step-title em { font-style: italic; font-weight: 400; }
+
+  p {
+    margin: 0 0 1.1rem 0;
+    text-wrap: pretty;
+  }
+  p strong { font-weight: 500; color: var(--ink); }
+
+  /* substep block */
+  .substep {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.4rem;
+    padding: 1.8rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .substep:first-of-type { border-top: 1px solid var(--rule-strong); margin-top: 2rem; }
+  .substep .marker {
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+    padding-top: 0.4rem;
+  }
+  .substep .marker .num {
+    display: block;
+    font-family: var(--font-cormorant);
+    font-style: italic;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    text-transform: none;
+    margin-top: 0.2rem;
+    line-height: 1;
+  }
+  .substep h3 {
+    font-family: var(--font-cormorant);
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin: 0 0 0.9rem 0;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .substep .body > :last-child { margin-bottom: 0; }
+
+  /* aside callouts within a substep */
+  .note-card {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 1rem 1.2rem;
+    margin: 1.1rem 0;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    font-family: var(--font-dm-sans);
+    line-height: 1.6;
+  }
+  .note-card.warn {
+    border-left: 1px solid var(--accent);
+  }
+  .note-card.warn strong { color: var(--accent); }
+  .note-card > :first-child { margin-top: 0; }
+  .note-card > :last-child { margin-bottom: 0; }
+
+  /* code block */
+  .code {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    font-family: var(--font-dm-mono);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    position: relative;
+    overflow-x: auto;
+  }
+  .code .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--code-comment);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(239, 240, 242, 0.12);
+  }
+  .code .head button {
+    background: none;
+    border: none;
+    color: var(--code-comment);
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+  .code .head button:hover { color: var(--code-ink); }
+  .code pre {
+    margin: 0;
+    white-space: pre;
+    color: var(--code-ink);
+  }
+  .code pre .c { color: var(--code-comment); }
+
+  /* inline code */
+  code.inline {
+    font-family: var(--font-dm-mono);
+    font-size: 0.85em;
+    background: var(--paper-2);
+    padding: 0.08em 0.4em;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+  }
+
+  /* accounts grid, card insets, hairlines via gap-trick */
+  .accounts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    margin: 1.6rem 0 0.4rem 0;
+    border: 1px solid var(--rule);
+  }
+  .acct {
+    padding: 1.6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--paper-2);
+  }
+  .acct .sigil {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .acct .name {
+    font-family: var(--font-cormorant);
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .acct .desc {
+    font-family: var(--font-dm-sans);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .acct .pill {
+    font-family: var(--font-dm-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+    margin-top: 0.4rem;
+  }
+  .acct .pill.paid { color: var(--accent); }
+
+  /* command reference grid (terminal commands) */
+  .cmd-list {
+    margin: 1.4rem 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+  .cmd-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.4rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .cmd-row .k {
+    font-family: var(--font-dm-mono);
+    font-size: 0.82rem;
+    color: var(--ink);
+  }
+  .cmd-row .v {
+    font-family: var(--font-dm-sans);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+
+  /* errors list */
+  .err {
+    padding: 1.6rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .err:first-of-type { border-top: 1px solid var(--rule-strong); }
+  .err:last-of-type { border-bottom: 1px solid var(--rule); }
+  .err .tag {
+    font-family: var(--font-dm-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .err h4 {
+    font-family: var(--font-dm-sans);
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 0 0 0.6rem 0;
+    color: var(--ink);
+  }
+  .err p { font-size: 0.95rem; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+  .err p + p { margin-top: 0.6rem; }
+
+  /* footer rule */
+  footer.foot {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 3rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+    font-family: var(--font-dm-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm);
+  }
+  footer.foot .tag { color: var(--accent-rare); }
+
+  /* ─────────────────────────── responsive ─────────────────────────── */
+  @media (max-width: 1100px) {
+    main {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 0 3rem;
+    }
+    aside.contents { display: none; }
+    article { padding: 3rem 0 6rem 0; }
+    nav.site-nav { gap: 1.4rem; }
+    nav.site-nav a { font-size: 0.62rem; letter-spacing: 0.12em; }
+  }
+  @media (max-width: 768px) {
+    .site-inner { padding: 1.2rem 1.25rem; flex-wrap: wrap; gap: 1rem; }
+    nav.site-nav { gap: 1rem; flex-wrap: wrap; }
+    .subhead-inner { padding: 0.9rem 1.25rem; flex-wrap: wrap; gap: 0.8rem; }
+    main { padding: 0 1.25rem; }
+    footer.foot { padding: 2rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    article { padding: 2rem 0 4rem 0; }
+    h1.title { font-size: 2.4rem; }
+    h2.step-title { font-size: 1.9rem; }
+    .lede { font-size: 1.05rem; }
+    .meta-strip { grid-template-columns: 1fr 1fr; padding: 1.2rem 1.2rem; }
+    .substep { grid-template-columns: 1fr; gap: 0.6rem; padding: 1.4rem 0; }
+    .substep .marker { padding-top: 0; }
+    .substep .marker .num { display: inline; margin-left: 0.6rem; font-size: 1.2rem; }
+    .accounts { grid-template-columns: 1fr; }
+    .cmd-row { grid-template-columns: 1fr; gap: 0.2rem; padding: 0.7rem 0; }
+    .progress-bar { width: 90px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-inner">
+    <a href="https://martina-edwards.vercel.app/" class="brand">Martina Edwards</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="https://martina-edwards.vercel.app/#work">Work</a>
+      <a href="https://martina-edwards.vercel.app/work/after-hours">After Hours</a>
+      <a href="https://martina-edwards.vercel.app/#career">Career</a>
+      <a href="https://martina-edwards.vercel.app/redefined-by-ai">Redefined by AI</a>
+      <a href="https://martina-edwards.vercel.app/#skills">Skills</a>
+      <a href="https://martina-edwards.vercel.app/#contact">Contact</a>
+      <a href="https://martina-edwards.vercel.app/oracle" class="oracle">Oracle</a>
+    </nav>
+  </div>
+  <div class="subhead">
+    <div class="subhead-inner">
+      <div class="crumb">
+        <span>After Hours</span>
+        <span class="sep">·</span>
+        <span class="here">Dev Setup · Windows</span>
+      </div>
+      <div class="progress" aria-label="Reading progress">
+        <span class="font-mono-label">Your progress</span>
+        <span class="progress-bar" id="progress-bar" aria-hidden="true"><i></i></span>
+        <span class="font-mono-label" id="progress-count">0 of 10 steps</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <aside class="contents" aria-label="Contents">
+    <div class="contents-sticky">
+      <h2>Contents</h2>
+
+      <div class="toc-group">
+        <div class="toc-group-label">Before you start</div>
+        <ul>
+          <li><a href="#accounts">Accounts to create</a></li>
+          <li><a href="#node">Install Node.js</a></li>
+          <li><a href="#terminal">Set up your terminal</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-group-label">Get the project</div>
+        <ul>
+          <li><a href="#repo">Fork &amp; clone the repo</a></li>
+          <li><a href="#secrets">Configure your API key</a></li>
+          <li><a href="#local">Run locally</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-group-label">Ship it</div>
+        <ul>
+          <li><a href="#vercel">Deploy to Vercel</a></li>
+          <li><a href="#limits">Set spend limits</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-group-label">Ongoing</div>
+        <ul>
+          <li><a href="#changes">Making changes</a></li>
+          <li><a href="#troubleshoot">Troubleshooting</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <article>
+
+    <div class="eyebrow">
+      <span class="sigil">§</span><span class="label">Dev Setup Guide</span>
+    </div>
+
+    <h1 class="title">Ship The Digest on <em>Windows.</em></h1>
+
+    <p class="lede">
+      A step-by-step walkthrough for setting up your development pipeline from
+      scratch, accounts, tools, local environment, and your first production
+      deploy. No prior deployment experience needed.
+    </p>
+
+    <div class="meta-strip">
+      <div class="item"><span class="k">Platform</span><span class="v">Windows 10 / 11</span></div>
+      <div class="item"><span class="k">Time</span><span class="v">45 to 60 min</span></div>
+      <div class="item"><span class="k">Assumes</span><span class="v">VS Code &amp; Git</span></div>
+      <div class="item"><span class="k">Terminal</span><span class="v">Git Bash</span></div>
+    </div>
+
+    <!-- ── Step 1 ── -->
+    <section class="step" id="accounts">
+      <div class="step-tag"><span class="n">Step 1</span></div>
+      <h2 class="step-title">Create your <em>accounts.</em></h2>
+      <p>
+        Four services. Three are completely free. One charges per use, and
+        you'll set a hard spending cap before using it. Open each link in a new
+        tab and come back here.
+      </p>
+
+      <div class="accounts">
+        <div class="acct">
+          <span class="sigil">🐙</span>
+          <div class="name">GitHub</div>
+          <div class="desc">Stores your code and connects to Vercel for automatic deploys.</div>
+          <div class="pill">Free</div>
+        </div>
+        <div class="acct">
+          <span class="sigil">▲</span>
+          <div class="name">Vercel</div>
+          <div class="desc">Hosts your live website. Deploys automatically when you push to GitHub.</div>
+          <div class="pill">Free</div>
+        </div>
+        <div class="acct">
+          <span class="sigil">◎</span>
+          <div class="name">Anthropic</div>
+          <div class="desc">The AI that powers the digests. You pay per use, about $0.05 to $0.10 per run.</div>
+          <div class="pill paid">Pay-per-use</div>
+        </div>
+        <div class="acct">
+          <span class="sigil">⚡</span>
+          <div class="name">Upstash</div>
+          <div class="desc">Redis database for rate limiting. Multi-user mode only, skip if self-hosting.</div>
+          <div class="pill">Free tier</div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">1.1</span></div>
+        <div class="body">
+          <h3>Create a GitHub account at github.com</h3>
+          <p>
+            Go to <a class="accent" href="https://github.com">github.com</a> → Sign up. Use your real
+            email, GitHub will send you a verification link. Choose the free plan when asked.
+          </p>
+          <div class="note-card">
+            Pick a professional username, it'll appear in your repo URLs and on
+            your Vercel deployment links.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">1.2</span></div>
+        <div class="body">
+          <h3>Create a Vercel account at vercel.com</h3>
+          <p>
+            Go to <a class="accent" href="https://vercel.com">vercel.com</a> → Sign Up →
+            <strong>Continue with GitHub</strong>. This connects the two accounts immediately,
+            which you need anyway. Authorize Vercel when GitHub asks.
+          </p>
+          <div class="note-card">
+            You're creating a Vercel account by logging in with GitHub. No separate password needed.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">1.3</span></div>
+        <div class="body">
+          <h3>Create an Anthropic account at console.anthropic.com</h3>
+          <p>
+            Go to <a class="accent" href="https://console.anthropic.com">console.anthropic.com</a> → Sign up.
+            You'll need to add a payment method to get an API key, but you won't be charged until
+            you actually use it. You'll set a hard spending cap in a later step before running anything.
+          </p>
+          <div class="note-card">
+            The Anthropic account for API access is <strong>separate</strong> from a Claude.ai
+            subscription. You need both if you use Claude.ai, but only the API account is
+            needed to run The Digest.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 2 ── -->
+    <section class="step" id="node">
+      <div class="step-tag"><span class="n">Step 2</span></div>
+      <h2 class="step-title">Install <em>Node.js.</em></h2>
+      <p>
+        Node.js is the runtime that lets you run JavaScript on your computer
+        (not just in a browser). It also installs <code class="inline">npm</code>, the package
+        manager you'll use to install project dependencies.
+      </p>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">2.1</span></div>
+        <div class="body">
+          <h3>Download and install Node.js LTS</h3>
+          <p>
+            Go to <a class="accent" href="https://nodejs.org">nodejs.org</a>. You'll see two
+            buttons, download the one labelled <strong>LTS</strong> (Long Term Support). This is
+            the stable version. Run the installer and accept all defaults, you don't need to
+            change anything.
+          </p>
+          <div class="note-card">
+            LTS means it's battle-tested and won't break things unexpectedly. Avoid the
+            "Current" version for production projects.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">2.2</span></div>
+        <div class="body">
+          <h3>Verify it installed correctly</h3>
+          <p>
+            Open VS Code. Open the terminal with <code class="inline">Ctrl + `</code> (backtick,
+            the key above Tab). Make sure it's using Git Bash (see next section if not). Run these
+            two commands:
+          </p>
+          <div class="code">
+            <div class="head"><span>Git Bash</span><button data-copy="cmd-verify-node">copy</button></div>
+<pre id="cmd-verify-node">node --version
+npm --version</pre>
+          </div>
+          <p>
+            You should see version numbers, something like <code class="inline">v20.11.0</code>
+            and <code class="inline">10.2.4</code>. If you see "command not found", close and
+            reopen VS Code, then try again, the installer sometimes needs a restart to take effect.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 3 ── -->
+    <section class="step" id="terminal">
+      <div class="step-tag"><span class="n">Step 3</span></div>
+      <h2 class="step-title">Set up your <em>terminal.</em></h2>
+      <p>
+        You already have Git Bash installed (it came with Git). This gives you
+        Linux-style commands that every tutorial assumes, inside VS Code, so
+        you never need to leave your editor.
+      </p>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">3.1</span></div>
+        <div class="body">
+          <h3>Make Git Bash the default terminal in VS Code</h3>
+          <p>
+            In VS Code: open the Command Palette with <code class="inline">Ctrl + Shift + P</code>.
+            Type <strong>Terminal: Select Default Profile</strong> and press Enter.
+            Select <strong>Git Bash</strong> from the list.
+          </p>
+          <p>
+            Now open a new terminal (<code class="inline">Ctrl + `</code>). You should see a
+            prompt ending in <code class="inline">$</code>, that's Git Bash. If it still shows
+            PowerShell (the prompt ends in <code class="inline">&gt;</code>), close the terminal
+            and open a new one.
+          </p>
+          <div class="note-card">
+            You can always check which shell you're in by looking at the dropdown in the
+            top-right corner of the terminal panel.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">3.2</span></div>
+        <div class="body">
+          <h3>The five commands you'll actually use</h3>
+          <p>
+            You don't need to memorise the terminal. You need these five commands,
+            everything else you can look up.
+          </p>
+          <div class="cmd-list">
+            <div class="cmd-row"><div class="k">pwd</div><div class="v">Show which folder you're currently in</div></div>
+            <div class="cmd-row"><div class="k">ls</div><div class="v">List files and folders here</div></div>
+            <div class="cmd-row"><div class="k">cd folder-name</div><div class="v">Move into a folder</div></div>
+            <div class="cmd-row"><div class="k">cd ..</div><div class="v">Go up one folder</div></div>
+            <div class="cmd-row"><div class="k">Ctrl + C</div><div class="v">Stop a running process (like a dev server)</div></div>
+          </div>
+          <div class="note-card">
+            Tab autocompletes folder and file names. Type the first few letters and press
+            Tab, it fills in the rest.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 4 ── -->
+    <section class="step" id="repo">
+      <div class="step-tag"><span class="n">Step 4</span></div>
+      <h2 class="step-title">Fork &amp; clone <em>the repo.</em></h2>
+      <p>
+        Forking creates your own copy of the project on GitHub. Cloning
+        downloads it to your computer. You'll work on your local copy, then
+        push changes back to GitHub, which triggers an automatic deploy.
+      </p>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">4.1</span></div>
+        <div class="body">
+          <h3>Fork the repository on GitHub</h3>
+          <p>
+            Go to the repo at
+            <a class="accent" href="https://github.com/fde-shipit/ai-news-agent">github.com/fde-shipit/ai-news-agent</a>.
+            In the top-right corner, click <strong>Fork</strong> → <strong>Create fork</strong>.
+            GitHub creates a copy of the repo under your own account. You'll now be at
+            <code class="inline">github.com/YOUR-USERNAME/ai-news-agent</code>.
+          </p>
+          <div class="note-card">
+            Forking means you own your copy. You can change anything without affecting the
+            original. You can also pull in future updates from the original whenever you want.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">4.2</span></div>
+        <div class="body">
+          <h3>Clone it to your computer</h3>
+          <p>
+            On your forked repo page, click the green <strong>Code</strong> button → make sure
+            <strong>HTTPS</strong> is selected → click the copy icon next to the URL.
+          </p>
+          <p>
+            In VS Code's terminal, navigate to where you want to keep your projects
+            (e.g. <code class="inline">cd Documents</code>) and run:
+          </p>
+          <div class="code">
+            <div class="head"><span>Git Bash</span><button data-copy="cmd-clone">copy</button></div>
+<pre id="cmd-clone">git clone https://github.com/YOUR-USERNAME/ai-news-agent.git
+cd ai-news-agent</pre>
+          </div>
+          <p>
+            Git downloads the project and you move into it. You should now see all the
+            project files in VS Code's sidebar.
+          </p>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">4.3</span></div>
+        <div class="body">
+          <h3>Configure Git with your identity</h3>
+          <p>
+            If you've never used Git on this machine, run these once, it tells Git who's
+            making changes:
+          </p>
+          <div class="code">
+            <div class="head"><span>Git Bash</span><button data-copy="cmd-gitconfig">copy</button></div>
+<pre id="cmd-gitconfig">git config --global user.name "Your Name"
+git config --global user.email "your@email.com"</pre>
+          </div>
+          <div class="note-card">
+            Use the same email as your GitHub account.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 5 ── -->
+    <section class="step" id="secrets">
+      <div class="step-tag"><span class="n">Step 5</span><span class="note">· read this carefully</span></div>
+      <h2 class="step-title">Configure your <em>API key.</em></h2>
+      <p>
+        This is the most important section in the guide. API keys are
+        passwords. How you store them determines whether your project stays
+        secure or becomes expensive very quickly.
+      </p>
+      <div class="note-card warn">
+        <strong>The golden rule:</strong> your API key must never be committed to Git. If it ends
+        up on GitHub, even for a minute, even in a private repo, rotate it immediately at
+        console.anthropic.com and generate a new one. Bots scan GitHub continuously for exposed
+        keys.
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">5.1</span></div>
+        <div class="body">
+          <h3>Get your Anthropic API key</h3>
+          <p>
+            Go to <a class="accent" href="https://console.anthropic.com/settings/keys">console.anthropic.com/settings/keys</a>
+            → <strong>Create Key</strong>. Give it a name (e.g. "the-digest-local"). Copy the key
+           , it starts with <code class="inline">sk-ant-</code>. You can only see it once, so
+            copy it now.
+          </p>
+          <div class="note-card">
+            If you close the page before copying, just delete that key and create a new one. You
+            can have multiple keys and delete them anytime.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">5.2</span></div>
+        <div class="body">
+          <h3>Create your .env.local file</h3>
+          <p>
+            In the project root (the <code class="inline">ai-news-agent</code> folder), create a new
+            file called <code class="inline">.env.local</code>. In VS Code you can right-click the
+            file explorer sidebar → New File. Name it exactly <code class="inline">.env.local</code>
+           , the dot at the start matters.
+          </p>
+          <p>Add this content, replacing the placeholder with your real key:</p>
+          <div class="code">
+            <div class="head"><span>.env.local</span><button data-copy="cmd-env">copy</button></div>
+<pre id="cmd-env"><span class="c"># Anthropic API key - never commit this file</span>
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+
+<span class="c"># Self-hosted mode (no login required)</span>
+NEXT_PUBLIC_MULTI_USER=false</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">5.3</span></div>
+        <div class="body">
+          <h3>Verify .gitignore is protecting it</h3>
+          <p>
+            Open the <code class="inline">.gitignore</code> file in the project root. Look for a
+            line that matches the pattern <code class="inline">.env*.local</code>, it should already
+            be there. This tells Git to never track this file or other local env files, even if you
+            run <code class="inline">git add .</code>
+          </p>
+          <p>To double-check it's working, run:</p>
+          <div class="code">
+            <div class="head"><span>Git Bash</span><button data-copy="cmd-status">copy</button></div>
+<pre id="cmd-status">git status</pre>
+          </div>
+          <p>
+            Your <code class="inline">.env.local</code> and other local env files should
+            <strong>not</strong> appear in the output. If they do, the pattern is not in your
+            <code class="inline">.gitignore</code>, add it before proceeding.
+          </p>
+          <div class="note-card">
+            <strong>.env*.local vs .env</strong>: Next.js treats files matching
+            <code class="inline">.env*.local</code> differently from plain
+            <code class="inline">.env</code> files. The pattern <code class="inline">.env*.local</code>
+            matches <code class="inline">.env.local</code>,
+            <code class="inline">.env.development.local</code>, and other local env files.
+            Always use this pattern for secrets on your machine.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 6 ── -->
+    <section class="step" id="local">
+      <div class="step-tag"><span class="n">Step 6</span></div>
+      <h2 class="step-title">Run it <em>locally.</em></h2>
+      <p>
+        Before deploying to the world, run it on your own machine first. This
+        is where you test changes, catch errors, and see what users will see,
+        without affecting anyone.
+      </p>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">6.1</span></div>
+        <div class="body">
+          <h3>Install project dependencies</h3>
+          <p>
+            In the terminal, make sure you're in the project folder (run
+            <code class="inline">pwd</code>, you should see
+            <code class="inline">/c/Users/you/Documents/ai-news-agent</code> or similar). Then run:
+          </p>
+          <div class="code">
+            <div class="head"><span>Git Bash</span><button data-copy="cmd-install">copy</button></div>
+<pre id="cmd-install">npm install</pre>
+          </div>
+          <p>
+            This reads the <code class="inline">package.json</code> file and downloads all the
+            libraries the project needs into a <code class="inline">node_modules</code> folder.
+            It takes 1 to 2 minutes. You'll see a lot of text scrolling, that's normal.
+          </p>
+          <div class="note-card">
+            <code class="inline">node_modules</code> can be hundreds of megabytes, but it's also
+            in <code class="inline">.gitignore</code>, it never gets committed. Anyone who
+            clones your repo just runs <code class="inline">npm install</code> themselves.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">6.2</span></div>
+        <div class="body">
+          <h3>Start the development server</h3>
+          <div class="code">
+            <div class="head"><span>Git Bash</span><button data-copy="cmd-dev">copy</button></div>
+<pre id="cmd-dev">npm run dev</pre>
+          </div>
+          <p>
+            Wait for the message <code class="inline">▲ Next.js ready on http://localhost:3000</code>.
+            Then open your browser and go to
+            <a class="accent" href="http://localhost:3000">localhost:3000</a>. You should see
+            The Digest running.
+          </p>
+          <p>
+            To stop the server: click the terminal and press <code class="inline">Ctrl + C</code>.
+          </p>
+          <div class="note-card">
+            The dev server reloads automatically when you save a file. You'll see changes in the
+            browser instantly, you don't need to restart it.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">6.3</span></div>
+        <div class="body">
+          <h3>Test that it actually works end to end</h3>
+          <p>
+            Pick up to 2 topics, select a signal type, and click Generate. Watch the agent log. You
+            should see web searches completing and a digest appearing. If you get an API error, check
+            that your key in <code class="inline">.env.local</code> is correct and has no extra
+            spaces.
+          </p>
+          <div class="note-card warn">
+            Every successful generate call costs roughly $0.05 to $0.10. Run a few tests here, then
+            set your spend limit in Step 8 before sharing it with anyone.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 7 ── -->
+    <section class="step" id="vercel">
+      <div class="step-tag"><span class="n">Step 7</span></div>
+      <h2 class="step-title">Deploy to <em>Vercel.</em></h2>
+      <p>
+        Vercel watches your GitHub repo. Every time you push a change, it
+        automatically rebuilds and redeploys your site. Your first deployment
+        takes about 2 minutes.
+      </p>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">7.1</span></div>
+        <div class="body">
+          <h3>Import the project in Vercel</h3>
+          <p>
+            Go to <a class="accent" href="https://vercel.com/new">vercel.com/new</a>. You'll see
+            a list of your GitHub repos. Find <strong>ai-news-agent</strong> and click
+            <strong>Import</strong>.
+          </p>
+          <p>
+            On the configuration screen: leave all settings as defaults. Next.js is detected
+            automatically. Do not click Deploy yet, you need to add your environment variables
+            first.
+          </p>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">7.2</span></div>
+        <div class="body">
+          <h3>Add your environment variables</h3>
+          <p>
+            On the same configuration screen, expand <strong>Environment Variables</strong>. Add
+            each variable from your <code class="inline">.env.local</code> file, key on the
+            left, value on the right:
+          </p>
+          <div class="code">
+            <div class="head"><span>Vercel, add one at a time</span><button data-copy="cmd-vercel-env">copy</button></div>
+<pre id="cmd-vercel-env">ANTHROPIC_API_KEY         sk-ant-your-key-here
+NEXT_PUBLIC_MULTI_USER    false</pre>
+          </div>
+          <div class="note-card">
+            This is the safe way to store secrets in production. Vercel encrypts these values,
+            they're never visible to anyone, including you, after you save them. This is very
+            different from putting them in your code.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">7.3</span></div>
+        <div class="body">
+          <h3>Deploy</h3>
+          <p>
+            Click <strong>Deploy</strong>. Vercel builds your project, you can watch the logs in
+            real time. When it finishes, you'll see a confetti animation and a live URL like
+            <code class="inline">ai-news-agent-abc123.vercel.app</code>.
+          </p>
+          <p>
+            Click the URL and test it. Generate a digest. Make sure it works exactly as it did
+            locally.
+          </p>
+          <div class="note-card">
+            You can add a custom domain later: in Vercel, go to your project → Settings →
+            Domains. You can connect any domain you own.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 8 ── -->
+    <section class="step" id="limits">
+      <div class="step-tag"><span class="n">Step 8</span><span class="note">· do this before sharing it</span></div>
+      <h2 class="step-title">Set your <em>spend limits.</em></h2>
+      <p>
+        Before you share the URL with anyone, cap your Anthropic spending. This
+        is your backstop, if something goes wrong or traffic spikes
+        unexpectedly, this is what stops a surprise bill.
+      </p>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">8.1</span></div>
+        <div class="body">
+          <h3>Set a monthly hard cap in Anthropic console</h3>
+          <p>
+            Go to <a class="accent" href="https://console.anthropic.com/settings/billing">console.anthropic.com/settings/billing</a>
+            → <strong>Usage limits</strong>. Set a monthly budget cap, $10 to $20 is sensible for a
+            personal project. When this limit is hit, the API stops responding until the next
+            billing period. Your site shows an error rather than charging you more.
+          </p>
+          <div class="note-card">
+            At ~$0.07 per digest run, $20/month = roughly 280 runs. That's about 9 a day,
+            plenty for personal use or a small audience.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 9 ── -->
+    <section class="step" id="changes">
+      <div class="step-tag"><span class="n">Step 9</span><span class="note">· the ongoing cycle</span></div>
+      <h2 class="step-title">Making <em>changes.</em></h2>
+      <p>
+        Once you're deployed, the cycle for every future change is the same
+        four commands. Learn these and you own the whole pipeline.
+      </p>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">9.1</span></div>
+        <div class="body">
+          <h3>The edit → push → deploy cycle</h3>
+          <p>
+            Edit a file locally. Test it at <code class="inline">localhost:3000</code>. When
+            you're happy, run:
+          </p>
+          <div class="code">
+            <div class="head"><span>Git Bash, in order</span><button data-copy="cmd-push">copy</button></div>
+<pre id="cmd-push">git add .
+git commit -m "describe what you changed"
+git push</pre>
+          </div>
+          <p>
+            That's it. Vercel detects the push and automatically deploys. Your live site updates
+            in about 90 seconds. You can watch the progress at
+            <code class="inline">vercel.com/dashboard</code>.
+          </p>
+          <div class="note-card">
+            <code class="inline">git add .</code> stages all changed files.
+            <code class="inline">git commit -m "..."</code> saves a snapshot with a message.
+            <code class="inline">git push</code> sends it to GitHub. Vercel does the rest.
+          </div>
+        </div>
+      </div>
+
+      <div class="substep">
+        <div class="marker">Step <span class="num">9.2</span></div>
+        <div class="body">
+          <h3>Adding or changing environment variables</h3>
+          <p>
+            Local changes: edit your <code class="inline">.env.local</code> file, then restart the
+            dev server (<code class="inline">Ctrl + C</code>, then
+            <code class="inline">npm run dev</code>).
+          </p>
+          <p>
+            Production changes: go to your project in the Vercel dashboard →
+            <strong>Settings → Environment Variables</strong>. Edit the value, save, then go to
+            <strong>Deployments</strong> and click <strong>Redeploy</strong> on the latest
+            deployment to pick up the new value.
+          </p>
+          <div class="note-card warn">
+            Vercel doesn't automatically pick up env var changes, you need to trigger a redeploy
+            after changing them.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Reference ── -->
+    <section class="step" id="troubleshoot">
+      <div class="step-tag"><span class="n">Reference</span></div>
+      <h2 class="step-title">Common <em>errors.</em></h2>
+      <p>If something breaks, it's almost always one of these.</p>
+
+      <div class="err">
+        <div class="tag">Error</div>
+        <h4>"command not found: npm" or "command not found: node"</h4>
+        <p>
+          Node wasn't added to your PATH, or VS Code didn't pick up the new PATH yet. Close VS
+          Code completely and reopen it. If that doesn't fix it, restart your computer, then try
+          again.
+        </p>
+      </div>
+
+      <div class="err">
+        <div class="tag">Error</div>
+        <h4>401 Unauthorized from the API</h4>
+        <p>
+          Your API key is wrong or missing. Check <code class="inline">.env.local</code>, make
+          sure the key starts with <code class="inline">sk-ant-</code> and has no extra spaces or
+          line breaks. After editing <code class="inline">.env.local</code>, restart the dev
+          server.
+        </p>
+      </div>
+
+      <div class="err">
+        <div class="tag">Error</div>
+        <h4>Works locally but fails on Vercel</h4>
+        <p>
+          Almost always missing environment variables in Vercel. Go to your project →
+          Settings → Environment Variables. Check that
+          <code class="inline">ANTHROPIC_API_KEY</code> is there and spelled exactly right
+          (case-sensitive). Then redeploy.
+        </p>
+      </div>
+
+      <div class="err">
+        <div class="tag">Error</div>
+        <h4>Vercel build fails with a red error</h4>
+        <p>
+          Click on the failed deployment in Vercel → expand the build logs → look for the first
+          red line. Copy that error into Claude and ask what it means. Build errors are almost
+          always specific and fixable quickly.
+        </p>
+        <p>
+          The Vercel build log is one of the most useful debugging tools you have. Don't skip
+          past the red lines, the first one is usually the actual problem.
+        </p>
+      </div>
+
+      <div class="err">
+        <div class="tag">Error</div>
+        <h4>"Permission denied" when running Git commands</h4>
+        <p>
+          GitHub requires authentication. Run <code class="inline">git push</code>, it'll open
+          a browser window asking you to sign in to GitHub. Authorise it. After that first
+          sign-in, pushes work silently. If you're on a machine that's already signed in to
+          GitHub via VS Code, this usually sorts itself automatically.
+        </p>
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <span>Martina Edwards &copy; 2026</span>
+  <span class="tag">#RedefinedByAI</span>
+</footer>
+
+<script>
+  // Reading progress + active TOC item
+  (function () {
+    const steps = Array.from(document.querySelectorAll('section.step'));
+    const total = steps.length;
+    const bar = document.getElementById('progress-bar');
+    const count = document.getElementById('progress-count');
+    const tocLinks = Array.from(document.querySelectorAll('.toc-group a'));
+
+    const barFill = bar ? bar.querySelector('i') : null;
+
+    function update() {
+      const viewportMid = window.scrollY + window.innerHeight * 0.35;
+      let passed = 0;
+      let activeId = steps[0]?.id;
+      for (const s of steps) {
+        if (s.offsetTop <= viewportMid) {
+          passed++;
+          activeId = s.id;
+        }
+      }
+      const pct = Math.min(100, Math.round((passed / total) * 100));
+      if (barFill) barFill.style.width = pct + '%';
+      if (count) count.textContent = passed + ' of ' + total + ' steps';
+
+      tocLinks.forEach(a => {
+        const href = a.getAttribute('href') || '';
+        a.classList.toggle('active', href === '#' + activeId);
+      });
+    }
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+
+    // Copy buttons
+    document.querySelectorAll('button[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-copy');
+        const target = document.getElementById(id);
+        if (!target) return;
+        try {
+          await navigator.clipboard.writeText(target.innerText);
+          const orig = btn.textContent;
+          btn.textContent = 'copied';
+          setTimeout(() => { btn.textContent = orig; }, 1400);
+        } catch (e) { /* noop */ }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-import { person, details } from '@/content/data'
+import { details } from '@/content/data'
 
 /**
  * About / Profile — body switches from Cormorant to DM Sans.
@@ -24,21 +24,6 @@ export default function About() {
           </span>
         </div>
         <div className="section-content gsap-section-content">
-          <p
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontWeight: 300,
-              fontSize: 'clamp(1rem, 1.4vw, 1.1rem)',
-              lineHeight: 1.65,
-              color: 'var(--ink-soft)',
-              marginBottom: '3rem',
-              maxWidth: '64ch',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {person.profile}
-          </p>
-
           <div
             style={{
               display: 'flex',

@@ -138,15 +138,62 @@ export default function Ball() {
           width: 100%;
           max-width: 480px;
         }
+        @media (max-width: 640px) {
+          .oracle-ball { height: auto !important; }
+        }
+
+        /* ── fill-sweep suggestion chips ── */
+        .oracle-suggestion {
+          background: linear-gradient(to right, var(--accent-rare) 50%, transparent 50%);
+          background-size: 200% 100%;
+          background-position: right center;
+          border: 1px solid var(--rule-strong);
+          cursor: pointer;
+          font-family: var(--font-dm-sans);
+          font-size: 0.78rem;
+          color: var(--warm);
+          padding: 0.4rem 0.85rem;
+          transition: background-position 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .oracle-suggestion:hover {
+          background-position: left center;
+          color: #fff;
+          border-color: var(--accent-rare);
+        }
+
+        /* ── fill-sweep request-tokens CTA ── */
+        .oracle-tokens-cta {
+          display: inline-block;
+          font-family: var(--font-dm-mono);
+          font-size: 0.65rem;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: var(--ink);
+          background: linear-gradient(to right, var(--accent-rare) 50%, transparent 50%);
+          background-size: 200% 100%;
+          background-position: right center;
+          border: 1px solid var(--rule-strong);
+          padding: 0.6rem 1.5rem;
+          text-decoration: none;
+          transition: background-position 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .oracle-tokens-cta:hover {
+          background-position: left center;
+          color: #fff;
+        }
       `}</style>
 
       {/* The Ball */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
         <div
-          className={ballClass}
+          className={`oracle-ball${ballClass ? ' ' + ballClass : ''}`}
           style={{
             width: '300px',
             height: '300px',
+            aspectRatio: '1',
             borderRadius: '50%',
             background: 'radial-gradient(ellipse at 35% 35%, #1a3a4a 0%, #0d2030 55%, #061420 100%)',
             boxShadow: (ballState === 'lit' || ballState === 'hired')
@@ -277,25 +324,8 @@ export default function Ball() {
           {suggestions.map((s, i) => (
             <button
               key={i}
+              className="oracle-suggestion"
               onClick={() => handleSuggestion(s)}
-              style={{
-                background: 'transparent',
-                border: '1px solid var(--rule)',
-                cursor: 'pointer',
-                fontFamily: 'var(--font-dm-sans)',
-                fontSize: '0.78rem',
-                color: 'var(--warm)',
-                padding: '0.4rem 0.85rem',
-                transition: 'border-color 0.2s ease, color 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                ;(e.target as HTMLButtonElement).style.borderColor = 'var(--accent-rare)'
-                ;(e.target as HTMLButtonElement).style.color = 'var(--accent-rare)'
-              }}
-              onMouseLeave={e => {
-                ;(e.target as HTMLButtonElement).style.borderColor = 'var(--rule)'
-                ;(e.target as HTMLButtonElement).style.color = 'var(--warm)'
-              }}
             >
               {s}
             </button>
@@ -339,18 +369,7 @@ export default function Ball() {
             </p>
             <a
               href="mailto:martina.edwards.p@gmail.com?subject=I%20need%20an%20oracle%20like%20you&body=I%20had%20fun%20with%20your%20oracle.%20Connect%3F%20And...%20more%20tokens%2C%20please."
-              style={{
-                display: 'inline-block',
-                fontFamily: 'var(--font-dm-mono)',
-                fontSize: '0.65rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.14em',
-                color: 'var(--paper)',
-                background: 'var(--accent-rare)',
-                border: '1px solid var(--accent-rare)',
-                padding: '0.6rem 1.5rem',
-                textDecoration: 'none',
-              }}
+              className="oracle-tokens-cta"
             >
               Request tokens
             </a>

@@ -1,12 +1,7 @@
 import Hero from '@/components/Hero'
-import Ticker from '@/components/Ticker'
-import OracleSection from '@/components/OracleSection'
 import About from '@/components/About'
-import Work from '@/components/Work'
-import PullQuote from '@/components/PullQuote'
-import Career from '@/components/Career'
-import Writing from '@/components/Writing'
-import Skills from '@/components/Skills'
+import SelectedWork from '@/components/SelectedWork'
+import BuildsPreview from '@/components/BuildsPreview'
 import Contact from '@/components/Contact'
 import GsapScrollAnimations from '@/components/gsap/ScrollAnimations'
 import ScrollAnimations from '@/components/ScrollAnimations'
@@ -14,23 +9,15 @@ import { person } from '@/content/data'
 
 export default function Home() {
   return (
-    <main style={{ paddingBottom: '6rem' }}>
+    <main style={{ paddingBottom: '4rem' }}>
       <GsapScrollAnimations />
       <ScrollAnimations />
 
       <Hero />
-      <Ticker />
-
-      {/* Oracle preview — promoted from buried hero link to its own section,
-          sitting between Hero and Work so it's the second thing a visitor sees. */}
-      <OracleSection />
 
       <About />
-      <Work />
-      <PullQuote />
-      <Skills />
-      <Career />
-      <Writing />
+      <SelectedWork />
+      <BuildsPreview />
       <Contact />
 
       <footer
@@ -41,7 +28,7 @@ export default function Home() {
           justifyContent: 'space-between',
           alignItems: 'center',
           maxWidth: '1500px',
-          margin: '4rem auto 0',
+          margin: '2.5rem auto 0',
         }}
       >
         <span

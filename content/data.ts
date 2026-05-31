@@ -50,28 +50,31 @@ export const caseStudies = [
     metric:   "2 days",
     from:     "down from several weeks",
     title:    "Security assessment redesign · Legora",
-    summary:  "Replaced weeks of uncoordinated multi-party review with a structured HITL process that legal, product, and security teams trust. Multi-stakeholder workflow rebuilt around Legora.",
+    summary:  "Replaced weeks of uncoordinated multi-party review with a structured HITL process that legal, product, and security teams trust.",
     tags:     ["Legora", "HITL architecture", "Multi-stakeholder"],
     link:     "/work/legora-security-assessment",
     artefact: "Workflow diagram · before / after",
+    image:    "/images/mark-workflow.svg",
   },
   {
     metric:   "13,000+",
     from:     "staff hours saved annually",
     title:    "Legal triage product · Webex",
-    summary:  "Rules-based intake with conditional logic — high-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month. Concept to rollout, owned.",
+    summary:  "Rules-based intake with conditional logic — high-risk routes to legal with documentation; low-risk users get a ready-to-attach artifact and bypass legal entirely. ~500 queries a month.",
     tags:     ["Webex", "Rules-based logic", "Legal ops"],
     link:     "/work/legal-triage",
     artefact: "Decision tree · sample artifact output",
+    image:    "/images/mark-decision.svg",
   },
   {
     metric:   "5 years",
     from:     "in production before outgrown",
     title:    "Legal spend visibility platform",
-    summary:  "Identified an invisible annual blind spot in legal spend. Built a SharePoint and Power Automate solution that automated invoice intake, approvals, and reporting end-to-end. Ran for five years before the business outgrew it.",
+    summary:  "Built a SharePoint and Power Automate solution that automated invoice intake, approvals, and reporting end-to-end. Ran for five years before the business outgrew it.",
     tags:     ["SharePoint", "Power Automate", "Legal ops"],
     link:     "/work/legal-spend",
     artefact: "Architecture sketch · invoice flow",
+    image:    "/images/mark-chain.svg",
   },
 ]
 
@@ -81,13 +84,40 @@ export const caseStudies = [
 */
 export const alsoShipped = [
   {
+    title:   "Flashcards & Quiz",
+    summary: "The words AI borrowed and quietly redefined. Written from inside the work. It all feeds a game. Come play.",
+    tags:    ["Next.js", "Redefined by AI", "Interactive"],
+    links: [
+      { label: "Flashcards →", href: "/flashcards" },
+      { label: "Take the quiz", href: "/quiz" },
+    ],
+  },
+  {
+    title:   "The Oracle",
+    summary: '&ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo; So I did.',
+    tags:    ["Claude API", "Next.js", "Vercel"],
+    links: [
+      { label: "How it's built →", href: "/oracle" },
+      { label: "Try the Oracle",   href: "/oracle" },
+    ],
+  },
+  {
+    title:   "News Agent",
+    summary: "Wanted a web search agent so I built one. Open source, deployable in an evening. Mine tracks AI. Point it at anything.",
+    tags:    ["Next.js", "Claude API", "Open Source"],
+    links: [
+      { label: "Setup guide →",  href: "https://martina-edwards.vercel.app/setup-guide-windows.html", external: true },
+      { label: "Open the agent", href: "https://ai-news-agent-gules.vercel.app", external: true },
+    ],
+  },
+  {
     title:   "B2B SaaS platform delivery — AASB S2",
     summary: "Sole accountability for roadmap, releases, client onboarding and incident management on a live B2B SaaS solving AASB S2 climate disclosure. Five clients onboarded in eight months. Three full releases delivered in parallel. No dedicated eng lead, no dedicated CS function.",
     tags:    ["Vercel", "PostgreSQL", "Release governance"],
   },
   {
     title:   "AI vendor evaluation program",
-    summary: "Led structured POCs across AI vendors for targeted legal workflows. Redirected early experimentation toward measurable output quality and defined boundaries. Findings shaped firm-wide AI strategy.",
+    summary: "Led structured POCs across AI vendors for targeted legal workflows. Redirected early experimentation toward measurable output quality and defined boundaries.",
     tags:    ["LLM evaluation", "POC design", "AI strategy"],
   },
   {
@@ -172,7 +202,7 @@ export const skills = [
   {
     category: "AI Tools",
     items: [
-      "Claude and Copilot Studio — agentic workflow design and deployment, not just configuration. Knows which tool fits the workflow. Knows when none of them do yet.",
+      "Claude and Copilot Studio, agentic workflow design and deployment, not just configuration. Knows which tool fits the workflow. Knows when none of them do yet.",
       "Also: Legora · Harvey · Power Automate · Power BI",
     ],
   },
@@ -199,26 +229,47 @@ export const skills = [
 ]
 
 export const ticker = [
-  { text: "AI that runs in production" },
-  { text: "#RedefinedByAI", accent: true },
-  { text: "HITL architecture" },
-  { text: "2 days. Down from several weeks.", accent: true },
-  { text: "Agentic workflows" },
-  { text: "Legora" },
-  { text: "13,000 hours saved", accent: true },
-  { text: "Regulated environments" },
-  { text: "Copilot Studio" },
-  { text: "5 years in production", accent: true },
-  { text: "Harvey" },
-  { text: "Melbourne" },
-  { text: "Vendor evaluation" },
-  { text: "Enterprise AI" },
-  { text: "Knows where AI can go unsupervised", accent: true },
-  { text: "Claude" },
-  { text: "Knows when none of them do yet.", accent: true },
-  { text: "AI Acceleration" },
-  { text: "#RedefinedByAI", accent: true },
+  { text: "The intelligence is only as reliable as what it runs on.", accent: true },
+  { text: "From \"Networks\", Redefined by AI" },
 ]
+
+/* ─────────────────────────────────────────────────────────────
+   Redefined by AI — the series.
+
+   ONE LIST. Posted + written only. Drafts live in your notes, not here.
+   Numbering renumbers continuously off the array index, so when you
+   flip a written entry to posted (or add a new written one), the
+   "№ 01 … № 10" sequence reflows automatically — no manual edits to
+   the section header, the "Latest · No. NN" eyebrow, or anywhere else.
+
+   To update:
+     1. Add an entry: `{ title, status: "written", hook }`
+     2. When it's live, change status to `"posted"`
+     3. That's it.
+*/
+export type RbaStatus = 'posted' | 'written' | 'draft' | 'todo'
+export type RbaEntry = { title: string; status: RbaStatus; hook: string; href?: string }
+
+export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards: number } = {
+  entries: [
+    { title: "Model.",            status: "posted",  hook: "Same spelling. New job. Nobody sent a fax." },
+    { title: "Memory.",           status: "posted",  hook: "Three things make AI feel like it remembers. None of them are memory." },
+    { title: "Prompt Injection.", status: "posted",  hook: "Invisible to you. Not to your model." },
+    { title: "Training.",         status: "posted",  hook: "The best trainer you've ever had stopped learning the day it launched." },
+    { title: "Forest.",           status: "posted",  hook: "A forest is not a forest. Not in IT." },
+    { title: "Mythos.",           status: "posted",  hook: "In seven weeks, it found over 2,000 unknown vulnerabilities." },
+    { title: "Token.",            status: "posted",  hook: "Worth knowing tomorrow's bill." },
+    { title: "Vector.",           status: "posted",  hook: "How meaning becomes math." },
+    { title: "Transformer.",      status: "written", hook: "Attention. Hallucination. The architecture under the answer." },
+    { title: "Temperature.",      status: "written", hook: "Same model, different mood." },
+    { title: "Networks.",         status: "draft",   hook: "" },
+    { title: "Runs On.",          status: "draft",   hook: "" },
+    { title: "Agents.",           status: "draft",   hook: "" },
+    { title: "Harness.",          status: "todo",    hook: "" },
+  ],
+  deckHref: "/flashcards",
+  totalCards: 35,
+}
 
 /* Sample exchange shown on the homepage Oracle preview.
    Real interactions still happen on /oracle via the Ball component. */
