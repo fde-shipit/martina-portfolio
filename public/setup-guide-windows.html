@@ -672,7 +672,7 @@
 
     <div class="meta-strip">
       <div class="item"><span class="k">Platform</span><span class="v">Windows 10 / 11</span></div>
-      <div class="item"><span class="k">Time</span><span class="v">45 to 60 min</span></div>
+      <div class="item"><span class="k">Time</span><span class="v">~ 2 hours</span></div>
       <div class="item"><span class="k">Assumes</span><span class="v">VS Code &amp; Git</span></div>
       <div class="item"><span class="k">Terminal</span><span class="v">Git Bash</span></div>
     </div>
@@ -1367,6 +1367,12 @@ git push</pre>
     update();
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
+
+    // Open all external links in a new tab
+    document.querySelectorAll('a[href^="http"]').forEach(a => {
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    });
 
     // Copy buttons
     document.querySelectorAll('button[data-copy]').forEach(btn => {
