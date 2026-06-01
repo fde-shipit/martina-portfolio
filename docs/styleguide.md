@@ -134,7 +134,7 @@ DM Mono            → var(--font-dm-mono)    — labels, tags, nav, CTAs
 Max content width:  1180px (hero)
                     1400px (oracle, pull quote, single-column pages)
                     1500px (work section)
-                    1320px (after-hours / full-bleed case studies)
+                    1500px (oracle-case-study / full-bleed case studies)
 
 Horizontal padding: 3rem  desktop
                     1.25–1.5rem  mobile (≤ 768px)

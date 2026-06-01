@@ -269,7 +269,7 @@ export default function BuildsPage() {
                   }}
                 >
                   <a
-                    href="/work/after-hours"
+                    href="/work/oracle-case-study"
                     style={{
                       fontFamily: 'var(--font-dm-mono)',
                       fontSize: '0.58rem',

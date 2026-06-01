@@ -142,14 +142,14 @@ export const alsoShipped = [
   },
 ]
 
-/* The case study with its own page. Now lives at /work/after-hours. */
+/* The case study with its own page. Now lives at /work/oracle-case-study. */
 export const afterHours = {
   metric:   "↗",
   from:     "case study",
   title:    "After hours · this website",
-  summary:  "Started with a magic 8 ball. Ended up with a portfolio. Eight nights, two hours each. Solo. The chat was the build.",
+  summary:  "Started with a magic-8-ball. Ended up with a portfolio. Eight nights, two hours each. Solo. The chat was the build.",
   tags:     ["Next.js", "Claude API", "TypeScript", "Vercel"],
-  link:     "/work/after-hours",
+  link:     "/work/oracle-case-study",
 }
 
 export const career = [

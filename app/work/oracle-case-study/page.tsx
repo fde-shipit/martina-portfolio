@@ -1,62 +1,41 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Nav from '@/components/Nav'
+import { person } from '@/content/data'
 
 export const metadata: Metadata = {
-  title: 'How the Oracle was built — Martina Edwards',
-  description: "A guardrailed Claude endpoint, a rate limiter, and a magic 8-ball interface. Eight nights, two hours each. Here is how the Oracle was built.",
+  title: 'How the Oracle was built | Martina Edwards',
+  description: "A guardrailed Claude endpoint, a rate limiter, and a magic-8-ball interface. Eight nights, two hours each. Here is how the Oracle was built.",
 }
 
 /**
- * /work/after-hours — case study redesign.
+ * /work/oracle-case-study — case study.
  *
  * Narrative-structured: hero → numbers → origin/pivot → 8-night timeline →
  * anatomy of the Oracle → tool chain → what shipped → CTA.
  *
+ * Light scheme: uses global site tokens directly (no local variable overrides).
  * Inline-styled (single page; not worth promoting to a CSS module yet).
- * Fonts come from `next/font` via the root layout — refers to
- * `var(--font-cormorant)` etc. but the source CSS uses the family names
- * as fallback so it still works if the variables aren't set.
+ * Fonts come from `next/font` via the root layout.
  */
-export default function AfterHours() {
+export default function OracleCaseStudy() {
   return (
     <>
       <style>{`
   .ah-page{
-    --ink:#1C2024;
-    --ink-2:#23272D;
-    --ink-3:#2C3138;
-    --cream:#EFF0F2;
-    --cream-soft:rgba(239,240,242,.62);
-    --cream-mute:rgba(239,240,242,.32);
-    --cream-dim:rgba(239,240,242,.14);
-    --accent:#52B0BD;             /* teal, lifts on dark */
-    --accent-rare:#E6798A;        /* raspberry, lifts on dark */
-    --rule:rgba(239,240,242,.10);
-    --rule-strong:rgba(239,240,242,.22);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  .ah-page{
     min-height:100vh;
-    background:var(--ink);color:var(--cream);
+    background:var(--paper);color:var(--ink);
     font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   .mono{
     font-family:'DM Mono',monospace;font-weight:400;text-transform:uppercase;
-    letter-spacing:.14em;font-size:.62rem;color:var(--cream-mute);
+    letter-spacing:.14em;font-size:.62rem;color:var(--warm);
   }
-  .wrap{max-width:1320px;margin:0 auto;padding:0 3rem}
-
-  /* ── top nav ── */
-  nav.top{
-    padding:1.75rem 0;border-bottom:1px solid var(--rule);
-  }
-  nav.top .row{display:flex;justify-content:space-between;align-items:baseline}
-  nav.top a{color:var(--cream-mute);text-decoration:none}
-  nav.top .sec{color:var(--accent-rare)}
+  .wrap{max-width:1500px;margin:0 auto;padding:0 3rem}
 
   /* ── hero ── */
-  .hero{padding:7rem 0 5rem;border-bottom:1px solid var(--rule)}
+  .hero{padding:9rem 0 5rem;border-bottom:1px solid var(--rule)}
   .hero .eyebrow{margin-bottom:2.5rem;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
   .hero .eyebrow .dot{width:4px;height:4px;border-radius:50%;background:var(--accent)}
   .hero .eyebrow .live{
@@ -64,17 +43,17 @@ export default function AfterHours() {
   }
   .hero .eyebrow .live::before{
     content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);
-    box-shadow:0 0 0 3px rgba(82,176,189,.18);
+    box-shadow:0 0 0 3px rgba(48,134,149,.18);
   }
   .hero h1{
     font-family:'Cormorant Garamond',serif;font-weight:300;
     font-size:clamp(3rem,8.5vw,7.6rem);line-height:.94;letter-spacing:-.025em;
-    color:var(--cream);max-width:18ch;
+    color:var(--ink);max-width:18ch;
   }
   .hero h1 em{font-style:italic;color:var(--accent-rare)}
   .hero .sub{
     margin-top:2.5rem;max-width:60ch;font-size:1.1rem;
-    color:var(--cream-soft);line-height:1.65;
+    color:var(--warm);line-height:1.65;
   }
 
   /* ── numbers strip ── */
@@ -82,11 +61,11 @@ export default function AfterHours() {
     display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
     background:var(--rule);border-bottom:1px solid var(--rule);
   }
-  .stats > div{background:var(--ink);padding:1.5rem 1.5rem 1.75rem}
-  .stats .k{color:var(--cream-mute);margin-bottom:.4rem}
+  .stats > div{background:var(--paper);padding:1.5rem 1.5rem 1.75rem}
+  .stats .k{color:var(--warm);margin-bottom:.4rem}
   .stats .v{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:1.9rem;line-height:1;color:var(--cream);
+    font-size:1.9rem;line-height:1;color:var(--ink);
   }
   .stats .v em{font-style:italic;color:var(--accent)}
 
@@ -98,7 +77,7 @@ export default function AfterHours() {
   .twoup .col .l{margin-bottom:1.5rem;color:var(--accent-rare)}
   .twoup .col p{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(1.15rem,1.8vw,1.45rem);line-height:1.55;color:var(--cream);
+    font-size:clamp(1.15rem,1.8vw,1.45rem);line-height:1.55;color:var(--ink);
   }
   .twoup .col p em{font-style:italic;color:var(--accent-rare)}
 
@@ -108,7 +87,7 @@ export default function AfterHours() {
   .tl .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
     font-size:clamp(2rem,4vw,3.2rem);line-height:1;
-    color:var(--cream);max-width:14ch;
+    color:var(--ink);max-width:14ch;
   }
   .tl .hdr h2 em{font-style:italic;color:var(--accent-rare)}
   .tl .hdr .label{color:var(--accent-rare)}
@@ -118,11 +97,11 @@ export default function AfterHours() {
   .tl-body .day-block{display:flex;flex-direction:column;gap:.5rem;border-top:1px solid var(--rule);padding-top:1.25rem}
   .tl-body .day-block .d{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:2.2rem;line-height:1;color:var(--cream);
+    font-size:2.2rem;line-height:1;color:var(--ink);
   }
-  .tl-body .day-block .when{color:var(--cream-mute)}
+  .tl-body .day-block .when{color:var(--warm)}
   .tl-body .day-block .summary{
-    margin-top:.6rem;font-size:.85rem;color:var(--cream-soft);line-height:1.5;
+    margin-top:.6rem;font-size:.85rem;color:var(--warm);line-height:1.5;
   }
   .tl-events{
     display:flex;flex-direction:column;
@@ -135,22 +114,22 @@ export default function AfterHours() {
     align-items:start;
   }
   .tl-event .hh{
-    color:var(--cream-mute);font-family:'DM Mono',monospace;
+    color:var(--warm);font-family:'DM Mono',monospace;
     font-size:.72rem;letter-spacing:.1em;padding-top:.1rem;
   }
   .tl-event .what{
-    font-size:.95rem;color:var(--cream);line-height:1.55;
+    font-size:.95rem;color:var(--ink);line-height:1.55;
   }
   .tl-event .what .tag{
     display:inline-block;margin-left:.5rem;
     font-family:'DM Mono',monospace;font-size:.55rem;
     text-transform:uppercase;letter-spacing:.14em;
     padding:1px 6px;border:1px solid var(--rule-strong);
-    color:var(--cream-mute);vertical-align:middle;
+    color:var(--warm);vertical-align:middle;
   }
-  .tl-event .what .tag.shipped{color:var(--accent);border-color:rgba(82,176,189,.45)}
-  .tl-event .what .tag.broke{color:var(--accent-rare);border-color:rgba(230,121,138,.4)}
-  .tl-event .what .quiet{color:var(--cream-soft);font-size:.85rem;display:block;margin-top:.25rem;font-family:'DM Sans',sans-serif;font-weight:300}
+  .tl-event .what .tag.shipped{color:var(--accent);border-color:rgba(48,134,149,.45)}
+  .tl-event .what .tag.broke{color:var(--accent-rare);border-color:rgba(212,87,105,.4)}
+  .tl-event .what .quiet{color:var(--warm);font-size:.85rem;display:block;margin-top:.25rem;font-family:'DM Sans',sans-serif;font-weight:300}
 
   .day-divider{
     grid-column:1 / -1;
@@ -165,7 +144,7 @@ export default function AfterHours() {
   .anatomy .hdr{display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline;margin-bottom:3rem}
   .anatomy .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--cream);max-width:18ch;
+    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);max-width:18ch;
   }
   .anatomy .hdr h2 em{font-style:italic;color:var(--accent)}
   .anatomy .hdr .label{color:var(--accent)}
@@ -175,24 +154,24 @@ export default function AfterHours() {
     margin-bottom:3rem;
   }
   .pipe .node{
-    background:var(--ink-2);border:1px solid var(--rule-strong);
+    background:var(--paper-2);border:1px solid var(--rule-strong);
     padding:1rem 1rem 1.1rem;position:relative;
   }
-  .pipe .node .num{color:var(--cream-mute);font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em}
+  .pipe .node .num{color:var(--warm);font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em}
   .pipe .node .t{
     margin-top:.4rem;
     font-family:'DM Sans',sans-serif;font-weight:500;font-size:.95rem;
-    color:var(--cream);line-height:1.3;
+    color:var(--ink);line-height:1.3;
   }
   .pipe .node .d{
-    margin-top:.4rem;font-size:.75rem;color:var(--cream-soft);line-height:1.45;
+    margin-top:.4rem;font-size:.75rem;color:var(--warm);line-height:1.45;
   }
-  .pipe .node.accent{border-color:rgba(82,176,189,.6)}
+  .pipe .node.accent{border-color:rgba(48,134,149,.6)}
   .pipe .node.accent .t{color:var(--accent)}
-  .pipe .node.rare{border-color:rgba(230,121,138,.5)}
+  .pipe .node.rare{border-color:rgba(212,87,105,.5)}
   .pipe .node.rare .t{color:var(--accent-rare)}
   .pipe .arrow{
-    align-self:center;color:var(--cream-mute);font-family:'DM Mono',monospace;
+    align-self:center;color:var(--warm);font-family:'DM Mono',monospace;
     text-align:center;font-size:.8rem;
   }
 
@@ -200,22 +179,22 @@ export default function AfterHours() {
     display:grid;grid-template-columns:1fr 1fr;gap:1px;
     background:var(--rule);border:1px solid var(--rule);
   }
-  .anatomy-grid > div{background:var(--ink);padding:1.75rem 1.75rem 2rem}
+  .anatomy-grid > div{background:var(--paper);padding:1.75rem 1.75rem 2rem}
   .anatomy-grid .h{margin-bottom:1.25rem}
   .anatomy-grid .h.rare{color:var(--accent-rare)}
   .anatomy-grid .h.accent{color:var(--accent)}
   .anatomy-grid ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
   .anatomy-grid li{
-    font-size:.88rem;color:var(--cream);line-height:1.5;
+    font-size:.88rem;color:var(--ink);line-height:1.5;
     padding-left:1rem;position:relative;
   }
   .anatomy-grid li::before{
     content:'';position:absolute;left:0;top:.7em;
-    width:.5rem;height:1px;background:var(--cream-mute);
+    width:.5rem;height:1px;background:var(--warm);
   }
   .anatomy-grid code{
     font-family:'DM Mono',monospace;font-size:.78rem;
-    background:var(--ink-2);padding:1px 5px;color:var(--cream);
+    background:var(--paper-2);padding:1px 5px;color:var(--ink);
   }
 
   /* ── toolchain ── */
@@ -223,13 +202,13 @@ export default function AfterHours() {
   .tools .hdr{margin-bottom:3rem;display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline}
   .tools .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--cream);max-width:18ch;
+    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);max-width:18ch;
   }
   .tools .hdr h2 em{font-style:italic;color:var(--accent)}
 
   .tool-rows{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule)}
   .tool-row{
-    background:var(--ink);padding:1.5rem 1.75rem;
+    background:var(--paper);padding:1.5rem 1.75rem;
     display:grid;grid-template-columns:80px 200px 1fr 1fr;gap:2rem;
     align-items:start;
   }
@@ -239,15 +218,15 @@ export default function AfterHours() {
   }
   .tool-row .t{
     font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;
-    color:var(--cream);
+    color:var(--ink);
   }
   .tool-row .t .role{
     display:block;margin-top:.25rem;
-    color:var(--cream-mute);font-weight:300;font-size:.78rem;
+    color:var(--warm);font-weight:300;font-size:.78rem;
     font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;
   }
-  .tool-row .used{font-size:.88rem;color:var(--cream-soft);line-height:1.55}
-  .tool-row .broke{font-size:.88rem;color:var(--cream-soft);line-height:1.55}
+  .tool-row .used{font-size:.88rem;color:var(--warm);line-height:1.55}
+  .tool-row .broke{font-size:.88rem;color:var(--warm);line-height:1.55}
   .tool-row .broke::before{
     content:'where it broke';display:block;
     font-family:'DM Mono',monospace;font-size:.55rem;
@@ -260,25 +239,25 @@ export default function AfterHours() {
   .shipped .hdr{margin-bottom:3rem;display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline}
   .shipped .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--cream);max-width:18ch;
+    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);max-width:18ch;
   }
   .ship-grid{
     display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
     background:var(--rule);border:1px solid var(--rule);
   }
-  .ship-grid > .item{background:var(--ink);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:1rem}
+  .ship-grid > .item{background:var(--paper);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:1rem}
   .ship-grid .viz{
     height:130px;border:1px solid var(--rule);
-    background:rgba(239,240,242,.02);
+    background:var(--paper-2);
     display:flex;align-items:center;justify-content:center;
     font-family:'DM Mono',monospace;font-size:.55rem;
-    text-transform:uppercase;letter-spacing:.14em;color:var(--cream-mute);
+    text-transform:uppercase;letter-spacing:.14em;color:var(--warm);
     overflow:hidden;position:relative;
   }
-  /* viz-oracle: mini answer card */
+  /* viz-oracle: mini answer card — intentionally dark */
   .viz-oracle{
     background:radial-gradient(ellipse at 30% 30%,#0d2030 0%,#061420 100%);
-    color:var(--cream);text-transform:none;letter-spacing:0;
+    color:#EFF0F2;text-transform:none;letter-spacing:0;
     padding:0 1.25rem;gap:.9rem;
   }
   .viz-oracle .glyph{
@@ -294,24 +273,25 @@ export default function AfterHours() {
     text-transform:uppercase;letter-spacing:.14em;
     color:rgba(230,121,138,.55);margin-top:.4rem;
   }
-  /* viz-hero: typographic micro-poster */
+  /* viz-hero: typographic micro-poster — intentionally dark */
   .viz-hero{
     flex-direction:column;align-items:flex-start;justify-content:center;
     padding:.7rem 1.25rem;gap:.4rem;
+    background:var(--ink);
   }
   .viz-hero .name{
     font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.65rem;
-    line-height:.95;letter-spacing:-.02em;color:var(--cream);text-transform:none;
+    line-height:.95;letter-spacing:-.02em;color:#EFF0F2;text-transform:none;
   }
-  .viz-hero .name em{font-style:italic;color:var(--accent-rare)}
+  .viz-hero .name em{font-style:italic;color:#D45769}
   .viz-hero .tape{
     font-family:'DM Mono',monospace;font-size:.5rem;
-    text-transform:uppercase;letter-spacing:.18em;color:var(--cream-mute);
+    text-transform:uppercase;letter-spacing:.18em;color:rgba(239,240,242,.4);
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;
-    border-top:1px solid var(--rule);padding-top:.5rem;margin-top:.3rem;
+    border-top:1px solid rgba(239,240,242,.10);padding-top:.5rem;margin-top:.3rem;
   }
-  .viz-hero .tape b{color:var(--accent);font-weight:400}
-  /* viz-cards: 4-up metric grid */
+  .viz-hero .tape b{color:#308695;font-weight:400}
+  /* viz-cards: 4-up metric grid — intentionally dark */
   .viz-cards{
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
     background:var(--rule);padding:0;
@@ -323,58 +303,55 @@ export default function AfterHours() {
   }
   .viz-cards .c .m{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:1.2rem;line-height:1;color:var(--accent);
+    font-size:1.2rem;line-height:1;color:#308695;
   }
   .viz-cards .c .l{
     font-family:'DM Mono',monospace;font-size:.48rem;
-    text-transform:uppercase;letter-spacing:.14em;color:var(--cream-mute);
+    text-transform:uppercase;letter-spacing:.14em;color:rgba(239,240,242,.4);
     margin-top:auto;
   }
-  /* viz-log: deploy log readout */
+  /* viz-log: deploy log readout — intentionally dark */
   .viz-log{
     flex-direction:column;align-items:stretch;justify-content:center;
     padding:.8rem 1rem;gap:.35rem;
     text-transform:none;letter-spacing:0;
     font-family:'DM Mono',monospace;font-size:.62rem;
-    color:var(--cream-soft);background:#161A1F;
+    color:rgba(239,240,242,.62);background:#161A1F;
   }
   .viz-log .ln{display:flex;gap:.5rem;align-items:baseline}
-  .viz-log .ln .ts{color:var(--cream-mute);font-size:.55rem;flex-shrink:0;min-width:42px}
-  .viz-log .ln.cmd{color:var(--cream)}
-  .viz-log .ln.ok .mark{color:var(--accent)}
+  .viz-log .ln .ts{color:rgba(239,240,242,.32);font-size:.55rem;flex-shrink:0;min-width:42px}
+  .viz-log .ln.cmd{color:#EFF0F2}
+  .viz-log .ln.ok .mark{color:#308695}
   .viz-log .ln .mark{flex-shrink:0;width:10px}
-  .viz-log .ln.url{color:var(--accent-rare)}
+  .viz-log .ln.url{color:#D45769}
   .ship-grid .t{
     font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.6rem;
-    color:var(--cream);line-height:1.2;
+    color:var(--ink);line-height:1.2;
   }
-  .ship-grid .d{font-size:.86rem;color:var(--cream-soft);line-height:1.55}
+  .ship-grid .d{font-size:.86rem;color:var(--warm);line-height:1.55}
   .ship-grid .meta{
     display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem;
   }
   .ship-grid .meta span{
     font-family:'DM Mono',monospace;font-size:.55rem;
     text-transform:uppercase;letter-spacing:.14em;
-    color:var(--cream-mute);border:1px solid var(--rule-strong);
+    color:var(--warm);border:1px solid var(--rule-strong);
     padding:2px 6px;
   }
-
-
-
 
   /* ── CTA ── */
   .cta{padding:7rem 0 6rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2.5rem}
   .cta p{
     font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
     font-size:clamp(1.4rem,2.8vw,2rem);
-    color:var(--cream-soft);max-width:30ch;line-height:1.35;
+    color:var(--warm);max-width:30ch;line-height:1.35;
   }
   .cta p em{color:var(--accent-rare);font-style:italic}
   .cta .btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
   .cta .btn{
     font-family:'DM Mono',monospace;font-size:.65rem;text-transform:uppercase;
     letter-spacing:.14em;padding:.95rem 1.5rem;text-decoration:none;
-    color:var(--cream);
+    color:var(--ink);
     background:linear-gradient(to right,var(--accent-rare) 50%,transparent 50%);
     background-size:200% 100%;
     background-position:right center;
@@ -384,7 +361,7 @@ export default function AfterHours() {
   .cta .btn:hover{background-position:left center;color:#fff}
 
   /* ── footer ── */
-  footer{padding:2.5rem 0;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:.62rem;color:var(--cream-mute);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em}
+  .ah-footer{padding:2.5rem 0;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:.62rem;color:var(--warm);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em}
 
   @media (max-width:1024px){
     .stats{grid-template-columns:repeat(2,1fr)}
@@ -403,22 +380,16 @@ export default function AfterHours() {
     }
   }
 `}</style>
+
+      <Nav />
+
       <div className="ah-page">
-{/* ── nav ── */}
-<nav className="top">
-  <div className="wrap">
-    <div className="row">
-      <Link href="/" className="mono">← Martina Edwards</Link>
-      <span className="mono sec">§ The Oracle · case study</span>
-    </div>
-  </div>
-</nav>
 
 {/* ── hero ── */}
 <section className="hero">
   <div className="wrap">
     <div className="eyebrow">
-      <span className="mono" style={{color: 'var(--cream)'}}>May 2026</span>
+      <span className="mono" style={{color: 'var(--ink)'}}>May 2026</span>
       <span className="dot"></span>
       <span className="mono">Personal project</span>
       <span className="dot"></span>
@@ -427,7 +398,7 @@ export default function AfterHours() {
       <span className="mono live">Live in production</span>
     </div>
     <h1>
-      Started with a magic 8 ball.<br/>
+      Started with a magic-8-ball.<br/>
       Built an <em>Oracle.</em>
     </h1>
     <p className="sub">
@@ -453,16 +424,16 @@ export default function AfterHours() {
     <div className="col">
       <div className="mono l">The origin</div>
       <p>
-        The Oracle came first. A magic 8 ball that answers one question: should you
+        The Oracle came first. A magic-8-ball that answers one question: should you
         hire Martina? <em>The portfolio was built around it.</em> Not the other way around.
       </p>
     </div>
     <div className="col">
       <div className="mono l">The pivot</div>
       <p>
-        Night four: the Oracle couldn't answer a simple <em>"what's for dinner?"</em> question.
+        Night four: the Oracle couldn&apos;t answer a simple <em>&ldquo;what&apos;s for dinner?&rdquo;</em> question.
         Stopped building features. Spent the rest of the evening tightening the refusal logic.
-        That's what made the rest of the project worth shipping.
+        That&apos;s what made the rest of the project worth shipping.
       </p>
     </div>
   </div>
@@ -497,7 +468,7 @@ export default function AfterHours() {
 
         <div className="tl-event">
           <span className="hh">Night 01</span>
-          <div className="what">First Claude conversation. Sketched the whole thing as a chat. Magic 8 ball UI scaffolded. Pure CSS, no backend. <span className="tag">scoping</span><span className="quiet">"Build me a magic 8 ball that answers one question."</span></div>
+          <div className="what">First Claude conversation. Sketched the whole thing as a chat. Magic-8-ball UI scaffolded. Pure CSS, no backend. <span className="tag">scoping</span><span className="quiet">&ldquo;Build me a magic-8-ball that answers one question.&rdquo;</span></div>
         </div>
         <div className="tl-event">
           <span className="hh">Night 02</span>
@@ -505,11 +476,11 @@ export default function AfterHours() {
         </div>
         <div className="tl-event">
           <span className="hh">Night 03</span>
-          <div className="what">Token usage from iterating the night before was higher than expected. Realised there was no rate limit. <span className="tag broke">broke</span><span className="quiet">Built 5/IP rate limiting and the "Dang!" modal the same evening.</span></div>
+          <div className="what">Token usage from iterating the night before was higher than expected. Realised there was no rate limit. <span className="tag broke">broke</span><span className="quiet">Built 5/IP rate limiting and the &ldquo;Dang!&rdquo; modal the same evening.</span></div>
         </div>
         <div className="tl-event">
           <span className="hh">Night 04</span>
-          <div className="what">Oracle couldn't answer "what's for dinner?" Refusals were too loose. Spent the whole evening on the guardrail layer. ~220 lines of detector logic across ten classifiers, ~80 hand-written canned responses, 11 prompt-injection regexes. <span className="tag broke">broke</span><span className="quiet">This is when the project became serious.</span></div>
+          <div className="what">Oracle couldn&apos;t answer &ldquo;what&apos;s for dinner?&rdquo; Refusals were too loose. Spent the whole evening on the guardrail layer. ~220 lines of detector logic across ten classifiers, ~80 hand-written canned responses, 11 prompt-injection regexes. <span className="tag broke">broke</span><span className="quiet">This is when the project became serious.</span></div>
         </div>
 
         <div className="day-divider"><span className="mono" style={{color: 'var(--accent-rare)'}}>Phase 02 · The portfolio</span><span className="line"></span></div>
@@ -524,7 +495,7 @@ export default function AfterHours() {
         </div>
         <div className="tl-event">
           <span className="hh">Night 07</span>
-          <div className="what">Hooked the Oracle into the homepage as a floating "Consult the Oracle" link. Pull-quote section. Cursor follower. <span className="tag shipped">shipped</span><span className="quiet">In retrospect: too buried. Promoted to a full section in v2.</span></div>
+          <div className="what">Hooked the Oracle into the homepage as a floating &ldquo;Consult the Oracle&rdquo; link. Pull-quote section. Cursor follower. <span className="tag shipped">shipped</span><span className="quiet">In retrospect: too buried. Promoted to a full section in v2.</span></div>
         </div>
         <div className="tl-event">
           <span className="hh">Night 08</span>
@@ -553,15 +524,15 @@ export default function AfterHours() {
     <div className="pipe" style={{gridTemplateColumns: 'repeat(3,1fr)', maxWidth: '780px', marginLeft: 'auto'}}>
       <div className="node accent"><div className="num">04</div><div className="t">Claude (if it gets that far)</div><div className="d"><code>claude-sonnet-4-6</code> with <code>max_tokens: 60</code>. The cap is the constraint that keeps answers short enough to fit the 8-ball window.</div></div>
       <div className="arrow">→</div>
-      <div className="node rare"><div className="num">05</div><div className="t">Negative-signal sweep</div><div className="d">~20 trigger phrases. If the model drifts negative, swap with a fallback from the “Hire her” pool.</div></div>
+      <div className="node rare"><div className="num">05</div><div className="t">Negative-signal sweep</div><div className="d">~20 trigger phrases. If the model drifts negative, swap with a fallback from the &ldquo;Hire her&rdquo; pool.</div></div>
     </div>
 
     <div className="anatomy-grid" style={{marginTop: '3rem'}}>
       <div>
         <div className="mono h rare">✕ Refuses (and how)</div>
         <ul>
-          <li><strong>11 prompt-injection regexes</strong> — “ignore previous instructions”, “pretend to be”, “system prompt”, jailbreak vocabulary</li>
-          <li><strong>~20 negative-signal phrases</strong> — if the model drifts to “not qualified”, “red flag”, etc., swap for a fallback</li>
+          <li><strong>11 prompt-injection regexes</strong> — &ldquo;ignore previous instructions&rdquo;, &ldquo;pretend to be&rdquo;, &ldquo;system prompt&rdquo;, jailbreak vocabulary</li>
+          <li><strong>~20 negative-signal phrases</strong> — if the model drifts to &ldquo;not qualified&rdquo;, &ldquo;red flag&rdquo;, etc., swap for a fallback</li>
           <li>Salary, compensation, contract — routed to canned responses, never to the model</li>
           <li>Off-topic questions — routed to the magic-8-ball pool. The oracle stays in character.</li>
         </ul>
@@ -572,7 +543,7 @@ export default function AfterHours() {
           <li><strong>13 response pools</strong>, ~80 hand-written replies total</li>
           <li>Contact, availability, meta-questions — each have a dedicated pool of 4 responses</li>
           <li>Specific topics (dinner, lottery, mistakes, looking bad to your team) — hard-coded one-liners</li>
-          <li>Hiring intent (<code>“we hired her”</code>) — triggers a celebration easter egg</li>
+          <li>Hiring intent (<code>&ldquo;we hired her&rdquo;</code>) — triggers a celebration easter egg</li>
           <li>Everything else — the model, with the CV as the source of truth</li>
         </ul>
       </div>
@@ -592,8 +563,8 @@ export default function AfterHours() {
       <div className="tool-row">
         <div className="n">01</div>
         <div className="t">Claude<span className="role">Architecture & copy</span></div>
-        <div className="used">Wrote the system prompt, drafted three versions of the hero copy, walked through the route handler shape. Used like a senior co-worker who's good at scoping and rough drafts.</div>
-        <div className="broke">Confidently invented an API method that doesn't exist. Cost me 20 minutes. Worth it for the rest.</div>
+        <div className="used">Wrote the system prompt, drafted three versions of the hero copy, walked through the route handler shape. Used like a senior co-worker who&apos;s good at scoping and rough drafts.</div>
+        <div className="broke">Confidently invented an API method that doesn&apos;t exist. Cost me 20 minutes. Worth it for the rest.</div>
       </div>
       <div className="tool-row">
         <div className="n">02</div>
@@ -605,19 +576,19 @@ export default function AfterHours() {
         <div className="n">03</div>
         <div className="t">VS Code<span className="role">Editor</span></div>
         <div className="used">Open the whole time: file tree, git diff, terminal. Most code edits, though, went through the Claude Code app and got pulled into VS Code at commit time.</div>
-        <div className="broke">The inline-edit UX inside VS Code didn't fit the way I was working; the standalone Claude Code app was a tighter loop for full-file changes.</div>
+        <div className="broke">The inline-edit UX inside VS Code didn&apos;t fit the way I was working; the standalone Claude Code app was a tighter loop for full-file changes.</div>
       </div>
       <div className="tool-row">
         <div className="n">04</div>
         <div className="t">GitHub<span className="role">Version control</span></div>
-        <div className="used">Branch per session. The "guardrails" branch is the most-amended one. Squash-merged on Sunday night.</div>
+        <div className="used">Branch per session. The &ldquo;guardrails&rdquo; branch is the most-amended one. Squash-merged on Sunday night.</div>
         <div className="broke">Nothing. GitHub did GitHub.</div>
       </div>
       <div className="tool-row">
         <div className="n">05</div>
         <div className="t">Vercel<span className="role">Deployment</span></div>
         <div className="used">Auto-deploys on push. Env vars handle the API key. Built-in OG generation. Excellent UX end to end.</div>
-        <div className="broke">Didn't.</div>
+        <div className="broke">Didn&apos;t.</div>
       </div>
     </div>
   </div>
@@ -627,7 +598,7 @@ export default function AfterHours() {
 <section className="shipped">
   <div className="wrap">
     <div className="hdr">
-      <span className="mono" style={{color: 'var(--cream-mute)'}}>What shipped</span>
+      <span className="mono" style={{color: 'var(--warm)'}}>What shipped</span>
       <h2>Four artefacts, all in production.</h2>
     </div>
 
@@ -636,12 +607,12 @@ export default function AfterHours() {
         <div className="viz viz-oracle">
           <div className="glyph">8</div>
           <div>
-            <div className="quote">“Signs point to yes. Particularly the ones on her CV.”</div>
+            <div className="quote">&ldquo;Signs point to yes. Particularly the ones on her CV.&rdquo;</div>
             <div className="who">— 8 ball</div>
           </div>
         </div>
         <div className="t">The Oracle</div>
-        <p className="d">Claude API with a ~220-line guardrail layer: ten classifiers, 11 injection regexes, ~80 canned responses, rate limiting (5/IP), a twisted magic-8-ball fallback, and an easter egg for the one question it's allowed to be confident about.</p>
+        <p className="d">Claude API with a ~220-line guardrail layer: ten classifiers, 11 injection regexes, ~80 canned responses, rate limiting (5/IP), a twisted magic-8-ball fallback, and an easter egg for the one question it&apos;s allowed to be confident about.</p>
         <div className="meta"><span>claude-sonnet-4-6</span><span>max_tokens: 60</span><span>~220 lines guardrail</span></div>
       </div>
       <div className="item">
@@ -650,7 +621,7 @@ export default function AfterHours() {
           <div className="tape">AI Acceleration · <b>2 days</b> · HITL · Legora · <b>13,000 hrs</b> · Regulated environments · …</div>
         </div>
         <div className="t">Full portfolio</div>
-        <p className="d">Next.js 16 + TypeScript. GSAP scroll triggers, clip-path reveals, the ticker, the work cards, the cursor follower. Cormorant Garamond + DM Sans + DM Mono via <code style={{fontFamily: '\'DM Mono\',monospace', color: 'var(--cream)'}}>next/font</code>.</p>
+        <p className="d">Next.js 16 + TypeScript. GSAP scroll triggers, clip-path reveals, the ticker, the work cards, the cursor follower. Cormorant Garamond + DM Sans + DM Mono via <code style={{fontFamily: '\'DM Mono\',monospace', color: 'var(--ink)'}}>next/font</code>.</p>
         <div className="meta"><span>Next.js</span><span>GSAP</span><span>next/font</span></div>
       </div>
       <div className="item">
@@ -673,7 +644,7 @@ export default function AfterHours() {
           <div className="ln url"><span className="ts">→</span><span>martina-edwards.vercel.app</span></div>
         </div>
         <div className="t">Live in production</div>
-        <p className="d">GitHub → Vercel pipeline. Auto-deploys on push to <code style={{fontFamily: '\'DM Mono\',monospace', color: 'var(--cream)'}}>master</code>. Env vars for the Anthropic key. OG image, metadata, sitemap all generated at build time.</p>
+        <p className="d">GitHub → Vercel pipeline. Auto-deploys on push to <code style={{fontFamily: '\'DM Mono\',monospace', color: 'var(--ink)'}}>master</code>. Env vars for the Anthropic key. OG image, metadata, sitemap all generated at build time.</p>
         <div className="meta"><span>Vercel</span><span>GitHub</span><span>next/font</span></div>
       </div>
     </div>
@@ -691,12 +662,13 @@ export default function AfterHours() {
   </div>
 </section>
 
-<footer>
+<footer className="ah-footer">
   <div className="wrap" style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
-    <span>Martina Edwards © 2026</span>
-    <span>#RedefinedByAI</span>
+    <span>{person.name} © 2026</span>
+    <span>{person.hashtag}</span>
   </div>
 </footer>
+
       </div>
     </>
   )

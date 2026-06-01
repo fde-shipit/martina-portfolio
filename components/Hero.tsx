@@ -101,7 +101,7 @@ export default function Hero() {
               &ldquo;Idk. I need a magic 8 ball&hellip; maybe I can build one!&rdquo; So I did.
             </p>
             <div className="hfc-card-actions">
-              <Link href="/work/after-hours" className="hfc-cta hfc-cta--rare">
+              <Link href="/work/oracle-case-study" className="hfc-cta hfc-cta--rare">
                 How it&apos;s built <span className="hfc-arr" aria-hidden="true">→</span>
               </Link>
               <a

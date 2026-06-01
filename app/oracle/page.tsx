@@ -53,7 +53,7 @@ export default function OraclePage() {
                 <a href="#oracle-ball" className="orc-cta">
                   Consult the Oracle <span className="orc-arr" aria-hidden="true">↓</span>
                 </a>
-                <Link href="/work/after-hours" className="orc-cta">
+                <Link href="/work/oracle-case-study" className="orc-cta">
                   Read the case study <span className="orc-arr" aria-hidden="true">→</span>
                 </Link>
               </div>
@@ -145,7 +145,7 @@ export default function OraclePage() {
               </div>
               <div className="orc-prov-col">
                 <div className="orc-prov-label">Why this exists</div>
-                <Link href="/work/after-hours" className="orc-prov-link">
+                <Link href="/work/oracle-case-study" className="orc-prov-link">
                   Read the case study →
                 </Link>
               </div>
