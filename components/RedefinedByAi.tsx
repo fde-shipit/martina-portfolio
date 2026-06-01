@@ -27,13 +27,14 @@ const STATUS_LABEL: Record<'posted' | 'written' | 'draft' | 'todo', string> = {
 const pad = (n: number) => String(n).padStart(2, '0')
 
 const DECK_TERMS = [
-  { num: '02',  card: '02 / 35', term: 'Memory.',      def: <>Three things make AI <em>feel</em> like it remembers. None of them are memory.</> },
-  { num: '03b', card: '08 / 35', term: 'Mythos.',      def: <>In seven weeks, it found <em>over 2,000</em> unknown vulnerabilities.</> },
-  { num: '03',  card: '05 / 35', term: 'Training.',    def: <>The best trainer you've ever had stopped <em>learning</em> the day it launched.</> },
-  { num: '04',  card: '12 / 35', term: 'Temperature.', def: <>Same model, <em>different mood.</em></> },
-  { num: '01',  card: '01 / 35', term: 'Model.',       def: <>Same spelling. <em>New job.</em> Nobody sent a fax.</> },
-  { num: '03c', card: '09 / 35', term: 'Token.',       def: <>Worth knowing <em>tomorrow's bill.</em></> },
-  { num: '02b', card: '04 / 35', term: 'Injection.',   def: <>Invisible to you. <em>Not</em> to your model.</> },
+  { num: '01', card: '01 / 08', term: 'Model.',      def: <>Same spelling. <em>New job.</em> Nobody sent a fax.</> },
+  { num: '02', card: '02 / 08', term: 'Memory.',     def: <>Three things make AI <em>feel</em> like it remembers. None of them are memory.</> },
+  { num: '03', card: '03 / 08', term: 'Injection.',  def: <>Invisible to you. <em>Not</em> to your model.</> },
+  { num: '04', card: '04 / 08', term: 'Training.',   def: <>The best trainer you have ever had stopped <em>learning</em> the day it launched.</> },
+  { num: '05', card: '05 / 08', term: 'Forest.',     def: <>A forest is not a forest. <em>Not in IT.</em></> },
+  { num: '06', card: '06 / 08', term: 'Mythos.',     def: <>In seven weeks, it found <em>over 2,000</em> unknown vulnerabilities.</> },
+  { num: '07', card: '07 / 08', term: 'Token.',      def: <>Worth knowing <em>tomorrow&apos;s bill.</em></> },
+  { num: '08', card: '08 / 08', term: 'Vector.',     def: <>How meaning <em>becomes math.</em></> },
 ]
 
 export default function RedefinedByAi() {

@@ -248,7 +248,7 @@ export const ticker = [
      3. That's it.
 */
 export type RbaStatus = 'posted' | 'written' | 'draft' | 'todo'
-export type RbaEntry = { title: string; status: RbaStatus; hook: string; href?: string }
+export type RbaEntry = { title: string; status: RbaStatus; hook: string; href?: string; card?: { front: string; back: string } }
 
 export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards: number } = {
   entries: [
@@ -256,9 +256,12 @@ export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards:
     { title: "Memory.",           status: "posted",  hook: "Three things make AI feel like it remembers. None of them are memory.",        href: "https://martinaedwards.substack.com/p/memory" },
     { title: "Prompt Injection.", status: "posted",  hook: "Invisible to you. Not to your model.",                                        href: "https://martinaedwards.substack.com/p/prompt-injection" },
     { title: "Training.",         status: "posted",  hook: "The best trainer you have ever had stopped learning the day it launched.",     href: "https://martinaedwards.substack.com/p/training" },
-    { title: "Forest.",           status: "posted",  hook: "A forest is not a forest. Not in IT.",                                        href: "https://martinaedwards.substack.com/p/redefined-by-ai-05-forest" },
-    { title: "Mythos.",           status: "posted",  hook: "In seven weeks, it found over 2,000 unknown vulnerabilities.",                 href: "https://martinaedwards.substack.com/p/redefined-by-ai-06-mythos" },
-    { title: "Token.",            status: "posted",  hook: "Worth knowing tomorrow's bill.",                                               href: "https://martinaedwards.substack.com/p/redefined-by-ai-06-token" },
+    { title: "Forest.",           status: "posted",  hook: "A forest is not a forest. Not in IT.",                                        href: "https://martinaedwards.substack.com/p/redefined-by-ai-05-forest",
+      card: { front: "Forest.", back: "In IT, a forest is the logical structure that connects an organisation's entire server infrastructure. Domains, users, computers, permissions, trust relationships. A mid-size organisation might run fifty physical servers hosting two hundred virtual machines. Each with a history nobody fully wrote down. Nobody can be certain what is connected to what. The scream test is sometimes the only way to find out." } },
+    { title: "Mythos.",           status: "posted",  hook: "In seven weeks, it found over 2,000 unknown vulnerabilities.",                 href: "https://martinaedwards.substack.com/p/redefined-by-ai-06-mythos",
+      card: { front: "Mythos.", back: "A model trained for coding and reasoning. Not built to be a security tool. In seven weeks it found over 2,000 unknown vulnerabilities across Linux, OpenBSD, Firefox, macOS. Not the weaknesses alone. The way in. A 27-year-old bug in OpenBSD. Two bugs in macOS chained into an exploit that bypasses Apple's memory protection. The remediation process is measured in years. Mythos found them in weeks." } },
+    { title: "Token.",            status: "posted",  hook: "Worth knowing tomorrow's bill.",                                               href: "https://martinaedwards.substack.com/p/redefined-by-ai-06-token",
+      card: { front: "Token.", back: "The basic unit a model reads. Not a word. A deliberate chunk of text. A word, part of a word, sometimes just punctuation. The model never sees the sentence. It sees the chunks, maps them into vectors. Because tokens are not tied to any one language, one model translates without ever being lost in translation. Take Fernweh. The ache for distant places. No English equivalent. The model handles it anyway. Meaning does not care which language it is dressed in." } },
     { title: "Vector.",           status: "posted",  hook: "How meaning becomes math." },
     { title: "Transformer.",      status: "written", hook: "Attention. Hallucination. The architecture under the answer." },
     { title: "Temperature.",      status: "written", hook: "Same model, different mood." },
