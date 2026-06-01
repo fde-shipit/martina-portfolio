@@ -73,7 +73,9 @@ export type RbaEntry = {
 }
 ```
 
-Add the new entry at the correct position in the posted sequence (after the last `status: 'posted'` entry, before `status: 'written'` entries):
+Add the new entry at the correct position in the posted sequence (after the last `status: 'posted'` entry, before `status: 'written'` entries).
+
+`href` is the Substack URL. It powers the clickable link on each row of the `/redefined-by-ai` index page. Without it, the row renders as plain text with no link.
 
 ```ts
 {
@@ -123,11 +125,13 @@ Find `REDEFINED_POSTS: FlashCard[]`. The `FlashCard` shape is:
 
 If the term already exists with `status: 'written'` or `status: 'draft'`, update that entry:
 - Set `status` to `"posted"`
-- Add `postUrl`
+- Add `postUrl` — the Substack URL. This is what renders as the "Read the post" link on the flashcard back.
 - Confirm `postNumber` matches the series number
 - Confirm `definition` is accurate to the post — rewrite if needed
 
-If the term does not yet exist, add a new entry at the correct position (after the last posted entry, before written/draft entries):
+If the term does not yet exist, add a new entry at the correct position (after the last posted entry, before written/draft entries).
+
+`postUrl` is the Substack URL. It renders as a "Read the post" link on the back of the flashcard. Without it, no link appears.
 
 ```ts
 {
