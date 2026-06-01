@@ -234,110 +234,6 @@ export default function OracleCaseStudy() {
     color:var(--accent-rare);margin-bottom:.4rem;
   }
 
-  /* ── shipped grid ── */
-  .shipped{padding:6rem 0 5rem;border-bottom:1px solid var(--rule)}
-  .shipped .hdr{margin-bottom:3rem;display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline}
-  .shipped .hdr h2{
-    font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);
-  }
-  .ship-grid{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
-    background:var(--rule);border:1px solid var(--rule);
-  }
-  .ship-grid > .item{background:var(--paper);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:1rem}
-  .ship-grid .viz{
-    height:130px;border:1px solid var(--rule);
-    background:var(--paper-2);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'DM Mono',monospace;font-size:.55rem;
-    text-transform:uppercase;letter-spacing:.14em;color:var(--warm);
-    overflow:hidden;position:relative;
-  }
-  /* viz-oracle: mini answer card — intentionally dark */
-  .viz-oracle{
-    background:radial-gradient(ellipse at 30% 30%,#0d2030 0%,#061420 100%);
-    color:#EFF0F2;text-transform:none;letter-spacing:0;
-    padding:0 1.25rem;gap:.9rem;
-  }
-  .viz-oracle .glyph{
-    font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;
-    color:rgba(230,121,138,.78);line-height:1;flex-shrink:0;
-  }
-  .viz-oracle .quote{
-    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-    font-size:.85rem;color:#f3c8d0;line-height:1.35;
-  }
-  .viz-oracle .who{
-    font-family:'DM Mono',monospace;font-size:.5rem;
-    text-transform:uppercase;letter-spacing:.14em;
-    color:rgba(230,121,138,.55);margin-top:.4rem;
-  }
-  /* viz-hero: typographic micro-poster — intentionally dark */
-  .viz-hero{
-    flex-direction:column;align-items:flex-start;justify-content:center;
-    padding:.7rem 1.25rem;gap:.4rem;
-    background:var(--ink);
-  }
-  .viz-hero .name{
-    font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.65rem;
-    line-height:.95;letter-spacing:-.02em;color:#EFF0F2;text-transform:none;
-  }
-  .viz-hero .name em{font-style:italic;color:#D45769}
-  .viz-hero .tape{
-    font-family:'DM Mono',monospace;font-size:.5rem;
-    text-transform:uppercase;letter-spacing:.18em;color:rgba(239,240,242,.4);
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;
-    border-top:1px solid rgba(239,240,242,.10);padding-top:.5rem;margin-top:.3rem;
-  }
-  .viz-hero .tape b{color:#308695;font-weight:400}
-  /* viz-cards: 4-up metric grid — intentionally dark */
-  .viz-cards{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--rule);padding:0;
-    text-transform:none;letter-spacing:0;
-  }
-  .viz-cards .c{
-    background:var(--ink);padding:.5rem .6rem;
-    display:flex;flex-direction:column;justify-content:space-between;
-  }
-  .viz-cards .c .m{
-    font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:1.2rem;line-height:1;color:#308695;
-  }
-  .viz-cards .c .l{
-    font-family:'DM Mono',monospace;font-size:.48rem;
-    text-transform:uppercase;letter-spacing:.14em;color:rgba(239,240,242,.4);
-    margin-top:auto;
-  }
-  /* viz-log: deploy log readout — intentionally dark */
-  .viz-log{
-    flex-direction:column;align-items:stretch;justify-content:center;
-    padding:.8rem 1rem;gap:.35rem;
-    text-transform:none;letter-spacing:0;
-    font-family:'DM Mono',monospace;font-size:.62rem;
-    color:rgba(239,240,242,.62);background:#161A1F;
-  }
-  .viz-log .ln{display:flex;gap:.5rem;align-items:baseline}
-  .viz-log .ln .ts{color:rgba(239,240,242,.32);font-size:.55rem;flex-shrink:0;min-width:42px}
-  .viz-log .ln.cmd{color:#EFF0F2}
-  .viz-log .ln.ok .mark{color:#308695}
-  .viz-log .ln .mark{flex-shrink:0;width:10px}
-  .viz-log .ln.url{color:#D45769}
-  .ship-grid .t{
-    font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.6rem;
-    color:var(--ink);line-height:1.2;
-  }
-  .ship-grid .d{font-size:.86rem;color:var(--warm);line-height:1.55}
-  .ship-grid .meta{
-    display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem;
-  }
-  .ship-grid .meta span{
-    font-family:'DM Mono',monospace;font-size:.55rem;
-    text-transform:uppercase;letter-spacing:.14em;
-    color:var(--warm);border:1px solid var(--rule-strong);
-    padding:2px 6px;
-  }
 
   /* ── CTA ── */
   .cta{padding:7rem 0 6rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2.5rem}
@@ -371,11 +267,10 @@ export default function OracleCaseStudy() {
     .tool-row{grid-template-columns:60px 1fr;gap:1rem}
     .tool-row .used,.tool-row .broke{grid-column:span 2}
     .anatomy-grid{grid-template-columns:1fr}
-    .ship-grid{grid-template-columns:1fr}
   }
   @media (max-width:768px){
     .wrap{padding:0 1.5rem}
-    .tl .hdr,.tl-body,.anatomy .hdr,.tools .hdr,.shipped .hdr{
+    .tl .hdr,.tl-body,.anatomy .hdr,.tools .hdr{
       grid-template-columns:1fr !important;gap:1rem !important;
     }
   }
@@ -588,63 +483,6 @@ export default function OracleCaseStudy() {
         <div className="t">Vercel<span className="role">Deployment</span></div>
         <div className="used">Auto-deploys on push. Env vars handle the API key. Built-in OG generation. Excellent UX end to end.</div>
         <div className="broke">Didn&apos;t.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* ── shipped ── */}
-<section className="shipped">
-  <div className="wrap">
-    <div className="hdr">
-      <span className="mono" style={{color: 'var(--warm)'}}>What shipped</span>
-      <h2>Four artefacts, all in production.</h2>
-    </div>
-
-    <div className="ship-grid">
-      <div className="item">
-        <div className="viz viz-oracle">
-          <div className="glyph">8</div>
-          <div>
-            <div className="quote">&ldquo;Signs point to yes. Particularly the ones on her CV.&rdquo;</div>
-            <div className="who">— 8 ball</div>
-          </div>
-        </div>
-        <div className="t">The Oracle</div>
-        <p className="d">Claude API with a ~220-line guardrail layer: ten classifiers, 11 injection regexes, ~80 canned responses, rate limiting (5/IP), a twisted magic-8-ball fallback, and an easter egg for the one question it&apos;s allowed to be confident about.</p>
-        <div className="meta"><span>claude-sonnet-4-6</span><span>max_tokens: 60</span><span>~220 lines guardrail</span></div>
-      </div>
-      <div className="item">
-        <div className="viz viz-hero">
-          <div className="name">Martina <em>Edwards</em></div>
-          <div className="tape">AI Acceleration · <b>2 days</b> · HITL · Legora · <b>13,000 hrs</b> · Regulated environments · …</div>
-        </div>
-        <div className="t">Full portfolio</div>
-        <p className="d">Next.js 16 + TypeScript. GSAP scroll triggers, clip-path reveals, the ticker, the work cards, the cursor follower. Cormorant Garamond + DM Sans + DM Mono via <code style={{fontFamily: '\'DM Mono\',monospace', color: 'var(--ink)'}}>next/font</code>.</p>
-        <div className="meta"><span>Next.js</span><span>GSAP</span><span>next/font</span></div>
-      </div>
-      <div className="item">
-        <div className="viz viz-cards">
-          <div className="c"><div className="m">2 days</div><div className="l">Legora</div></div>
-          <div className="c"><div className="m">13k+</div><div className="l">Webex</div></div>
-          <div className="c"><div className="m">5 yrs</div><div className="l">SharePoint</div></div>
-          <div className="c"><div className="m">AASB</div><div className="l">Vercel</div></div>
-        </div>
-        <div className="t">Eight work cards · zero employer names</div>
-        <p className="d">Each card carries the metric, the method, and the tag stack. The employer is removed deliberately. The work was the point, not the logo above it.</p>
-        <div className="meta"><span>Content design</span><span>Editorial</span></div>
-      </div>
-      <div className="item">
-        <div className="viz viz-log">
-          <div className="ln cmd"><span className="ts">$</span><span>vercel deploy --prod</span></div>
-          <div className="ln ok"><span className="ts">12.4s</span><span className="mark">✓</span><span>Compiled</span></div>
-          <div className="ln ok"><span className="ts">  </span><span className="mark">✓</span><span>Linted, type-checked</span></div>
-          <div className="ln ok"><span className="ts">  </span><span className="mark">✓</span><span>Deployed</span></div>
-          <div className="ln url"><span className="ts">→</span><span>martina-edwards.vercel.app</span></div>
-        </div>
-        <div className="t">Live in production</div>
-        <p className="d">GitHub → Vercel pipeline. Auto-deploys on push to <code style={{fontFamily: '\'DM Mono\',monospace', color: 'var(--ink)'}}>master</code>. Env vars for the Anthropic key. OG image, metadata, sitemap all generated at build time.</p>
-        <div className="meta"><span>Vercel</span><span>GitHub</span><span>next/font</span></div>
       </div>
     </div>
   </div>
