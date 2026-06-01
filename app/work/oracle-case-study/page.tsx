@@ -47,7 +47,7 @@ export default function OracleCaseStudy() {
   }
   .hero h1{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(3rem,8.5vw,7.6rem);line-height:.94;letter-spacing:-.025em;
+    font-size:clamp(2.6rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;
     color:var(--ink);max-width:18ch;
   }
   .hero h1 em{font-style:italic;color:var(--accent-rare)}
