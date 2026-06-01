@@ -29,7 +29,7 @@ export default function Home() {
           color: 'var(--ink)',
           letterSpacing: '-0.01em',
         }}>
-          Most enterprises are still entangled in red tape. I&apos;m months ahead. When you realise you need someone like me, you know where to find me.
+          Most enterprises are still entangled in red tape. The ones who look ahead realise they need someone like me. Now you know where to find me.
         </p>
       </div>
 
