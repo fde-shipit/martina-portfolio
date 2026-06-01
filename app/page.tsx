@@ -29,7 +29,7 @@ export default function Home() {
           color: 'var(--ink)',
           letterSpacing: '-0.01em',
         }}>
-          Most enterprises are still entangled in red tape. The ones who look ahead realise they need someone like me. Now you know where to find me.
+          Most enterprises are still entangled in red tape. The ones who look ahead realise they need someone like me.<br/><span style={{color: 'var(--accent)'}}>Now you know where to find me.</span>
         </p>
       </div>
 
