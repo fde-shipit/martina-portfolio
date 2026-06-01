@@ -691,7 +691,7 @@ export default function DigestGuidePage() {
 
           <header className="dg-page-header">
             <p className="dg-page-super">§ Dev Setup Guide</p>
-            <h1 className="dg-page-title">Ship The Digest on <em>Windows.</em></h1>
+            <h1 className="dg-page-title">Ship The News Agent on <em>Windows.</em></h1>
             <p className="dg-page-desc">A step-by-step walkthrough for setting up your development pipeline from scratch — accounts, tools, local environment, and your first production deploy. No prior deployment experience needed.</p>
             <div className="dg-page-meta">
               <span className="dg-page-meta-item">Windows 10 or 11</span>
@@ -711,7 +711,7 @@ export default function DigestGuidePage() {
               {[
                 { icon: "🐙", name: "GitHub",    desc: "Stores your code and connects to Vercel for automatic deploys", cost: "Free", paid: false },
                 { icon: "▲",  name: "Vercel",    desc: "Hosts your live website. Deploys automatically when you push to GitHub", cost: "Free", paid: false },
-                { icon: "◎",  name: "Anthropic", desc: "The AI that powers the digests. You pay per use — about $0.05–0.10 per digest run", cost: "Pay-per-use", paid: true },
+                { icon: "◎",  name: "Anthropic", desc: "The AI that runs the agent. You pay per use — about $0.05–0.10 per digest run", cost: "Pay-per-use", paid: true },
                 { icon: "⚡", name: "Upstash",   desc: "Redis database for rate limiting (multi-user mode only — skip if self-hosting)", cost: "Free tier", paid: false },
               ].map(({ icon, name, desc, cost, paid }) => (
                 <div key={name} className="dg-account-card">
@@ -736,7 +736,7 @@ export default function DigestGuidePage() {
               </>)}
               {s("step-accounts-3", "Step 1.3", "Create an Anthropic account at console.anthropic.com", <>
                 <Desc>Go to <a href="https://console.anthropic.com" target="_blank" rel="noreferrer">console.anthropic.com</a> → Sign up. You'll need to add a payment method to get an API key, but you won't be charged until you actually use it. You'll set a hard spending cap in a later step before running anything.</Desc>
-                <Callout type="warn">The Anthropic account for API access is <strong>separate</strong> from a Claude.ai subscription. You need both if you use Claude.ai — but only the API account is needed to run The Digest.</Callout>
+                <Callout type="warn">The Anthropic account for API access is <strong>separate</strong> from a Claude.ai subscription. You need both if you use Claude.ai — but only the API account is needed to run The News Agent.</Callout>
               </>)}
             </div>
           </section>
@@ -876,7 +876,7 @@ export default function DigestGuidePage() {
               </>)}
               {s("step-local-2", "Step 6.2", "Start the development server", <>
                 <CB label="Git Bash" text="npm run dev">{"npm run dev"}</CB>
-                <Desc>Wait for the message <code>▲ Next.js ready on http://localhost:3000</code>. Then open your browser and go to <a href="http://localhost:3000" target="_blank" rel="noreferrer">localhost:3000</a>. You should see The Digest running.</Desc>
+                <Desc>Wait for the message <code>▲ Next.js ready on http://localhost:3000</code>. Then open your browser and go to <a href="http://localhost:3000" target="_blank" rel="noreferrer">localhost:3000</a>. You should see The News Agent running.</Desc>
                 <Desc>To stop the server: click the terminal and press <code>Ctrl + C</code>.</Desc>
                 <Callout type="tip">The dev server reloads automatically when you save a file. You'll see changes in the browser instantly — you don't need to restart it.</Callout>
               </>)}
