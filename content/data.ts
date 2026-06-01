@@ -18,7 +18,7 @@ export const person = {
   profile: "Ten years building enterprise systems across infrastructure, legal ops, automation, and cyber before moving into AI product leadership. That operational foundation is what makes the difference: I don't just design AI workflows, I understand what they run on and what breaks them.\n\nMy focus is agentic workflow design, HITL architecture, and making AI outputs defensible in regulated environments. I own products end to end and drive AI acceleration across specific workstreams in complex, high-stakes environments.",
 
   /* Contact close — sharper than the hero, more personal. */
-  contactCopy: "If you're trying to ship AI inside a regulated environment and the room is split on what's safe to automate, I'm useful in that room.",
+  contactCopy: "",
 
   hashtag: "#RedefinedByAI",
 }
