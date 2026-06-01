@@ -252,12 +252,12 @@ export type RbaEntry = { title: string; status: RbaStatus; hook: string; href?: 
 
 export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards: number } = {
   entries: [
-    { title: "Model.",            status: "posted",  hook: "Same spelling. New job. Nobody sent a fax." },
-    { title: "Memory.",           status: "posted",  hook: "Three things make AI feel like it remembers. None of them are memory." },
-    { title: "Prompt Injection.", status: "posted",  hook: "Invisible to you. Not to your model." },
-    { title: "Training.",         status: "posted",  hook: "The best trainer you've ever had stopped learning the day it launched." },
-    { title: "Forest.",           status: "posted",  hook: "A forest is not a forest. Not in IT." },
-    { title: "Mythos.",           status: "posted",  hook: "In seven weeks, it found over 2,000 unknown vulnerabilities." },
+    { title: "Model.",            status: "posted",  hook: "Same spelling. New job. Nobody sent a fax.",                                  href: "https://martinaedwards.substack.com/p/model" },
+    { title: "Memory.",           status: "posted",  hook: "Three things make AI feel like it remembers. None of them are memory.",        href: "https://martinaedwards.substack.com/p/memory" },
+    { title: "Prompt Injection.", status: "posted",  hook: "Invisible to you. Not to your model.",                                        href: "https://martinaedwards.substack.com/p/prompt-injection" },
+    { title: "Training.",         status: "posted",  hook: "The best trainer you have ever had stopped learning the day it launched.",     href: "https://martinaedwards.substack.com/p/training" },
+    { title: "Forest.",           status: "posted",  hook: "A forest is not a forest. Not in IT.",                                        href: "https://martinaedwards.substack.com" },
+    { title: "Mythos.",           status: "posted",  hook: "In seven weeks, it found over 2,000 unknown vulnerabilities.",                 href: "https://martinaedwards.substack.com" },
     { title: "Token.",            status: "posted",  hook: "Worth knowing tomorrow's bill." },
     { title: "Vector.",           status: "posted",  hook: "How meaning becomes math." },
     { title: "Transformer.",      status: "written", hook: "Attention. Hallucination. The architecture under the answer." },
@@ -268,7 +268,7 @@ export const redefinedByAi: { entries: RbaEntry[]; deckHref: string; totalCards:
     { title: "Harness.",          status: "todo",    hook: "" },
   ],
   deckHref: "/flashcards",
-  totalCards: 35,
+  totalCards: 8,
 }
 
 /* Sample exchange shown on the homepage Oracle preview.

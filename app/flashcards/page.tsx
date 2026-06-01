@@ -338,13 +338,11 @@ function LearnScreen({ deck, cards, cardIndex, onNext, onDeck }: {
   deck: Deck; cards: FlashCard[]; cardIndex: number; onNext: () => void; onDeck: () => void
 }) {
   const [flipped, setFlipped] = useState(false)
-  const [claudeText, setClaudeText] = useState<string | null>(null)
-  const [claudeLoading, setClaudeLoading] = useState(false)
   const card = cards[cardIndex]
   const progress = ((cardIndex + 1) / cards.length) * 100
   const isRedefined = deck.id === 'redefined'
 
-  useEffect(() => { setFlipped(false); setClaudeText(null) }, [cardIndex])
+  useEffect(() => { setFlipped(false) }, [cardIndex])
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -354,22 +352,6 @@ function LearnScreen({ deck, cards, cardIndex, onNext, onDeck }: {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [flipped, onNext])
-
-  async function askClaude() {
-    setClaudeLoading(true)
-    try {
-      const res = await fetch('/api/flashcard-insight', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ term: card.term, definition: card.definition, isRedefined }),
-      })
-      const data = await res.json()
-      setClaudeText(data.text || 'No response.')
-    } catch {
-      setClaudeText('Unable to reach Claude.')
-    }
-    setClaudeLoading(false)
-  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '580px' }}>
@@ -449,36 +431,6 @@ function LearnScreen({ deck, cards, cardIndex, onNext, onDeck }: {
             </div>
           </div>
         </div>
-
-        {flipped && !claudeText && !claudeLoading && (
-          <button onClick={askClaude} style={{
-            width: '100%', padding: '10px 16px', background: 'none',
-            border: '0.5px solid var(--color-border-secondary)',
-            borderRadius: 'var(--border-radius-md)', fontSize: '13px',
-            color: 'var(--color-text-secondary)', cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-            fontFamily: 'var(--font-sans)',
-          }}>
-            ✦ Go deeper with Claude
-          </button>
-        )}
-        {claudeLoading && (
-          <div style={{ padding: '12px', fontSize: '13px', color: 'var(--color-text-secondary)', textAlign: 'center', fontStyle: 'italic' }}>
-            Claude is thinking…
-          </div>
-        )}
-        {claudeText && (
-          <div style={{
-            padding: '16px', background: 'var(--color-background-secondary)',
-            border: '0.5px solid var(--color-border-tertiary)', borderRadius: 'var(--border-radius-lg)',
-            fontSize: '14px', lineHeight: '1.7', color: 'var(--color-text-primary)',
-          }}>
-            <div style={{ fontSize: '11px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--color-text-tertiary)', marginBottom: '8px' }}>
-              Claude&apos;s insight
-            </div>
-            {claudeText}
-          </div>
-        )}
 
         <div style={{ marginTop: 'auto' }}>
           {!flipped ? (

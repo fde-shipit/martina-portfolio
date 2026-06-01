@@ -67,7 +67,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     postNumber: "01",
     postTitle: "Model",
     status: "posted",
-    postUrl: "https://martinaedwards.substack.com/p/model", // ← update with real URL
+    postUrl: "https://martinaedwards.substack.com/p/model",
     definition:
       "The AI system itself — the LLM you're talking to. A word that already existed and quietly changed jobs. The landscape shifts week to week with no authoritative map and no announcement.",
     example: "artificialanalysis.ai/leaderboards/models — today's standings",
@@ -77,34 +77,54 @@ const REDEFINED_POSTS: FlashCard[] = [
     postNumber: "02",
     postTitle: "Memory",
     status: "posted",
-    postUrl: "https://martinaedwards.substack.com/p/memory", // ← update
+    postUrl: "https://martinaedwards.substack.com/p/memory",
     definition:
       "What looks like memory in AI is actually retrieval. The context window holds the current session and vanishes when it ends. Injected notes supply facts. Live retrieval searches your files. All of it starts fresh — it was given a shopping list, not a recollection.",
     example: "Find your memory settings. Check what's stored. Check who controls what goes in.",
   },
   {
     term: "Prompt Injection",
-    postNumber: "02b",
+    postNumber: "03",
     postTitle: "Prompt Injection",
     status: "posted",
-    postUrl: "https://martinaedwards.substack.com/p/prompt-injection", // ← update
+    postUrl: "https://martinaedwards.substack.com/p/prompt-injection",
     definition:
       "Malicious instructions hidden inside content your AI processes — a white-text footer, a document, a webpage. The model can't distinguish your instructions from instructions embedded in what it's reading. You are not the only one who can prompt your AI.",
     example: "OWASP Top 10 for LLMs — Prompt Injection is #1",
   },
   {
     term: "Training",
-    postNumber: "03",
+    postNumber: "04",
     postTitle: "Training",
     status: "posted",
-    postUrl: "https://martinaedwards.substack.com/p/training", // ← update
+    postUrl: "https://martinaedwards.substack.com/p/training",
     definition:
       "Past tense. Done. A snapshot frozen at a point in time. Search patches the facts on top — it doesn't update the judgment baked in during training. When the snapshot has a gap, the model doesn't stop. It keeps predicting with the same confidence it always had.",
     example: "youtube.com/watch?v=LPZh9BOjkQs — 20 minutes on the prediction mechanic",
   },
   {
+    term: "Forest",
+    postNumber: "05",
+    postTitle: "Forest",
+    status: "posted",
+    postUrl: "https://martinaedwards.substack.com", // ← update with real URL
+    definition:
+      "In Active Directory, a forest is the topmost container — the boundary of trust across an enterprise network. In machine learning, a random forest is an ensemble of decision trees. Same word, completely different architecture. I spent months inside an enterprise IT forest before I understood what I was learning.",
+    example: "One word. Two fields. Different map, different terrain.",
+  },
+  {
+    term: "Mythos",
+    postNumber: "06",
+    postTitle: "Mythos",
+    status: "posted",
+    postUrl: "https://martinaedwards.substack.com", // ← update with real URL
+    definition:
+      "In seven weeks, an AI system found over 2,000 previously unknown vulnerabilities — more than human researchers had found in decades on the same codebase. Not a proof of concept. A production result. The capability arrived before anyone had language for what it meant.",
+    example: "The question is not whether AI can do this. It already did.",
+  },
+  {
     term: "Token",
-    postNumber: "3c",
+    postNumber: "07",
     postTitle: "Token",
     status: "posted",
     postUrl: "", // ← add Substack URL
@@ -114,7 +134,7 @@ const REDEFINED_POSTS: FlashCard[] = [
   },
   {
     term: "Vector",
-    postNumber: "3d",
+    postNumber: "08",
     postTitle: "Vector",
     status: "posted",
     postUrl: "", // ← add Substack URL
@@ -125,7 +145,7 @@ const REDEFINED_POSTS: FlashCard[] = [
   {
     term: "Transformer",
     abbr: null,
-    postNumber: "3e",
+    postNumber: "09",
     postTitle: "Transformer, Attention, Hallucination",
     status: "written",
     // postUrl: "",  ← add when posted
@@ -135,7 +155,7 @@ const REDEFINED_POSTS: FlashCard[] = [
   },
   {
     term: "Attention",
-    postNumber: "3e",
+    postNumber: "09",
     postTitle: "Transformer, Attention, Hallucination",
     status: "written",
     // postUrl: "",  ← add when posted
@@ -145,7 +165,7 @@ const REDEFINED_POSTS: FlashCard[] = [
   },
   {
     term: "Hallucination",
-    postNumber: "3e",
+    postNumber: "09",
     postTitle: "Transformer, Attention, Hallucination",
     status: "written",
     // postUrl: "",  ← add when posted
@@ -155,7 +175,7 @@ const REDEFINED_POSTS: FlashCard[] = [
   },
   {
     term: "Temperature",
-    postNumber: "04",
+    postNumber: "10",
     postTitle: "Temperature",
     status: "written",
     // postUrl: "",  ← add when posted
@@ -165,7 +185,7 @@ const REDEFINED_POSTS: FlashCard[] = [
   },
   {
     term: "Agent",
-    postNumber: "06",
+    postNumber: "11",
     postTitle: "Agents",
     status: "draft",
     // postUrl: "",  ← add when posted
@@ -178,7 +198,7 @@ const REDEFINED_POSTS: FlashCard[] = [
   //
   // {
   //   term: "Harness",
-  //   postNumber: "07",
+  //   postNumber: "12",
   //   postTitle: "Harness",
   //   status: "draft",
   //   // postUrl: "",  ← uncomment and add URL when posted
