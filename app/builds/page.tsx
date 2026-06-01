@@ -84,7 +84,7 @@ export default function BuildsPage() {
                 className="builds-grid"
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
                   gap: '1px',
                   background: 'var(--rule)',
                   border: '1px solid var(--rule)',
@@ -169,6 +169,70 @@ export default function BuildsPage() {
                     </div>
                   )
                 })}
+
+                {/* This website — fourth card */}
+                <div
+                  className="gsap-stagger-child builds-card"
+                  style={{
+                    background: 'var(--paper)',
+                    padding: '1.25rem 1.3rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.4rem',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-dm-sans)',
+                      fontWeight: 500,
+                      fontSize: '0.95rem',
+                      color: 'var(--ink)',
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    This website
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--warm)', lineHeight: 1.5 }}>
+                    Started with a magic 8 ball. Ended up with a portfolio. Eight nights, two hours each. Solo. The chat was the build.
+                  </p>
+                  <div
+                    style={{
+                      marginTop: '0.4rem',
+                      fontFamily: 'var(--font-dm-mono)',
+                      fontSize: '0.55rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.14em',
+                      color: 'var(--accent)',
+                    }}
+                  >
+                    Next.js · Claude API · TypeScript · Vercel
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      marginTop: '0.5rem',
+                      paddingTop: '0.6rem',
+                      borderTop: '1px solid var(--rule)',
+                    }}
+                  >
+                    <a
+                      href="/work/oracle-case-study"
+                      style={{
+                        fontFamily: 'var(--font-dm-mono)',
+                        fontSize: '0.58rem',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.14em',
+                        color: 'var(--accent)',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      Read the case study →
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -203,90 +267,6 @@ export default function BuildsPage() {
           <Writing />
         </section>
 
-        {/* ── Section 3: This website ── */}
-        <section
-          style={{
-            borderTop: '1px solid var(--rule)',
-            padding: '2.5rem 3rem',
-            maxWidth: '1500px',
-            margin: '0 auto',
-            width: '100%',
-          }}
-        >
-          <div className="section-grid">
-            <div className="section-label gsap-section-label">
-              <span className="font-mono-label" style={{ color: 'var(--warm)' }}>
-                This website
-              </span>
-            </div>
-            <div className="section-content gsap-section-content">
-              <div
-                className="gsap-stagger-child"
-                style={{
-                  border: '1px solid var(--rule)',
-                  background: 'var(--paper)',
-                  padding: '2rem',
-                  maxWidth: '560px',
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontWeight: 500,
-                    fontSize: '0.95rem',
-                    color: 'var(--ink)',
-                    marginBottom: '0.75rem',
-                  }}
-                >
-                  After hours · this website
-                </div>
-                <p
-                  style={{
-                    fontSize: '0.8rem',
-                    color: 'var(--warm)',
-                    lineHeight: 1.55,
-                    marginBottom: '1rem',
-                  }}
-                >
-                  Started with a magic 8 ball. Ended up with a portfolio. Eight nights, two hours each. Solo. The chat was the build.
-                </p>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-dm-mono)',
-                    fontSize: '0.55rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.14em',
-                    color: 'var(--accent)',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  Next.js · Claude API · TypeScript · Vercel
-                </div>
-                <div
-                  style={{
-                    paddingTop: '0.75rem',
-                    borderTop: '1px solid var(--rule)',
-                  }}
-                >
-                  <a
-                    href="/work/oracle-case-study"
-                    style={{
-                      fontFamily: 'var(--font-dm-mono)',
-                      fontSize: '0.58rem',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.14em',
-                      color: 'var(--accent)',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    Read the case study →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <footer
           style={{
             borderTop: '1px solid var(--rule)',
@@ -319,7 +299,10 @@ export default function BuildsPage() {
         .builds-card--oracle::after { background: var(--accent-rare); }
         .builds-card:hover::after   { width: 100%; }
         .builds-card:hover          { transform: translateY(-3px); }
-        @media (max-width: 900px) {
+        @media (max-width: 1100px) {
+          .builds-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 600px) {
           .builds-grid { grid-template-columns: 1fr !important; }
         }
         @media (prefers-reduced-motion: reduce) {
