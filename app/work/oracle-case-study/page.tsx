@@ -141,7 +141,7 @@ export default function OracleCaseStudy() {
 
   /* ── anatomy ── */
   .anatomy{padding:6rem 0 5rem;border-bottom:1px solid var(--rule)}
-  .anatomy .hdr{display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline;margin-bottom:3rem}
+  .anatomy .hdr{display:grid;grid-template-columns:max-content 1fr;gap:3rem;align-items:baseline;margin-bottom:3rem}
   .anatomy .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
     font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);
@@ -150,8 +150,8 @@ export default function OracleCaseStudy() {
   .anatomy .hdr .label{color:var(--accent)}
 
   .pipe{
-    display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;
-    margin-bottom:3rem;
+    display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:.5rem;
+    margin-bottom:3rem;align-items:stretch;
   }
   .pipe .node{
     background:var(--paper-2);border:1px solid var(--rule-strong);
@@ -367,7 +367,7 @@ export default function OracleCaseStudy() {
     .stats{grid-template-columns:repeat(2,1fr)}
     .twoup{grid-template-columns:1fr;gap:2.5rem}
     .pipe{grid-template-columns:1fr;gap:.75rem}
-    .pipe .arrow{transform:rotate(90deg);padding:.4rem 0}
+    .pipe .arrow{transform:rotate(90deg);padding:.4rem 0;text-align:center}
     .tool-row{grid-template-columns:60px 1fr;gap:1rem}
     .tool-row .used,.tool-row .broke{grid-column:span 2}
     .anatomy-grid{grid-template-columns:1fr}
@@ -520,8 +520,7 @@ export default function OracleCaseStudy() {
       <div className="node"><div className="num">02</div><div className="t">Rate-limit</div><div className="d">5 questions per IP per session, enforced server-side.</div></div>
       <div className="arrow">→</div>
       <div className="node rare"><div className="num">03</div><div className="t">Guardrail router</div><div className="d">Ten detectors: injection, salary, contact, availability, meta, compliment, hired, specific topic, off-topic. Most questions never reach Claude.</div></div>
-    </div>
-    <div className="pipe" style={{gridTemplateColumns: 'repeat(3,1fr)', maxWidth: '780px', marginLeft: 'auto'}}>
+      <div className="arrow">→</div>
       <div className="node accent"><div className="num">04</div><div className="t">Claude (if it gets that far)</div><div className="d"><code>claude-sonnet-4-6</code> with <code>max_tokens: 60</code>. The cap is the constraint that keeps answers short enough to fit the 8-ball window.</div></div>
       <div className="arrow">→</div>
       <div className="node rare"><div className="num">05</div><div className="t">Negative-signal sweep</div><div className="d">~20 trigger phrases. If the model drifts negative, swap with a fallback from the &ldquo;Hire her&rdquo; pool.</div></div>
