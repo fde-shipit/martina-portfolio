@@ -89,7 +89,7 @@ export const alsoShipped = [
     tags:    ["Next.js", "Redefined by AI", "Interactive"],
     links: [
       { label: "Flashcards →", href: "/flashcards" },
-      { label: "Take the quiz", href: "/quiz" },
+      { label: "Take the quiz", href: "/flashcards" },
     ],
   },
   {
