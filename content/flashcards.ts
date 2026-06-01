@@ -107,7 +107,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     postNumber: "05",
     postTitle: "Forest",
     status: "posted",
-    postUrl: "https://martinaedwards.substack.com", // ← update with real URL
+    postUrl: "https://martinaedwards.substack.com/p/redefined-by-ai-05-forest",
     definition:
       "In Active Directory, a forest is the topmost container — the boundary of trust across an enterprise network. In machine learning, a random forest is an ensemble of decision trees. Same word, completely different architecture. I spent months inside an enterprise IT forest before I understood what I was learning.",
     example: "One word. Two fields. Different map, different terrain.",
@@ -117,7 +117,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     postNumber: "06",
     postTitle: "Mythos",
     status: "posted",
-    postUrl: "https://martinaedwards.substack.com", // ← update with real URL
+    postUrl: "https://martinaedwards.substack.com/p/redefined-by-ai-06-mythos",
     definition:
       "In seven weeks, an AI system found over 2,000 previously unknown vulnerabilities — more than human researchers had found in decades on the same codebase. Not a proof of concept. A production result. The capability arrived before anyone had language for what it meant.",
     example: "The question is not whether AI can do this. It already did.",
@@ -127,7 +127,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     postNumber: "07",
     postTitle: "Token",
     status: "posted",
-    postUrl: "", // ← add Substack URL
+    postUrl: "https://martinaedwards.substack.com/p/redefined-by-ai-06-token",
     definition:
       "Not a substitute — a deliberate chunk of text. A word, part of a word, sometimes just punctuation. The atomic unit the model reads. Because tokens aren't tied to any single language, meaning travels between languages without the model being lost in translation.",
     example: "platform.openai.com/tokenizer — paste any text and watch it chunk",
