@@ -87,7 +87,7 @@ export default function OracleCaseStudy() {
   .tl .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
     font-size:clamp(2rem,4vw,3.2rem);line-height:1;
-    color:var(--ink);max-width:14ch;
+    color:var(--ink);
   }
   .tl .hdr h2 em{font-style:italic;color:var(--accent-rare)}
   .tl .hdr .label{color:var(--accent-rare)}
@@ -144,7 +144,7 @@ export default function OracleCaseStudy() {
   .anatomy .hdr{display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline;margin-bottom:3rem}
   .anatomy .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);max-width:18ch;
+    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);
   }
   .anatomy .hdr h2 em{font-style:italic;color:var(--accent)}
   .anatomy .hdr .label{color:var(--accent)}
@@ -202,7 +202,7 @@ export default function OracleCaseStudy() {
   .tools .hdr{margin-bottom:3rem;display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline}
   .tools .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);max-width:18ch;
+    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);
   }
   .tools .hdr h2 em{font-style:italic;color:var(--accent)}
 
@@ -239,7 +239,7 @@ export default function OracleCaseStudy() {
   .shipped .hdr{margin-bottom:3rem;display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:baseline}
   .shipped .hdr h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);max-width:18ch;
+    font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--ink);
   }
   .ship-grid{
     display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
