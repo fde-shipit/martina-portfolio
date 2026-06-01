@@ -5,52 +5,59 @@ export interface SubstackPost {
   week: string
 }
 
+// Static source of truth — hooks are curated, not pulled from RSS meta descriptions.
+// To add a new post: append an entry and increment the week number.
+const POSTS: SubstackPost[] = [
+  {
+    week: '01',
+    title: 'Redefined by AI 01: Model',
+    link: 'https://martinaedwards.substack.com/p/model',
+    hook: 'Same spelling. New job. Nobody sent a fax.',
+  },
+  {
+    week: '02',
+    title: 'Redefined by AI 02: Memory',
+    link: 'https://martinaedwards.substack.com/p/memory',
+    hook: 'Three things make AI feel like it remembers. None of them are memory.',
+  },
+  {
+    week: '03',
+    title: 'Redefined by AI 03: Prompt Injection',
+    link: 'https://martinaedwards.substack.com/p/prompt-injection',
+    hook: 'Invisible to you. Not to your model.',
+  },
+  {
+    week: '04',
+    title: 'Redefined by AI 04: Training',
+    link: 'https://martinaedwards.substack.com/p/training',
+    hook: "The best trainer you've ever had stopped learning the day it launched.",
+  },
+  {
+    week: '05',
+    title: 'Redefined by AI 05: Forest',
+    link: 'https://martinaedwards.substack.com/p/redefined-by-ai-05-forest',
+    hook: 'A forest is not a forest. Not in IT.',
+  },
+  {
+    week: '06',
+    title: 'Redefined by AI 06: Mythos',
+    link: 'https://martinaedwards.substack.com/p/redefined-by-ai-06-mythos',
+    hook: 'In seven weeks, it found over 2,000 unknown vulnerabilities.',
+  },
+  {
+    week: '07',
+    title: 'Redefined by AI 07: Token',
+    link: 'https://martinaedwards.substack.com/p/redefined-by-ai-06-token',
+    hook: "Worth knowing tomorrow's bill.",
+  },
+  {
+    week: '08',
+    title: 'Redefined by AI 08: Vector',
+    link: 'https://martinaedwards.substack.com/p/redefined-by-ai-08-vector',
+    hook: 'How meaning becomes math.',
+  },
+]
+
 export async function getSubstackPosts(): Promise<SubstackPost[]> {
-  try {
-    const res = await fetch('https://martinaedwards.substack.com/feed', {
-      next: { revalidate: 3600 },
-    })
-    if (!res.ok) return []
-
-    const xml = await res.text()
-    const items = xml.match(/<item>([\s\S]*?)<\/item>/g) || []
-
-    const parsed = items.map((item) => {
-      const title =
-        item.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/)?.[1] ||
-        item.match(/<title>(.*?)<\/title>/)?.[1] ||
-        'Untitled'
-
-      const link =
-        item.match(/<link>(.*?)<\/link>/)?.[1] ||
-        item.match(/<guid>(.*?)<\/guid>/)?.[1] ||
-        'https://martini375179.substack.com'
-
-      const rawDescription =
-        item.match(/<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>/)?.[1] ||
-        item.match(/<description>([\s\S]*?)<\/description>/)?.[1] ||
-        ''
-
-      const hook = rawDescription
-        .replace(/<[^>]+>/g, '')
-        .replace(/&nbsp;/g, ' ')
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .trim()
-        .slice(0, 160)
-
-      return { title, link, hook, week: '' }
-    })
-
-    // Reverse to chronological order, then number
-    return [...parsed]
-      .reverse()
-      .map((post, i) => ({
-        ...post,
-        week: String(i + 1).padStart(2, '0'),
-      }))
-  } catch {
-    return []
-  }
+  return POSTS
 }
