@@ -69,7 +69,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "https://martinaedwards.substack.com/p/model",
     definition:
-      "The AI system itself — the LLM you're talking to. A word that already existed and quietly changed jobs. The landscape shifts week to week with no authoritative map and no announcement.",
+      "The AI system itself — the LLM you're talking to. A word that already existed and quietly changed jobs.",
     example: "artificialanalysis.ai/leaderboards/models — today's standings",
   },
   {
@@ -79,7 +79,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "https://martinaedwards.substack.com/p/memory",
     definition:
-      "What looks like memory in AI is actually retrieval. The context window holds the current session and vanishes when it ends. Injected notes supply facts. Live retrieval searches your files. All of it starts fresh — it was given a shopping list, not a recollection.",
+      "What looks like memory is retrieval. The context window holds the current session. When it ends, everything disappears. It was given a shopping list, not a recollection.",
     example: "Find your memory settings. Check what's stored. Check who controls what goes in.",
   },
   {
@@ -89,7 +89,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "https://martinaedwards.substack.com/p/prompt-injection",
     definition:
-      "Malicious instructions hidden inside content your AI processes — a white-text footer, a document, a webpage. The model can't distinguish your instructions from instructions embedded in what it's reading. You are not the only one who can prompt your AI.",
+      "Malicious instructions hidden in content your AI reads — a document, a webpage, an invisible footer. The model can't tell yours from theirs. You are not the only one who can prompt your AI.",
     example: "OWASP Top 10 for LLMs — Prompt Injection is #1",
   },
   {
@@ -99,7 +99,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "https://martinaedwards.substack.com/p/training",
     definition:
-      "Past tense. Done. A snapshot frozen at a point in time. Search patches the facts on top — it doesn't update the judgment baked in during training. When the snapshot has a gap, the model doesn't stop. It keeps predicting with the same confidence it always had.",
+      "Past tense. Done. A snapshot frozen at a point in time. Search patches facts on top — it doesn't update the judgment baked in during training. When it doesn't know, it keeps predicting anyway.",
     example: "youtube.com/watch?v=LPZh9BOjkQs — 20 minutes on the prediction mechanic",
   },
   {
@@ -109,7 +109,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "https://martinaedwards.substack.com/p/redefined-by-ai-05-forest",
     definition:
-      "In Active Directory, a forest is the topmost container — the boundary of trust across an enterprise network. In machine learning, a random forest is an ensemble of decision trees. Same word, completely different architecture. I spent months inside an enterprise IT forest before I understood what I was learning.",
+      "In IT, a forest holds an organisation's entire network together — servers, users, permissions, trust. In machine learning, it's an ensemble of decision trees. Same word, completely different map. I spent months inside one before I understood what I was learning.",
     example: "One word. Two fields. Different map, different terrain.",
   },
   {
@@ -119,7 +119,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "https://martinaedwards.substack.com/p/redefined-by-ai-06-mythos",
     definition:
-      "In seven weeks, an AI system found over 2,000 previously unknown vulnerabilities — more than human researchers had found in decades on the same codebase. Not a proof of concept. A production result. The capability arrived before anyone had language for what it meant.",
+      "In seven weeks, an AI found over 2,000 unknown vulnerabilities — more than human researchers had found in decades. Not a proof of concept. A production result. The capability arrived before anyone had language for it.",
     example: "The question is not whether AI can do this. It already did.",
   },
   {
@@ -129,7 +129,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "https://martinaedwards.substack.com/p/redefined-by-ai-06-token",
     definition:
-      "Not a substitute — a deliberate chunk of text. A word, part of a word, sometimes just punctuation. The atomic unit the model reads. Because tokens aren't tied to any single language, meaning travels between languages without the model being lost in translation.",
+      "A chunk of text — a word, part of a word, sometimes just punctuation. The basic unit the model reads. Not tied to any language, so meaning travels across languages without getting lost.",
     example: "platform.openai.com/tokenizer — paste any text and watch it chunk",
   },
   {
@@ -139,7 +139,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "posted",
     postUrl: "", // ← add Substack URL
     definition:
-      "Every word has a position in space defined by its relationships with every other word it has ever appeared near. Not a definition — coordinates in thousands of dimensions. Nobody designed those positions. They emerged from billions of sentences, each one nudging meaning until it stabilised.",
+      "Every word has a position in space — coordinates in thousands of dimensions — defined by every other word it has ever appeared near. Nobody designed those positions. They emerged from billions of sentences.",
     example: "Google TurboQuant — compression with near-zero accuracy loss",
   },
   {
@@ -150,7 +150,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "written",
     // postUrl: "",  ← add when posted
     definition:
-      "The architecture that changed how models read in 2017 — from one vector at a time to everything at once. It compares every vector against every other simultaneously. That comparison is called attention. Nobody programmed the relationships. The model mapped them through training.",
+      "The architecture that changed everything in 2017. Instead of reading one word at a time, it reads everything at once — comparing every word to every other simultaneously. That comparison is called attention.",
     example: "Attention Is All You Need — Google, 2017 — arxiv.org/abs/1706.03762",
   },
   {
@@ -160,7 +160,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "written",
     // postUrl: "",  ← add when posted
     definition:
-      "The mechanism that decides which vectors matter. 'Force' next to 'Star Wars' attends differently than 'Force' next to 'physics.' The same word, a different neighbourhood, a different meaning activated. Extraordinarily good at finding patterns. Less good at knowing when there are none.",
+      "'Force' next to 'Star Wars' reads differently than 'Force' next to 'physics.' The mechanism that decides which words matter. Very good at finding patterns. Less good at knowing when there are none.",
     example: "Same post as Transformer — one paper, three concepts",
   },
   {
@@ -170,7 +170,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "written",
     // postUrl: "",  ← add when posted
     definition:
-      "When the context runs thin or the training snapshot has a gap, the model doesn't stop. It keeps attending, finds the closest thing, and predicts — with no way of knowing whether the ground is solid. A human word for a human experience. It doesn't describe what's actually happening.",
+      "When the model doesn't know, it doesn't stop. It finds the closest thing and predicts — with no signal that the ground isn't solid. A human word for a human experience. It doesn't describe what's actually happening.",
     example: "The model isn't confused. It's doing exactly what it was built to do.",
   },
   {
@@ -180,7 +180,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "written",
     // postUrl: "",  ← add when posted
     definition:
-      "Every model has one. Low temperature reaches only for the brightest stars — consistent, predictable, restricted. High temperature is like looking at the sky after a few drinks. Legal tools run cold. Creative tools run hot. Most people using enterprise AI have no idea where their tools are set, or who made that call.",
+      "Every model has one. Low: consistent, predictable, restricted. High: looser, more creative, less reliable. Legal tools run cold. Creative tools run hot. Most people have no idea where theirs is set — or who decided.",
     example: "Top-k and top-p are the other two parameters most users never see",
   },
   {
@@ -190,7 +190,7 @@ const REDEFINED_POSTS: FlashCard[] = [
     status: "draft",
     // postUrl: "",  ← add when posted
     definition:
-      "A model that doesn't just respond but acts. It receives a goal, works out the steps, executes them, checks the result, and keeps going. The question that actually matters isn't whether something is an agent — it's what it can reach, and what it can do without asking you first.",
+      "A model that doesn't just respond but acts. It gets a goal, works out the steps, and executes. The question that matters isn't whether something is an agent — it's what it can reach, and what it can do without asking first.",
     example: "openclaw.ai — free, open source, runs locally. Read the security notes first.",
   },
   // ─── ADD NEW POST HERE ───────────────────────────────────────────────────
@@ -218,38 +218,38 @@ const FUNDAMENTALS_CARDS: FlashCard[] = [
     term: "Large Language Model",
     abbr: "LLM",
     definition:
-      "A neural network trained on massive text corpora to predict and generate coherent language. LLMs learn statistical patterns across billions of parameters, enabling diverse tasks without task-specific training.",
+      "The model itself. Trained on enormous amounts of text to predict what comes next. The pattern-matching that emerged from that process is what makes it useful.",
     example: "GPT-4, Claude, Gemini",
   },
   {
     term: "Context Window",
     definition:
-      "The maximum number of tokens a model can attend to in a single pass — its working memory. Information outside this window is invisible to the model.",
+      "The model's working memory. Everything inside it is visible. Everything outside doesn't exist.",
     example: "Claude 3.5 Sonnet: 200K tokens",
   },
   {
     term: "Embedding",
     definition:
-      "A dense vector in high-dimensional space where semantic similarity corresponds to geometric proximity. The foundation of how models represent meaning.",
+      "A word's position in meaning-space. Similar words end up near each other. The foundation of how models understand language.",
     example: "king − man + woman ≈ queen",
   },
   {
     term: "Inference",
     definition:
-      "Running a trained model on new inputs to produce outputs. Distinct from training — inference uses fixed weights and makes predictions without updating parameters.",
+      "The model doing its job — taking an input and producing an output. Separate from training, which already happened.",
     example: "Generating a response to your question",
   },
   {
     term: "RAG",
     abbr: "Retrieval Augmented Generation",
     definition:
-      "A technique that fetches relevant documents from an external store and injects them into the context before generation. Patches current facts on top of a frozen model without retraining.",
+      "Fetch relevant documents, inject them into the context, then generate. Patches current facts on top of a frozen model without retraining.",
     example: "Search before you generate",
   },
   {
     term: "Prompt Engineering",
     definition:
-      "Designing input text to reliably elicit desired model outputs. Encompasses system prompts, few-shot examples, chain-of-thought instructions, and output format constraints.",
+      "Designing the input to reliably get the output you want. System prompts, examples, instructions — all of it counts.",
     example: "Zero-shot, few-shot, chain-of-thought",
   },
 ];
@@ -259,40 +259,40 @@ const ARCHITECTURE_CARDS: FlashCard[] = [
     term: "Multi-Head Attention",
     abbr: "MHA",
     definition:
-      "Running attention in parallel across multiple subspaces simultaneously, letting the model capture different relationship types — syntax, semantics, coreference — at once.",
+      "Attention running in parallel across multiple dimensions at once — syntax, semantics, meaning — simultaneously. More heads means more relationships captured per pass.",
     example: "8–32 heads operating in parallel",
   },
   {
     term: "Residual Connection",
     definition:
-      "A skip connection adding a layer's input directly to its output (x + F(x)), enabling very deep networks by providing gradient highways that bypass problematic layers.",
+      "A shortcut that adds a layer's input directly to its output. Lets information bypass layers that aren't helping. Makes very deep networks trainable.",
     example: "Used in every transformer block",
   },
   {
     term: "Mixture of Experts",
     abbr: "MoE",
     definition:
-      "An architecture where only a subset of parameters (experts) are activated per token via a router. Scales total capacity without proportionally increasing compute costs.",
+      "Only a fraction of the model activates for each input. A router decides which parts. More capacity, less compute.",
     example: "Mixtral activates 2 of 8 experts per token",
   },
   {
     term: "Positional Encoding",
     definition:
-      "Since transformers process tokens in parallel with no inherent order, positional encodings inject sequence position information into token representations.",
+      "Transformers process all tokens at once with no inherent order. Positional encoding tells the model where each token sits in the sequence.",
     example: "RoPE, ALiBi, sinusoidal encodings",
   },
   {
     term: "Layer Normalization",
     abbr: "LayerNorm",
     definition:
-      "Normalizes activations within each layer across the feature dimension, stabilizing training. Applied before (pre-norm) or after (post-norm) each sub-layer in modern LLMs.",
+      "Keeps activations within each layer from blowing up or vanishing — stabilises training. Standard in modern LLMs.",
     example: "Pre-norm is standard in modern LLMs",
   },
   {
     term: "KV Cache",
     abbr: "Key-Value Cache",
     definition:
-      "Stores the attention keys and values computed in earlier steps so they don't need to be recomputed during generation. Critical for making inference fast at long context lengths.",
+      "Stores past attention computations so they don't need to be redone at each step. Makes generation fast at long context lengths.",
     example: "TurboQuant compresses it 6× with near-zero loss",
   },
 ];
@@ -301,39 +301,39 @@ const TRAINING_CARDS: FlashCard[] = [
   {
     term: "Pretraining",
     definition:
-      "The initial large-scale phase where a model learns general language patterns from massive unlabeled text via next-token prediction — building a foundation of world knowledge.",
+      "The first phase. The model reads enormous amounts of text and learns to predict the next word. Everything else builds on this.",
     example: "Training on trillions of tokens from the web",
   },
   {
     term: "Fine-tuning",
     definition:
-      "Continuing training on a smaller, task-specific dataset to adapt a pretrained model's behavior. Far less compute than pretraining but significantly shapes how the model responds.",
+      "Training a pretrained model on a smaller, specific dataset to adjust its behaviour. Much less compute than pretraining, but it shapes how the model responds.",
     example: "Supervised fine-tuning on instruction pairs",
   },
   {
     term: "RLHF",
     abbr: "Reinforcement Learning from Human Feedback",
     definition:
-      "Human raters rank model outputs; a reward model learns those preferences; the LLM is updated via RL to maximize predicted human approval.",
+      "Humans rank the model's outputs. A reward model learns those preferences. The LLM is updated to score better. Used to align ChatGPT and Claude.",
     example: "Used to align ChatGPT and Claude",
   },
   {
     term: "Constitutional AI",
     abbr: "CAI",
     definition:
-      "Anthropic's technique where models critique and revise their own outputs using a written set of principles — reducing reliance on human labels for safety-relevant behavior.",
+      "The model critiques its own outputs using a written set of principles. Less reliance on human labels for safety. Anthropic's approach.",
     example: "Developed by Anthropic for Claude",
   },
   {
     term: "Overfitting",
     definition:
-      "When a model memorizes training data — including its noise — so precisely it fails to generalize to unseen examples. High train accuracy, low test accuracy.",
+      "When a model memorises training data — noise and all — and stops generalising. Works perfectly on what it's seen. Fails on anything new.",
     example: "100% train accuracy, 60% test accuracy",
   },
   {
     term: "Gradient Descent",
     definition:
-      "The optimization algorithm that updates model weights by computing the loss gradient and stepping in the direction that minimizes it — the backbone of all deep learning training.",
+      "The algorithm that updates weights during training — step by step, in the direction that reduces error. The backbone of all deep learning.",
     example: "w = w − lr × ∇L(w)",
   },
 ];
@@ -342,31 +342,31 @@ const SAFETY_CARDS: FlashCard[] = [
   {
     term: "Alignment",
     definition:
-      "Ensuring AI systems reliably pursue goals reflecting human values and intentions. Covers capability alignment (doing what's asked) and value alignment (doing what's right).",
+      "Making sure AI does what you want and what's right. Two different problems that are often confused.",
     example: "An aligned model won't assist with harm",
   },
   {
     term: "Jailbreak",
     definition:
-      "A prompt technique designed to bypass a model's safety guidelines, often by framing harmful requests as fictional, hypothetical, or through adversarial instruction sequences.",
+      "A prompt designed to bypass the model's guardrails — usually by reframing the request as fictional or hypothetical.",
     example: "DAN ('Do Anything Now') prompts",
   },
   {
     term: "Interpretability",
     definition:
-      "The field studying what neural networks represent internally — which features activate, how information flows, and why models produce specific outputs. Essential for trust and safety.",
+      "The field asking what's actually happening inside the model — which features activate and why. Essential for safety. Largely unsolved.",
     example: "Mechanistic interpretability, probing classifiers",
   },
   {
     term: "Red-teaming",
     definition:
-      "Adversarial testing where humans or automated systems try to elicit harmful, incorrect, or unintended outputs — revealing vulnerabilities before deployment.",
+      "Trying to break the model before it ships. Find the harmful outputs, the edge cases, the gaps — before users do.",
     example: "Testing if a model helps synthesize weapons",
   },
   {
     term: "Emergent Behavior",
     definition:
-      "Capabilities appearing unpredictably in large models absent in smaller ones — not explicitly trained for, but arising from scale, making frontier models harder to predict.",
+      "Capabilities that appear at scale without being trained for. Nobody planned for them. That's what makes frontier models harder to predict.",
     example: "In-context learning emerged with GPT-3 scale",
   },
   {
@@ -429,3 +429,4 @@ export const DECKS: Deck[] = [
     cards: SAFETY_CARDS,
   },
 ];
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
