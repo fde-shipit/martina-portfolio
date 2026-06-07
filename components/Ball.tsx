@@ -5,17 +5,34 @@ import { useState, useRef } from 'react'
 type BallState = 'idle' | 'shaking' | 'revealing' | 'lit' | 'hired'
 
 const suggestions = [
-  "Why should I hire Martina?",
-  "What if I don't hire her?",
-  "She seems like an overachiever. I don't like overachievers.",
-  "What if someone else hires her first?",
+  "Will the AI project survive contact with the organisation?",
+  "What did five years of running something teach her?",
+  "Is this oracle actually a good idea?",
+  "Where does enterprise AI actually break?",
 ]
 
-const staticAnswers: Record<string, string> = {
-  "Why should I hire Martina?": "If you need AI that actually works in production, do it. Otherwise ask me what's for dinner.",
-  "What if I don't hire her?": "Then you'll spend the next year trying to find someone like her. Wishing you luck in your impossible endeavours.",
-  "She seems like an overachiever. I don't like overachievers.": "The oracle understands. Watching someone actually deliver must be exhausting. You'll get used to it.",
-  "What if someone else hires her first?": "Someone else will. You'll read about it later.",
+const staticAnswers: Record<string, string[]> = {
+  "What kills most AI projects?": [
+    "The press-a-button assumption. The legwork doesn't press itself.",
+    "The six months after the demo.",
+  ],
+  "What does a blind spot cost?": [
+    "Nobody knows. That's what makes it a blind spot.",
+    "More than the build. Always.",
+  ],
+  "Is this oracle actually a good idea?": [
+    "It is in production. The oracle considers this question answered.",
+    "Ask again after you've read the case study.",
+  ],
+  "Where does enterprise AI actually break?": [
+    "When the edge case meets the regulator.",
+    "At scale. Everything looks good in dev.",
+  ],
+}
+
+function pickStatic(key: string): string {
+  const pool = staticAnswers[key]
+  return pool[Math.floor(Math.random() * pool.length)]
 }
 
 /**
@@ -71,7 +88,7 @@ export default function Ball() {
     } catch {
       setTimeout(() => {
         setBallState('revealing')
-        setAnswer("The oracle is momentarily elsewhere. But the answer is still yes.")
+        setAnswer("The oracle is momentarily elsewhere. Ask again.")
         setTimeout(() => setBallState('lit'), 100)
       }, 650)
     } finally {
@@ -97,7 +114,7 @@ export default function Ball() {
       setBallState('shaking')
       setTimeout(() => {
         setBallState('revealing')
-        setAnswer(staticAnswers[s])
+        setAnswer(pickStatic(s))
         setTimeout(() => setBallState('lit'), 100)
       }, 650)
     } else {
