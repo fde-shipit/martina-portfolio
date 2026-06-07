@@ -46,8 +46,7 @@ export default function OraclePage() {
                 Ask about the work. What was actually built, how it was scoped, where it
                 ran into problems. Built the way I&apos;d build it for a client:{' '}
                 bounded scope, explicit refusals, no hallucinated facts.{' '}
-                <b>The same architecture I&apos;d ship for a regulated environment,
-                pointed at one source of truth: the CV.</b>
+                <b>Pointed at the work, not the pitch.</b>
               </p>
               <div className="orc-ctas">
                 <a href="#oracle-ball" className="orc-cta">
