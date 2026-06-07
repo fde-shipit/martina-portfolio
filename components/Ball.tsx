@@ -5,8 +5,8 @@ import { useState, useRef } from 'react'
 type BallState = 'idle' | 'shaking' | 'revealing' | 'lit' | 'hired'
 
 const suggestions = [
-  "Will the AI project survive contact with the organisation?",
-  "What did five years of running something teach her?",
+  "What kills most AI projects?",
+  "What does a blind spot cost?",
   "Is this oracle actually a good idea?",
   "Where does enterprise AI actually break?",
 ]
