@@ -15,6 +15,12 @@ import { person } from '@/content/data'
  */
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
+  const emailAreaRef = useRef<HTMLDivElement>(null);
+  const defaultRef   = useRef<HTMLSpanElement>(null);
+  const scrambleRef  = useRef<HTMLSpanElement>(null);
+  const modeRef      = useRef<'idle' | 'auto' | 'hover'>('idle');
+  const rafRef       = useRef<number | null>(null);
+  const timerRef     = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -45,6 +51,120 @@ export default function Hero() {
     return () => cleanup?.()
   }, [])
 
+  const CHARS   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@._-+';
+  const EMAIL   = 'martina.edwards.p@gmail.com';
+  const TARGET  = 'get in touch.';
+
+  const NOISE_DUR      = 300;
+  const RESOLVE_DUR    = 520;
+  const HOLD_DUR       = 2800;
+  const RETURN_DUR     = 520;
+  const CROSSFADE      = 200;
+  const INITIAL_DELAY  = 1500;
+  const BETWEEN_CYCLES = 6000;
+
+  function rand() { return CHARS[Math.floor(Math.random() * CHARS.length)]; }
+
+  function cancelAll() {
+    if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+  }
+
+  function showDefault() {
+    cancelAll();
+    if (scrambleRef.current) { scrambleRef.current.style.opacity = '0'; scrambleRef.current.textContent = ''; }
+    if (defaultRef.current)  defaultRef.current.style.opacity = '1';
+  }
+
+  function noise(len: number, dur: number, color: string, token: string, cb: () => void) {
+    if (!scrambleRef.current || !defaultRef.current) return;
+    scrambleRef.current.style.color   = color;
+    scrambleRef.current.style.opacity = '1';
+    defaultRef.current.style.opacity  = '0';
+    const t0 = performance.now();
+    function f(t: number) {
+      if (modeRef.current !== token) return;
+      if (!scrambleRef.current) return;
+      if (t - t0 < dur) {
+        let s = ''; for (let i = 0; i < len; i++) s += rand();
+        scrambleRef.current.textContent = s;
+        rafRef.current = requestAnimationFrame(f);
+      } else cb();
+    }
+    rafRef.current = requestAnimationFrame(f);
+  }
+
+  function resolveText(text: string, dur: number, token: string, cb: () => void) {
+    const len = text.length, t0 = performance.now();
+    function f(t: number) {
+      if (modeRef.current !== token) return;
+      if (!scrambleRef.current) return;
+      const p = Math.min((t - t0) / dur, 1), n = Math.floor(p * len);
+      let s = ''; for (let i = 0; i < len; i++) s += i < n ? text[i] : rand();
+      scrambleRef.current.textContent = s;
+      if (p < 1) rafRef.current = requestAnimationFrame(f);
+      else { scrambleRef.current.textContent = text; cb(); }
+    }
+    rafRef.current = requestAnimationFrame(f);
+  }
+
+  function runCycle(token: string, onDone: () => void) {
+    noise(EMAIL.length, NOISE_DUR, '#308695', token, () => {
+      resolveText(TARGET, RESOLVE_DUR, token, () => {
+        timerRef.current = setTimeout(() => {
+          if (modeRef.current !== token) return;
+          if (scrambleRef.current) scrambleRef.current.style.color = 'rgba(212,87,105,0.55)';
+          resolveText(EMAIL, RETURN_DUR, token, () => {
+            if (defaultRef.current) defaultRef.current.style.opacity = '1';
+            timerRef.current = setTimeout(() => {
+              if (modeRef.current !== token) return;
+              if (scrambleRef.current) { scrambleRef.current.style.opacity = '0'; scrambleRef.current.textContent = ''; }
+              onDone();
+            }, CROSSFADE);
+          });
+        }, HOLD_DUR);
+      });
+    });
+  }
+
+  function startAuto() {
+    modeRef.current = 'auto';
+    runCycle('auto', () => {
+      timerRef.current = setTimeout(() => {
+        if (modeRef.current !== 'auto') return;
+        runCycle('auto', () => {
+          if (modeRef.current !== 'auto') return;
+          modeRef.current = 'idle';
+          showDefault();
+        });
+      }, BETWEEN_CYCLES);
+    });
+  }
+
+  function handleMouseEnter() {
+    cancelAll();
+    modeRef.current = 'hover';
+    if (defaultRef.current)  defaultRef.current.style.opacity  = '0';
+    if (scrambleRef.current) { scrambleRef.current.style.opacity = '0'; scrambleRef.current.textContent = ''; }
+    noise(EMAIL.length, NOISE_DUR, '#308695', 'hover', () => {
+      resolveText(TARGET, RESOLVE_DUR, 'hover', () => {
+        if (modeRef.current !== 'hover') return;
+        if (scrambleRef.current) scrambleRef.current.style.color = '#308695';
+      });
+    });
+  }
+
+  function handleMouseLeave() {
+    modeRef.current = 'idle';
+    showDefault();
+  }
+
+  useEffect(() => {
+    timerRef.current = setTimeout(startAuto, INITIAL_DELAY);
+    return () => cancelAll();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section ref={containerRef} id="hero" className="hero-quiet">
       <div className="hero-inner">
@@ -54,7 +174,19 @@ export default function Hero() {
           <span className="hero-role">
             {person.role} <span className="hero-role-soft">· {person.company}</span>
           </span>
-          <span className="hero-loc">{person.location} · 2026</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.35rem' }}>
+            <span className="hero-loc">{person.location} · 2026</span>
+            <div ref={emailAreaRef} style={{ position: 'relative', height: '14px', cursor: 'pointer', minWidth: '240px', display: 'flex', justifyContent: 'flex-end' }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => window.location.href = 'mailto:martina.edwards.p@gmail.com'}
+            >
+              <span ref={defaultRef} style={{ position: 'absolute', right: 0, top: 0, fontFamily: 'var(--font-dm-mono)', fontSize: '9.5px', letterSpacing: '0.08em', color: 'rgba(212,87,105,0.6)', whiteSpace: 'nowrap' }}>
+                martina.edwards.p@gmail.com
+              </span>
+              <span ref={scrambleRef} style={{ position: 'absolute', right: 0, top: 0, fontFamily: 'var(--font-dm-mono)', fontSize: '9.5px', letterSpacing: '0.08em', opacity: 0, whiteSpace: 'nowrap' }} />
+            </div>
+          </div>
         </div>
 
         {/* ── Headline + deck ── */}
@@ -65,7 +197,7 @@ export default function Hero() {
             </h1>
           </div>
           <p id="hero-deck" className="hero-citation" style={{ opacity: 0 }}>
-            — Claude Sonnet 4.6, <em>Confidence Is Not Correctness</em> (June 2026)
+            — Claude Sonnet 4.6, in conversation with Martina Edwards. <em>Confidence Is Not Correctness</em> (June 2026)
           </p>
         </div>
 
