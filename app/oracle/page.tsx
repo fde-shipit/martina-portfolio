@@ -43,11 +43,11 @@ export default function OraclePage() {
                 <em>fun.</em>
               </h1>
               <p className="orc-lede">
-                Most portfolio sites tell you they understand AI. This one lets you interrogate it.
-                Built in an afternoon using Claude. Guardrails built the way I would build them for a client:{' '}
+                Ask about the work. What was actually built, how it was scoped, where it
+                ran into problems. Built the way I&apos;d build it for a client:{' '}
                 bounded scope, explicit refusals, no hallucinated facts.{' '}
-                <b>The same architecture I would ship for a regulated client, scaled down to
-                one source of truth: my CV.</b>
+                <b>The same architecture I&apos;d ship for a regulated environment,
+                pointed at one source of truth: the CV.</b>
               </p>
               <div className="orc-ctas">
                 <a href="#oracle-ball" className="orc-cta">
@@ -89,9 +89,9 @@ export default function OraclePage() {
                 <div className="orc-guard-col">
                   <div className="orc-guard-label orc-guard-label--yes">✓ Answers</div>
                   <ul className="orc-guard-list">
-                    <li>Scope, methodology, and what she actually shipped</li>
-                    <li>Why she would approach a problem a particular way</li>
-                    <li>Honest &ldquo;I don&apos;t know&rdquo; with a contact pointer</li>
+                    <li>What was built and what it actually did</li>
+                    <li>How a problem was approached or scoped</li>
+                    <li>Honest &ldquo;I don&apos;t know&rdquo; with a contact pointer when it&apos;s outside the source of truth</li>
                     <li>Availability and where she&apos;s based</li>
                   </ul>
                 </div>

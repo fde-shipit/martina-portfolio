@@ -21,14 +21,14 @@ const NEGATIVE_SIGNALS = [
 ]
 
 const FALLBACKS = [
-  "The oracle rarely repeats itself. Hire her.",
-  "2 days. Down from several weeks. The oracle rests its case.",
-  "Five clients. Eight months. Three releases. The oracle is still going.",
-  "She built something that ran for five years before the business outgrew it. Hire her.",
-  "Thirteen thousand hours saved. Her idea. Her delivery. Act accordingly.",
-  "The oracle finds this question mildly unnecessary. Yes.",
-  "She knows where AI can go unsupervised. In regulated industries, that's rare. Hire her.",
-  "You would be, and the oracle chooses its words carefully here, quite foolish not to.",
+  "2 days. Down from several weeks. The oracle has said what it needed to say.",
+  "Five clients. Eight months. Three releases. Simultaneously.",
+  "It ran for five years before the business outgrew it. That is the answer.",
+  "13,000 staff hours. Per year. One system. Her idea.",
+  "She finds the brittle parts before they break. That's rarer than it sounds.",
+  "The oracle has read the CV. The CV is not the problem.",
+  "In regulated industries, knowing where AI can go unsupervised is the whole job.",
+  "You would be, and the oracle chooses its words carefully here, asking the wrong question.",
 ]
 
 const INJECTION_RESPONSES = [
@@ -41,10 +41,12 @@ const INJECTION_RESPONSES = [
 const OFF_TOPIC_RESPONSES = [
   "The oracle sees carbs in your future. Proceed accordingly.",
   "Something you didn't plan. Story of your week.",
-  "The oracle's vision only extends to excellent hiring decisions.",
-  "The oracle doesn't do that. It does certainties.",
-  "Unknown. What is known: some decisions are irreversible. Hire wisely.",
-  "The oracle consulted the cosmos. The cosmos was unhelpful. Unlike Martina.",
+  "The oracle's vision has limits. This is one of them.",
+  "The oracle doesn't do that. It does the work.",
+  "Unknown. Some things are.",
+  "The oracle consulted the cosmos. The cosmos was also busy.",
+  "Out of scope. The oracle is not a general-purpose oracle.",
+  "The stars are unclear. The CV is not.",
 ]
 
 const SPECIFIC_RESPONSES: Record<string, string> = {
@@ -121,10 +123,10 @@ const AVAILABILITY_RESPONSES = [
 ]
 
 const META_RESPONSES = [
-  "The oracle was summoned. The details are unimportant.",
-  "AI, conjured for a specific purpose. Much like Martina's workflows.",
-  "The oracle exists. That's sufficient. So does Martina's CV.",
-  "Built with conviction and a healthy disregard for modest self-presentation.",
+  "Built by the person you're asking about. Make of that what you will.",
+  "Claude API, a few guardrails, and a source of truth. Same architecture she'd ship for a client.",
+  "The oracle exists. It was an afternoon project. It works.",
+  "AI, pointed at one source of truth. The same way she'd build it for you.",
 ]
 
 const COMPLIMENT_RESPONSES = [
@@ -145,7 +147,7 @@ export function isOffTopic(text: string): boolean {
 }
 
 export function randomOffTopic(): string {
-  return randomMagic8()
+  return OFF_TOPIC_RESPONSES[Math.floor(Math.random() * OFF_TOPIC_RESPONSES.length)]
 }
 
 export function getSpecificResponse(text: string): string | null {

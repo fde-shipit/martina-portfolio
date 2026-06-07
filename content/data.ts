@@ -280,11 +280,11 @@ export const oraclePreview = {
   exchanges: [
     {
       who: "You",
-      what: "Why should we hire Martina to lead AI delivery?",
+      what: "How did the security assessment redesign actually work?",
     },
     {
       who: "Oracle",
-      what: "Because she'll show you the brittle bits before you ship.",
+      what: "Legora replaced a weeks-long manual process. It now takes two days. The workflow exists. It is in production.",
       tone: "answer",
     },
   ],
